@@ -961,7 +961,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-final-table-view[hidden], #mf-course-plans .mf-final-semester-view[hidden], #mf-course-plans .mf-final-week-view[hidden] { display: none; }
     #mf-course-plans .mf-final-semester-view { display: grid; gap: 20px; }
     #mf-course-plans .mf-final-week-view { display: grid; gap: 18px; }
-    #mf-course-plans .mf-schedule-controls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: end; }
+    #mf-course-plans .mf-schedule-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: end; }
     #mf-course-plans .mf-schedule-controls label { display: grid; gap: 6px; }
     #mf-course-plans .mf-schedule-status { display: grid; gap: 6px; padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px; background: color-mix(in srgb, var(--card) 88%, var(--accent)); }
     #mf-course-plans .mf-status-line { display: flex; gap: 8px; align-items: flex-start; }
@@ -1494,6 +1494,8 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;label&gt;&lt;span&gt;教学范围&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-schedule-week&quot;&gt;&lt;/select&gt;&lt;/label&gt;
             &lt;label&gt;&lt;span&gt;硕士研究生英语教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-english-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
             &lt;label&gt;&lt;span&gt;中国式现代化教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-modernization-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+            &lt;label id=&quot;mf-ai-section-control&quot; hidden&gt;&lt;span&gt;人工智能与机器学习教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-ai-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+            &lt;label id=&quot;mf-ip-section-control&quot; hidden&gt;&lt;span&gt;知识产权与信息检索教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-ip-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
           &lt;/div&gt;
           &lt;div class=&quot;mf-course-legend&quot; aria-label=&quot;课程类别颜色说明&quot;&gt;
             &lt;span class=&quot;mf-legend-label&quot;&gt;课程类别&lt;/span&gt;
@@ -1564,11 +1566,11 @@ html&gt;body{padding:0}&lt;/style&gt;
         &#x27;当代社会思潮辨析&#x27;
       ];
       const extraCourses = [
-        { id: &#x27;blockchain&#x27;, name: &#x27;区块链与数字货币&#x27;, credits: 1, hours: 16, opening: &#x27;春&#x27;, term: &#x27;春季&#x27; },
-        { id: &#x27;ip-search&#x27;, name: &#x27;知识产权与信息检索&#x27;, credits: 2, hours: 32, opening: &#x27;春或秋&#x27;, term: &#x27;春季&#x27;, flexible: true },
-        { id: &#x27;data-decision&#x27;, name: &#x27;数据分析与决策&#x27;, credits: 2, hours: 32, opening: &#x27;春&#x27;, term: &#x27;春季&#x27; },
-        { id: &#x27;ai-ml&#x27;, name: &#x27;人工智能与机器学习&#x27;, credits: 2, hours: 32, opening: &#x27;秋&#x27;, term: &#x27;秋季&#x27; },
-        { id: &#x27;data-mining&#x27;, name: &#x27;数据挖掘与信息管理&#x27;, credits: 3, hours: 48, opening: &#x27;秋&#x27;, term: &#x27;秋季&#x27; }
+        { id: &#x27;blockchain&#x27;, name: &#x27;区块链与数字货币&#x27;, credits: 1, hours: 16, opening: &#x27;春&#x27;, term: &#x27;春季&#x27;, scheduleNote: &#x27;春季课表待发布&#x27; },
+        { id: &#x27;ip-search&#x27;, name: &#x27;知识产权与信息检索&#x27;, credits: 2, hours: 32, opening: &#x27;春或秋&#x27;, term: &#x27;春季&#x27;, flexible: true, scheduleNote: &#x27;2026秋已查到4班&#x27; },
+        { id: &#x27;data-decision&#x27;, name: &#x27;数据分析与决策&#x27;, credits: 2, hours: 32, opening: &#x27;春&#x27;, term: &#x27;春季&#x27;, scheduleNote: &#x27;春季课表待发布&#x27; },
+        { id: &#x27;ai-ml&#x27;, name: &#x27;人工智能与机器学习&#x27;, credits: 2, hours: 32, opening: &#x27;秋&#x27;, term: &#x27;秋季&#x27;, scheduleNote: &#x27;2026秋已查到2班&#x27; },
+        { id: &#x27;data-mining&#x27;, name: &#x27;数据挖掘与信息管理&#x27;, credits: 3, hours: 48, opening: &#x27;秋&#x27;, term: &#x27;秋季&#x27;, scheduleNote: &#x27;2026秋未检索到&#x27; }
       ];
       const requiredLinks = [
         [&#x27;专业实践&#x27;,&#x27;实践教学&#x27;,2,&#x27;持续完成&#x27;],
@@ -1677,6 +1679,33 @@ html&gt;body{padding:0}&lt;/style&gt;
         { id: &#x27;e46&#x27;, label: &#x27;9-15周46班 · 周三1-2 · 余劲草&#x27;, meetings: [{ weeks:[[9,15]], day:3, start:1, end:2, room:&#x27;立人楼A215&#x27; }] },
         { id: &#x27;e47&#x27;, label: &#x27;9-15周47班 · 周三3-4 · 余劲草（冲突）&#x27;, meetings: [{ weeks:[[9,15]], day:3, start:3, end:4, room:&#x27;立人楼A215&#x27; }] },
         { id: &#x27;e41&#x27;, label: &#x27;9-15周41班 · 周三5-6 · 庞慧（冲突）&#x27;, meetings: [{ weeks:[[9,15]], day:3, start:5, end:6, room:&#x27;立人楼A110&#x27; }] }
+      ];
+      const aiSections = [
+        { id: &#x27;none&#x27;, label: &#x27;暂不指定教学班&#x27;, teacher: &#x27;&#x27;, meetings: [] },
+        { id: &#x27;ai1&#x27;, label: &#x27;1班 · 周一7-8 · 陆炜&#x27;, teacher: &#x27;陆炜&#x27;, meetings: [
+          { weeks:[[1,16]], day:1, start:7, end:8, room:&#x27;立人楼A202&#x27; }
+        ]},
+        { id: &#x27;ai2&#x27;, label: &#x27;2班 · 周一7-8＋周四7-8 · 陈忠&#x27;, teacher: &#x27;陈忠&#x27;, meetings: [
+          { weeks:[[1,8]], day:1, start:7, end:8, room:&#x27;品学楼B111&#x27; },
+          { weeks:[[1,8]], day:4, start:7, end:8, room:&#x27;品学楼B111&#x27; }
+        ]}
+      ];
+      const ipSections = [
+        { id: &#x27;none&#x27;, label: &#x27;暂不指定教学班&#x27;, teacher: &#x27;&#x27;, meetings: [] },
+        { id: &#x27;ip1&#x27;, label: &#x27;1班 · 周一9-11 · 肖延高、凌世婷&#x27;, teacher: &#x27;肖延高、凌世婷&#x27;, meetings: [
+          { weeks:[[1,6],[8,11]], day:1, start:9, end:11, room:&#x27;品学楼B102&#x27; },
+          { weeks:[[7,7]], day:1, start:9, end:10, room:&#x27;品学楼B102&#x27; }
+        ]},
+        { id: &#x27;ip2&#x27;, label: &#x27;2班 · 周二5-6 · 黎亮（冲突）&#x27;, teacher: &#x27;黎亮&#x27;, meetings: [
+          { weeks:[[1,16]], day:2, start:5, end:6, room:&#x27;品学楼B101&#x27; }
+        ]},
+        { id: &#x27;ip3&#x27;, label: &#x27;3班 · 周二7-8 · 黎亮（冲突）&#x27;, teacher: &#x27;黎亮&#x27;, meetings: [
+          { weeks:[[1,16]], day:2, start:7, end:8, room:&#x27;品学楼B101&#x27; }
+        ]},
+        { id: &#x27;ip4&#x27;, label: &#x27;4班 · 周二9-11 · 黄小洵、凌世婷（冲突）&#x27;, teacher: &#x27;黄小洵、凌世婷&#x27;, meetings: [
+          { weeks:[[1,10]], day:2, start:9, end:11, room:&#x27;品学楼B101&#x27; },
+          { weeks:[[11,11]], day:2, start:9, end:10, room:&#x27;品学楼B101&#x27; }
+        ]}
       ];
       const modernizationSections = [
         { id: &#x27;none&#x27;, label: &#x27;暂不指定教学班&#x27;, meetings: [] },
@@ -1799,6 +1828,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       const scheduleWeek = root.querySelector(&#x27;#mf-schedule-week&#x27;);
       const englishSection = root.querySelector(&#x27;#mf-english-section&#x27;);
       const modernizationSection = root.querySelector(&#x27;#mf-modernization-section&#x27;);
+      const aiSection = root.querySelector(&#x27;#mf-ai-section&#x27;);
+      const ipSection = root.querySelector(&#x27;#mf-ip-section&#x27;);
+      const aiSectionControl = root.querySelector(&#x27;#mf-ai-section-control&#x27;);
+      const ipSectionControl = root.querySelector(&#x27;#mf-ip-section-control&#x27;);
       const weekGrid = root.querySelector(&#x27;#mf-week-grid&#x27;);
       const scheduleStatus = root.querySelector(&#x27;#mf-schedule-status&#x27;);
       const conflictBox = root.querySelector(&#x27;#mf-conflict-box&#x27;);
@@ -1806,12 +1839,14 @@ html&gt;body{padding:0}&lt;/style&gt;
       scheduleWeek.innerHTML = `&lt;option value=&quot;all&quot;&gt;整个学期&lt;/option&gt;${Array.from({ length: 16 }, (_, index) =&gt; `&lt;option value=&quot;${index + 1}&quot;&gt;第${index + 1}周&lt;/option&gt;`).join(&#x27;&#x27;)}`;
       englishSection.innerHTML = englishSections.map(section =&gt; `&lt;option value=&quot;${section.id}&quot;&gt;${section.label}&lt;/option&gt;`).join(&#x27;&#x27;);
       modernizationSection.innerHTML = modernizationSections.map(section =&gt; `&lt;option value=&quot;${section.id}&quot;&gt;${section.label}&lt;/option&gt;`).join(&#x27;&#x27;);
+      aiSection.innerHTML = aiSections.map(section =&gt; `&lt;option value=&quot;${section.id}&quot;&gt;${section.label}&lt;/option&gt;`).join(&#x27;&#x27;);
+      ipSection.innerHTML = ipSections.map(section =&gt; `&lt;option value=&quot;${section.id}&quot;&gt;${section.label}&lt;/option&gt;`).join(&#x27;&#x27;);
 
       finalPlanOptions.innerHTML = plans.map((plan, index) =&gt; `&lt;button type=&quot;button&quot; class=&quot;btn${index === 0 ? &#x27; btn-primary&#x27; : &#x27;&#x27;}&quot; data-final-plan=&quot;${plan.id}&quot; aria-pressed=&quot;${index === 0 ? &#x27;true&#x27; : &#x27;false&#x27;}&quot;&gt;${plan.name}&lt;/button&gt;`).join(&#x27;&#x27;);
       finalPolitics.innerHTML = politicsCourses.map(course =&gt; `&lt;option value=&quot;${course}&quot;&gt;${course}&lt;/option&gt;`).join(&#x27;&#x27;);
       finalExtraOptions.innerHTML = extraCourses.map(course =&gt; {
         const selector = course.flexible ? `&lt;label class=&quot;sr-only&quot; for=&quot;mf-extra-term-${course.id}&quot;&gt;${course.name}安排学期&lt;/label&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-extra-term-${course.id}&quot; data-extra-term=&quot;${course.id}&quot; disabled&gt;&lt;option value=&quot;秋季&quot;&gt;秋季&lt;/option&gt;&lt;option value=&quot;春季&quot; selected&gt;春季&lt;/option&gt;&lt;/select&gt;` : &#x27;&#x27;;
-        return `&lt;div class=&quot;mf-choice-row&quot;&gt;&lt;div class=&quot;form-check&quot;&gt;&lt;input class=&quot;form-check-input&quot; type=&quot;checkbox&quot; id=&quot;mf-extra-${course.id}&quot; data-extra=&quot;${course.id}&quot;&gt;&lt;label class=&quot;form-check-label&quot; for=&quot;mf-extra-${course.id}&quot;&gt;${course.name} · ${course.credits}学分 · ${course.opening} · ${assessmentByCourse[course.name]}&lt;/label&gt;&lt;/div&gt;${selector}&lt;/div&gt;`;
+        return `&lt;div class=&quot;mf-choice-row&quot;&gt;&lt;div class=&quot;form-check&quot;&gt;&lt;input class=&quot;form-check-input&quot; type=&quot;checkbox&quot; id=&quot;mf-extra-${course.id}&quot; data-extra=&quot;${course.id}&quot;&gt;&lt;label class=&quot;form-check-label&quot; for=&quot;mf-extra-${course.id}&quot;&gt;${course.name} · ${course.credits}学分 · ${course.opening} · ${assessmentByCourse[course.name]} · ${course.scheduleNote}&lt;/label&gt;&lt;/div&gt;${selector}&lt;/div&gt;`;
       }).join(&#x27;&#x27;);
 
       const finalTagHtml = category =&gt; `&lt;span class=&quot;mf-type-tag mf-type-${categoryColor(category)}&quot;&gt;${category}&lt;/span&gt;`;
@@ -1837,6 +1872,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         const days = [&#x27;星期一&#x27;, &#x27;星期二&#x27;, &#x27;星期三&#x27;, &#x27;星期四&#x27;, &#x27;星期五&#x27;];
         const periodGroups = [[1,2],[3,4],[5,6],[7,8],[9,11]];
         const autumnCourseNames = new Set(currentFinalRows.filter(row =&gt; row[0] === &#x27;秋季&#x27;).map(row =&gt; row[1]));
+        aiSectionControl.hidden = scheduleSemester.value !== &#x27;autumn&#x27; || !autumnCourseNames.has(&#x27;人工智能与机器学习&#x27;);
+        ipSectionControl.hidden = scheduleSemester.value !== &#x27;autumn&#x27; || !autumnCourseNames.has(&#x27;知识产权与信息检索&#x27;);
 
         if (semester === &#x27;spring&#x27;) {
           scheduleStatus.innerHTML = `&lt;div class=&quot;mf-status-line&quot;&gt;&lt;span class=&quot;mf-status-mark is-pending&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;2027春季课表尚未发布。&lt;/strong&gt;课程清单可以按春季查看，但当前不能做可靠冲突判断。&lt;/span&gt;&lt;/div&gt;`;
@@ -1859,6 +1896,14 @@ html&gt;body{padding:0}&lt;/style&gt;
         const selectedModernization = modernizationSections.find(section =&gt; section.id === modernizationSection.value) || modernizationSections[0];
         if (autumnCourseNames.has(&#x27;中国式现代化的理论与实践&#x27;) &amp;&amp; selectedModernization.id !== &#x27;none&#x27;) {
           selectedModernization.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;中国式现代化的理论与实践&#x27;, category: &#x27;公共基础&#x27;, code: &#x27;1800005008&#x27;, teacher: selectedModernization.label.split(&#x27; · &#x27;).pop().replace(&#x27;（冲突）&#x27;, &#x27;&#x27;), meeting }));
+        }
+        const selectedAi = aiSections.find(section =&gt; section.id === aiSection.value) || aiSections[0];
+        if (autumnCourseNames.has(&#x27;人工智能与机器学习&#x27;) &amp;&amp; selectedAi.id !== &#x27;none&#x27;) {
+          selectedAi.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;人工智能与机器学习&#x27;, category: &#x27;其他选修·加选&#x27;, code: &#x27;1512016010&#x27;, teacher: selectedAi.teacher, meeting }));
+        }
+        const selectedIp = ipSections.find(section =&gt; section.id === ipSection.value) || ipSections[0];
+        if (autumnCourseNames.has(&#x27;知识产权与信息检索&#x27;) &amp;&amp; selectedIp.id !== &#x27;none&#x27;) {
+          selectedIp.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;知识产权与信息检索&#x27;, category: &#x27;其他选修·加选&#x27;, code: &#x27;1500005004&#x27;, teacher: selectedIp.teacher, meeting }));
         }
         const active = wholeSemester ? scheduled : scheduled.filter(item =&gt; meetingRunsInWeek(item.meeting, week));
         const conflictPairs = [];
@@ -1968,7 +2013,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       });
 
       root.addEventListener(&#x27;change&#x27;, event =&gt; {
-        if (event.target.closest(&#x27;#mf-schedule-semester, #mf-schedule-week, #mf-english-section, #mf-modernization-section&#x27;)) {
+        if (event.target.closest(&#x27;#mf-schedule-semester, #mf-schedule-week, #mf-english-section, #mf-modernization-section, #mf-ai-section, #mf-ip-section&#x27;)) {
           renderWeekSchedule();
           return;
         }
