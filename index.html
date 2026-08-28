@@ -971,9 +971,11 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-week-grid { display: grid; grid-template-columns: 76px repeat(5, minmax(125px, 1fr)); min-width: 760px; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
     #mf-course-plans .mf-week-cell { min-height: 76px; padding: 9px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     #mf-course-plans .mf-week-head, #mf-course-plans .mf-period-head { min-height: auto; background: color-mix(in srgb, var(--accent) 46%, transparent); font-weight: 500; text-align: center; }
-    #mf-course-plans .mf-class-chip { display: grid; gap: 2px; margin-bottom: 6px; padding: 7px 8px; border-left: 3px solid var(--primary); border-radius: 4px; background: color-mix(in srgb, var(--primary) 9%, var(--card)); font-size: 12px; line-height: 1.35; }
-    #mf-course-plans .mf-class-chip.is-conflict { border-left-color: var(--mf-degree); background: color-mix(in srgb, var(--mf-degree) 13%, var(--card)); }
+    #mf-course-plans .mf-class-chip { --mf-type-color: var(--primary); display: grid; gap: 2px; margin-bottom: 6px; padding: 7px 8px; border-left: 4px solid var(--mf-type-color); border-radius: 4px; background: color-mix(in srgb, var(--mf-type-color) 14%, var(--card)); font-size: 12px; line-height: 1.35; }
+    #mf-course-plans .mf-class-chip.mf-type-degree { --mf-type-color: light-dark(#697871, #dce7e2); }
+    #mf-course-plans .mf-class-chip.is-conflict { outline: 1px solid var(--mf-degree); outline-offset: -1px; background: linear-gradient(135deg, color-mix(in srgb, var(--mf-type-color) 16%, var(--card)), color-mix(in srgb, var(--mf-degree) 10%, var(--card))); }
     #mf-course-plans .mf-class-chip strong { font-size: 13px; }
+    #mf-course-plans .mf-class-category { width: max-content; margin-bottom: 2px; padding: 1px 5px; border: 1px solid color-mix(in srgb, var(--mf-type-color) 48%, var(--border)); border-radius: 999px; color: color-mix(in srgb, var(--mf-type-color) 76%, var(--foreground)); background: color-mix(in srgb, var(--mf-type-color) 10%, transparent); font-size: 10px; line-height: 1.3; }
     #mf-course-plans .mf-conflict-box { padding: 12px 14px; border-left: 3px solid var(--mf-required); background: color-mix(in srgb, var(--mf-required) 8%, transparent); }
     #mf-course-plans .mf-conflict-box.has-conflict { border-left-color: var(--mf-degree); background: color-mix(in srgb, var(--mf-degree) 9%, transparent); }
     #mf-course-plans table button { white-space: nowrap; }
@@ -1827,17 +1829,18 @@ html&gt;body{padding:0}&lt;/style&gt;
         }
 
         const scheduled = [];
+        const courseCategories = new Map(currentFinalRows.map(row =&gt; [row[1], row[2]]));
         Object.entries(verifiedSchedules).forEach(([course, detail]) =&gt; {
           if (!autumnCourseNames.has(course)) return;
-          detail.meetings.forEach(meeting =&gt; scheduled.push({ course, code: detail.code, teacher: detail.teacher, meeting }));
+          detail.meetings.forEach(meeting =&gt; scheduled.push({ course, category: courseCategories.get(course) || &#x27;专业基础&#x27;, code: detail.code, teacher: detail.teacher, meeting }));
         });
         const selectedEnglish = englishSections.find(section =&gt; section.id === englishSection.value) || englishSections[0];
         if (autumnCourseNames.has(&#x27;硕士研究生英语&#x27;) &amp;&amp; selectedEnglish.id !== &#x27;none&#x27;) {
-          selectedEnglish.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;硕士研究生英语&#x27;, code: &#x27;1700005008&#x27;, teacher: selectedEnglish.label.split(&#x27; · &#x27;).pop().replace(&#x27;（冲突）&#x27;, &#x27;&#x27;), meeting }));
+          selectedEnglish.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;硕士研究生英语&#x27;, category: &#x27;公共基础&#x27;, code: &#x27;1700005008&#x27;, teacher: selectedEnglish.label.split(&#x27; · &#x27;).pop().replace(&#x27;（冲突）&#x27;, &#x27;&#x27;), meeting }));
         }
         const selectedModernization = modernizationSections.find(section =&gt; section.id === modernizationSection.value) || modernizationSections[0];
         if (autumnCourseNames.has(&#x27;中国式现代化的理论与实践&#x27;) &amp;&amp; selectedModernization.id !== &#x27;none&#x27;) {
-          selectedModernization.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;中国式现代化的理论与实践&#x27;, code: &#x27;1800005008&#x27;, teacher: selectedModernization.label.split(&#x27; · &#x27;).pop().replace(&#x27;（冲突）&#x27;, &#x27;&#x27;), meeting }));
+          selectedModernization.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;中国式现代化的理论与实践&#x27;, category: &#x27;公共基础&#x27;, code: &#x27;1800005008&#x27;, teacher: selectedModernization.label.split(&#x27; · &#x27;).pop().replace(&#x27;（冲突）&#x27;, &#x27;&#x27;), meeting }));
         }
         const active = wholeSemester ? scheduled : scheduled.filter(item =&gt; meetingRunsInWeek(item.meeting, week));
         const conflictPairs = [];
@@ -1852,7 +1855,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           gridHtml += `&lt;div class=&quot;mf-week-cell mf-period-head&quot;&gt;第${group[0]}-${group[1]}节&lt;/div&gt;`;
           days.forEach((_, dayIndex) =&gt; {
             const cellItems = active.filter(item =&gt; item.meeting.day === dayIndex + 1 &amp;&amp; periodsOverlap(item.meeting, { start: group[0], end: group[1] }));
-            const chips = cellItems.map(item =&gt; `&lt;div class=&quot;mf-class-chip${conflictItems.has(item) ? &#x27; is-conflict&#x27; : &#x27;&#x27;}&quot;&gt;&lt;strong&gt;${item.course}&lt;/strong&gt;&lt;span&gt;${item.code} · 第${item.meeting.start}-${item.meeting.end}节&lt;/span&gt;&lt;span&gt;${item.teacher} · ${item.meeting.room}&lt;/span&gt;&lt;span&gt;${rangesText(item.meeting.weeks)}&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+            const chips = cellItems.map(item =&gt; `&lt;div class=&quot;mf-class-chip mf-type-${categoryColor(item.category)}${conflictItems.has(item) ? &#x27; is-conflict&#x27; : &#x27;&#x27;}&quot;&gt;&lt;span class=&quot;mf-class-category&quot;&gt;${item.category}&lt;/span&gt;&lt;strong&gt;${item.course}&lt;/strong&gt;&lt;span&gt;${item.code} · 第${item.meeting.start}-${item.meeting.end}节&lt;/span&gt;&lt;span&gt;${item.teacher} · ${item.meeting.room}&lt;/span&gt;&lt;span&gt;${rangesText(item.meeting.weeks)}&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
             gridHtml += `&lt;div class=&quot;mf-week-cell&quot;&gt;${chips}&lt;/div&gt;`;
           });
         });
