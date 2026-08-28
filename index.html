@@ -961,7 +961,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-final-table-view[hidden], #mf-course-plans .mf-final-semester-view[hidden], #mf-course-plans .mf-final-week-view[hidden] { display: none; }
     #mf-course-plans .mf-final-semester-view { display: grid; gap: 20px; }
     #mf-course-plans .mf-final-week-view { display: grid; gap: 18px; }
-    #mf-course-plans .mf-schedule-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: end; }
+    #mf-course-plans .mf-schedule-controls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: end; }
     #mf-course-plans .mf-schedule-controls label { display: grid; gap: 6px; }
     #mf-course-plans .mf-schedule-status { display: grid; gap: 6px; padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px; background: color-mix(in srgb, var(--card) 88%, var(--accent)); }
     #mf-course-plans .mf-status-line { display: flex; gap: 8px; align-items: flex-start; }
@@ -982,6 +982,9 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-compare-table tbody tr.is-current { background: color-mix(in srgb, var(--primary) 8%, transparent); }
     @media (prefers-reduced-motion: reduce) {
       #mf-course-plans .mf-compare-table tbody tr { transition: none; }
+    }
+    @media (max-width: 1000px) {
+      #mf-course-plans .mf-schedule-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 620px) {
       #mf-course-plans .mf-credit-bar { grid-template-columns: 17fr 10fr 6fr; }
@@ -1478,6 +1481,7 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;label&gt;&lt;span&gt;课表学期&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-schedule-semester&quot;&gt;&lt;option value=&quot;autumn&quot;&gt;2026秋季&lt;/option&gt;&lt;option value=&quot;spring&quot;&gt;2027春季（待发布）&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
             &lt;label&gt;&lt;span&gt;教学范围&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-schedule-week&quot;&gt;&lt;/select&gt;&lt;/label&gt;
             &lt;label&gt;&lt;span&gt;硕士研究生英语教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-english-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+            &lt;label&gt;&lt;span&gt;中国式现代化教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-modernization-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
           &lt;/div&gt;
           &lt;div class=&quot;mf-schedule-status&quot; id=&quot;mf-schedule-status&quot;&gt;&lt;/div&gt;
           &lt;div class=&quot;table-responsive&quot;&gt;&lt;div class=&quot;mf-week-grid&quot; id=&quot;mf-week-grid&quot;&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1654,6 +1658,51 @@ html&gt;body{padding:0}&lt;/style&gt;
         { id: &#x27;e47&#x27;, label: &#x27;9-15周47班 · 周三3-4 · 余劲草（冲突）&#x27;, meetings: [{ weeks:[[9,15]], day:3, start:3, end:4, room:&#x27;立人楼A215&#x27; }] },
         { id: &#x27;e41&#x27;, label: &#x27;9-15周41班 · 周三5-6 · 庞慧（冲突）&#x27;, meetings: [{ weeks:[[9,15]], day:3, start:5, end:6, room:&#x27;立人楼A110&#x27; }] }
       ];
+      const modernizationSections = [
+        { id: &#x27;none&#x27;, label: &#x27;暂不指定教学班&#x27;, meetings: [] },
+        { id: &#x27;m1&#x27;, label: &#x27;1班 · 周一3-4＋周三3-4 · 唐登蕓（冲突）&#x27;, meetings: [
+          { weeks:[[1,5],[7,10]], day:1, start:3, end:4, room:&#x27;品学楼B107&#x27; },
+          { weeks:[[1,9]], day:3, start:3, end:4, room:&#x27;品学楼B107&#x27; }
+        ]},
+        { id: &#x27;m2&#x27;, label: &#x27;2班 · 周一5-6＋周三5-6 · 唐登蕓（冲突）&#x27;, meetings: [
+          { weeks:[[1,5],[7,10]], day:1, start:5, end:6, room:&#x27;品学楼B107&#x27; },
+          { weeks:[[1,9]], day:3, start:5, end:6, room:&#x27;品学楼B107&#x27; }
+        ]},
+        { id: &#x27;m3&#x27;, label: &#x27;3班 · 周二9-11 · 高盛楠（冲突）&#x27;, meetings: [
+          { weeks:[[1,12]], day:2, start:9, end:11, room:&#x27;品学楼B107&#x27; }
+        ]},
+        { id: &#x27;m4&#x27;, label: &#x27;4班 · 周四9-11 · 高盛楠&#x27;, meetings: [
+          { weeks:[[1,4],[6,13]], day:4, start:9, end:11, room:&#x27;品学楼B107&#x27; }
+        ]},
+        { id: &#x27;m5&#x27;, label: &#x27;5班 · 周二3-4＋周四3-4 · 王红云&#x27;, meetings: [
+          { weeks:[[1,10]], day:2, start:3, end:4, room:&#x27;品学楼B107&#x27; },
+          { weeks:[[1,4],[6,9]], day:4, start:3, end:4, room:&#x27;品学楼B107&#x27; }
+        ]},
+        { id: &#x27;m6&#x27;, label: &#x27;6班 · 周二5-6＋周四5-6 · 王红云（冲突）&#x27;, meetings: [
+          { weeks:[[1,10]], day:2, start:5, end:6, room:&#x27;品学楼B107&#x27; },
+          { weeks:[[1,4],[6,9]], day:4, start:5, end:6, room:&#x27;品学楼B107&#x27; }
+        ]},
+        { id: &#x27;m7&#x27;, label: &#x27;7班 · 周二1-2＋周五1-2 · 王瑞&#x27;, meetings: [
+          { weeks:[[1,10]], day:2, start:1, end:2, room:&#x27;立人楼B417&#x27; },
+          { weeks:[[1,3],[6,10]], day:5, start:1, end:2, room:&#x27;立人楼B417&#x27; }
+        ]},
+        { id: &#x27;m8&#x27;, label: &#x27;8班 · 周二3-4＋周五3-4 · 王瑞&#x27;, meetings: [
+          { weeks:[[1,10]], day:2, start:3, end:4, room:&#x27;立人楼B417&#x27; },
+          { weeks:[[1,3],[6,10]], day:5, start:3, end:4, room:&#x27;立人楼B417&#x27; }
+        ]},
+        { id: &#x27;m9&#x27;, label: &#x27;9班 · 周二5-6＋周五5-6 · 王瑞（冲突）&#x27;, meetings: [
+          { weeks:[[1,10]], day:2, start:5, end:6, room:&#x27;立人楼B417&#x27; },
+          { weeks:[[1,3],[6,10]], day:5, start:5, end:6, room:&#x27;立人楼B417&#x27; }
+        ]},
+        { id: &#x27;m11&#x27;, label: &#x27;11班 · 周一3-4＋周三3-4 · 董兴彬（冲突）&#x27;, meetings: [
+          { weeks:[[1,5],[7,10]], day:1, start:3, end:4, room:&#x27;立人楼B417&#x27; },
+          { weeks:[[1,9]], day:3, start:3, end:4, room:&#x27;立人楼B417&#x27; }
+        ]},
+        { id: &#x27;m12&#x27;, label: &#x27;12班 · 周一1-2＋周三1-2 · 罗甜田&#x27;, meetings: [
+          { weeks:[[1,5],[7,10]], day:1, start:1, end:2, room:&#x27;品学楼B107&#x27; },
+          { weeks:[[1,9]], day:3, start:1, end:2, room:&#x27;品学楼B107&#x27; }
+        ]}
+      ];
       const categoryColor = category =&gt; {
         if (category === &#x27;公共基础&#x27; || category === &#x27;专业基础&#x27;) return &#x27;degree&#x27;;
         if (category.startsWith(&#x27;专业选修&#x27;)) return &#x27;elective&#x27;;
@@ -1729,12 +1778,14 @@ html&gt;body{padding:0}&lt;/style&gt;
       const scheduleSemester = root.querySelector(&#x27;#mf-schedule-semester&#x27;);
       const scheduleWeek = root.querySelector(&#x27;#mf-schedule-week&#x27;);
       const englishSection = root.querySelector(&#x27;#mf-english-section&#x27;);
+      const modernizationSection = root.querySelector(&#x27;#mf-modernization-section&#x27;);
       const weekGrid = root.querySelector(&#x27;#mf-week-grid&#x27;);
       const scheduleStatus = root.querySelector(&#x27;#mf-schedule-status&#x27;);
       const conflictBox = root.querySelector(&#x27;#mf-conflict-box&#x27;);
 
       scheduleWeek.innerHTML = `&lt;option value=&quot;all&quot;&gt;整个学期&lt;/option&gt;${Array.from({ length: 16 }, (_, index) =&gt; `&lt;option value=&quot;${index + 1}&quot;&gt;第${index + 1}周&lt;/option&gt;`).join(&#x27;&#x27;)}`;
       englishSection.innerHTML = englishSections.map(section =&gt; `&lt;option value=&quot;${section.id}&quot;&gt;${section.label}&lt;/option&gt;`).join(&#x27;&#x27;);
+      modernizationSection.innerHTML = modernizationSections.map(section =&gt; `&lt;option value=&quot;${section.id}&quot;&gt;${section.label}&lt;/option&gt;`).join(&#x27;&#x27;);
 
       finalPlanOptions.innerHTML = plans.map((plan, index) =&gt; `&lt;button type=&quot;button&quot; class=&quot;btn${index === 0 ? &#x27; btn-primary&#x27; : &#x27;&#x27;}&quot; data-final-plan=&quot;${plan.id}&quot; aria-pressed=&quot;${index === 0 ? &#x27;true&#x27; : &#x27;false&#x27;}&quot;&gt;${plan.name}&lt;/button&gt;`).join(&#x27;&#x27;);
       finalPolitics.innerHTML = politicsCourses.map(course =&gt; `&lt;option value=&quot;${course}&quot;&gt;${course}&lt;/option&gt;`).join(&#x27;&#x27;);
@@ -1783,6 +1834,10 @@ html&gt;body{padding:0}&lt;/style&gt;
         const selectedEnglish = englishSections.find(section =&gt; section.id === englishSection.value) || englishSections[0];
         if (autumnCourseNames.has(&#x27;硕士研究生英语&#x27;) &amp;&amp; selectedEnglish.id !== &#x27;none&#x27;) {
           selectedEnglish.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;硕士研究生英语&#x27;, code: &#x27;1700005008&#x27;, teacher: selectedEnglish.label.split(&#x27; · &#x27;).pop().replace(&#x27;（冲突）&#x27;, &#x27;&#x27;), meeting }));
+        }
+        const selectedModernization = modernizationSections.find(section =&gt; section.id === modernizationSection.value) || modernizationSections[0];
+        if (autumnCourseNames.has(&#x27;中国式现代化的理论与实践&#x27;) &amp;&amp; selectedModernization.id !== &#x27;none&#x27;) {
+          selectedModernization.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;中国式现代化的理论与实践&#x27;, code: &#x27;1800005008&#x27;, teacher: selectedModernization.label.split(&#x27; · &#x27;).pop().replace(&#x27;（冲突）&#x27;, &#x27;&#x27;), meeting }));
         }
         const active = wholeSemester ? scheduled : scheduled.filter(item =&gt; meetingRunsInWeek(item.meeting, week));
         const conflictPairs = [];
@@ -1892,7 +1947,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       });
 
       root.addEventListener(&#x27;change&#x27;, event =&gt; {
-        if (event.target.closest(&#x27;#mf-schedule-semester, #mf-schedule-week, #mf-english-section&#x27;)) {
+        if (event.target.closest(&#x27;#mf-schedule-semester, #mf-schedule-week, #mf-english-section, #mf-modernization-section&#x27;)) {
           renderWeekSchedule();
           return;
         }
