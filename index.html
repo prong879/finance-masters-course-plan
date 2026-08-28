@@ -912,7 +912,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 --&gt;
 &lt;div id=&quot;mf-course-plans&quot;&gt;
   &lt;style&gt;
-    #mf-course-plans { --mf-degree: var(--red); --mf-elective: color-mix(in srgb, var(--blue) 72%, var(--green)); --mf-other: var(--purple); --mf-practice: var(--yellow); --mf-required: var(--green); box-sizing: border-box; color: var(--foreground); }
+    #mf-course-plans { --mf-degree: var(--red); --mf-elective: color-mix(in srgb, var(--blue) 72%, var(--green)); --mf-other: var(--purple); --mf-practice: var(--yellow); --mf-required: var(--green); --mf-course-degree: light-dark(#58727b, #8fa9b2); --mf-course-elective: light-dark(#237d68, #55c6a9); --mf-course-other: light-dark(#7257a5, #b197e8); --mf-course-practice: light-dark(#9c6c19, #e2b85b); --mf-course-required: light-dark(#5e803c, #9bcb73); box-sizing: border-box; color: var(--foreground); }
     #mf-course-plans h1, #mf-course-plans h2, #mf-course-plans h3, #mf-course-plans strong { font-weight: 500; }
     #mf-course-plans .mf-stack { display: grid; gap: 24px; }
     #mf-course-plans .mf-section { display: grid; gap: 12px; }
@@ -971,11 +971,21 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-week-grid { display: grid; grid-template-columns: 76px repeat(5, minmax(125px, 1fr)); min-width: 760px; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
     #mf-course-plans .mf-week-cell { min-height: 76px; padding: 9px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     #mf-course-plans .mf-week-head, #mf-course-plans .mf-period-head { min-height: auto; background: color-mix(in srgb, var(--accent) 46%, transparent); font-weight: 500; text-align: center; }
-    #mf-course-plans .mf-class-chip { --mf-type-color: var(--primary); display: grid; gap: 2px; margin-bottom: 6px; padding: 7px 8px; border-left: 4px solid var(--mf-type-color); border-radius: 4px; background: color-mix(in srgb, var(--mf-type-color) 14%, var(--card)); font-size: 12px; line-height: 1.35; }
-    #mf-course-plans .mf-class-chip.mf-type-degree { --mf-type-color: light-dark(#697871, #dce7e2); }
-    #mf-course-plans .mf-class-chip.is-conflict { outline: 1px solid var(--mf-degree); outline-offset: -1px; background: linear-gradient(135deg, color-mix(in srgb, var(--mf-type-color) 16%, var(--card)), color-mix(in srgb, var(--mf-degree) 10%, var(--card))); }
-    #mf-course-plans .mf-class-chip strong { font-size: 13px; }
-    #mf-course-plans .mf-class-category { width: max-content; margin-bottom: 2px; padding: 1px 5px; border: 1px solid color-mix(in srgb, var(--mf-type-color) 48%, var(--border)); border-radius: 999px; color: color-mix(in srgb, var(--mf-type-color) 76%, var(--foreground)); background: color-mix(in srgb, var(--mf-type-color) 10%, transparent); font-size: 10px; line-height: 1.3; }
+    #mf-course-plans .mf-course-color.mf-type-degree { --mf-type-color: var(--mf-course-degree); }
+    #mf-course-plans .mf-course-color.mf-type-elective { --mf-type-color: var(--mf-course-elective); }
+    #mf-course-plans .mf-course-color.mf-type-other { --mf-type-color: var(--mf-course-other); }
+    #mf-course-plans .mf-course-color.mf-type-practice { --mf-type-color: var(--mf-course-practice); }
+    #mf-course-plans .mf-course-color.mf-type-required { --mf-type-color: var(--mf-course-required); }
+    #mf-course-plans .mf-course-legend { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; background: color-mix(in srgb, var(--card) 84%, transparent); }
+    #mf-course-plans .mf-legend-label { margin-right: 2px; color: var(--muted-foreground); font-size: 12px; }
+    #mf-course-plans .mf-legend-item { --mf-type-color: var(--primary); display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+    #mf-course-plans .mf-legend-swatch { width: 12px; height: 12px; border: 1px solid color-mix(in srgb, var(--mf-type-color) 80%, white); border-radius: 3px; background: color-mix(in srgb, var(--mf-type-color) 72%, var(--card)); box-shadow: 0 0 0 2px color-mix(in srgb, var(--mf-type-color) 14%, transparent); }
+    #mf-course-plans .mf-class-chip { --mf-type-color: var(--primary); display: grid; gap: 2px; margin-bottom: 7px; padding: 8px 9px; border: 1px solid color-mix(in srgb, var(--mf-type-color) 42%, var(--border)); border-left: 6px solid var(--mf-type-color); border-radius: 5px; background: color-mix(in srgb, var(--mf-type-color) 29%, var(--card)); box-shadow: 0 4px 12px color-mix(in srgb, var(--mf-type-color) 8%, transparent); font-size: 12px; line-height: 1.35; }
+    #mf-course-plans .mf-class-chip.is-conflict { outline: 2px solid var(--mf-degree); outline-offset: 1px; }
+    #mf-course-plans .mf-class-chip strong { color: var(--foreground); font-size: 13px; font-weight: 600; }
+    #mf-course-plans .mf-class-chip &gt; span:not(.mf-class-category, .mf-conflict-badge) { color: color-mix(in srgb, var(--foreground) 78%, var(--muted-foreground)); }
+    #mf-course-plans .mf-class-category { width: max-content; margin-bottom: 3px; padding: 2px 6px; border: 1px solid color-mix(in srgb, var(--mf-type-color) 68%, var(--border)); border-radius: 999px; color: color-mix(in srgb, var(--mf-type-color) 78%, var(--foreground)); background: color-mix(in srgb, var(--mf-type-color) 27%, var(--card)); font-size: 10px; font-weight: 600; line-height: 1.3; }
+    #mf-course-plans .mf-conflict-badge { width: max-content; margin-top: 2px; padding: 2px 6px; border-radius: 3px; color: light-dark(#7f201b, #ffd8d3); background: color-mix(in srgb, var(--mf-degree) 24%, transparent); font-size: 10px; font-weight: 700; }
     #mf-course-plans .mf-conflict-box { padding: 12px 14px; border-left: 3px solid var(--mf-required); background: color-mix(in srgb, var(--mf-required) 8%, transparent); }
     #mf-course-plans .mf-conflict-box.has-conflict { border-left-color: var(--mf-degree); background: color-mix(in srgb, var(--mf-degree) 9%, transparent); }
     #mf-course-plans table button { white-space: nowrap; }
@@ -1485,6 +1495,14 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;label&gt;&lt;span&gt;硕士研究生英语教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-english-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
             &lt;label&gt;&lt;span&gt;中国式现代化教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-modernization-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
           &lt;/div&gt;
+          &lt;div class=&quot;mf-course-legend&quot; aria-label=&quot;课程类别颜色说明&quot;&gt;
+            &lt;span class=&quot;mf-legend-label&quot;&gt;课程类别&lt;/span&gt;
+            &lt;span class=&quot;mf-legend-item mf-course-color mf-type-degree&quot;&gt;&lt;i class=&quot;mf-legend-swatch&quot;&gt;&lt;/i&gt;学位课&lt;/span&gt;
+            &lt;span class=&quot;mf-legend-item mf-course-color mf-type-elective&quot;&gt;&lt;i class=&quot;mf-legend-swatch&quot;&gt;&lt;/i&gt;专业选修&lt;/span&gt;
+            &lt;span class=&quot;mf-legend-item mf-course-color mf-type-other&quot;&gt;&lt;i class=&quot;mf-legend-swatch&quot;&gt;&lt;/i&gt;其他选修&lt;/span&gt;
+            &lt;span class=&quot;mf-legend-item mf-course-color mf-type-practice&quot;&gt;&lt;i class=&quot;mf-legend-swatch&quot;&gt;&lt;/i&gt;实践教学&lt;/span&gt;
+            &lt;span class=&quot;mf-legend-item mf-course-color mf-type-required&quot;&gt;&lt;i class=&quot;mf-legend-swatch&quot;&gt;&lt;/i&gt;必修环节&lt;/span&gt;
+          &lt;/div&gt;
           &lt;div class=&quot;mf-schedule-status&quot; id=&quot;mf-schedule-status&quot;&gt;&lt;/div&gt;
           &lt;div class=&quot;table-responsive&quot;&gt;&lt;div class=&quot;mf-week-grid&quot; id=&quot;mf-week-grid&quot;&gt;&lt;/div&gt;&lt;/div&gt;
           &lt;div class=&quot;mf-conflict-box&quot; id=&quot;mf-conflict-box&quot;&gt;&lt;/div&gt;
@@ -1855,7 +1873,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           gridHtml += `&lt;div class=&quot;mf-week-cell mf-period-head&quot;&gt;第${group[0]}-${group[1]}节&lt;/div&gt;`;
           days.forEach((_, dayIndex) =&gt; {
             const cellItems = active.filter(item =&gt; item.meeting.day === dayIndex + 1 &amp;&amp; periodsOverlap(item.meeting, { start: group[0], end: group[1] }));
-            const chips = cellItems.map(item =&gt; `&lt;div class=&quot;mf-class-chip mf-type-${categoryColor(item.category)}${conflictItems.has(item) ? &#x27; is-conflict&#x27; : &#x27;&#x27;}&quot;&gt;&lt;span class=&quot;mf-class-category&quot;&gt;${item.category}&lt;/span&gt;&lt;strong&gt;${item.course}&lt;/strong&gt;&lt;span&gt;${item.code} · 第${item.meeting.start}-${item.meeting.end}节&lt;/span&gt;&lt;span&gt;${item.teacher} · ${item.meeting.room}&lt;/span&gt;&lt;span&gt;${rangesText(item.meeting.weeks)}&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+            const chips = cellItems.map(item =&gt; { const conflict = conflictItems.has(item); return `&lt;div class=&quot;mf-class-chip mf-course-color mf-type-${categoryColor(item.category)}${conflict ? &#x27; is-conflict&#x27; : &#x27;&#x27;}&quot;&gt;&lt;span class=&quot;mf-class-category&quot;&gt;${item.category}&lt;/span&gt;&lt;strong&gt;${item.course}&lt;/strong&gt;&lt;span&gt;${item.code} · 第${item.meeting.start}-${item.meeting.end}节&lt;/span&gt;&lt;span&gt;${item.teacher} · ${item.meeting.room}&lt;/span&gt;&lt;span&gt;${rangesText(item.meeting.weeks)}&lt;/span&gt;${conflict ? &#x27;&lt;span class=&quot;mf-conflict-badge&quot;&gt;时间冲突&lt;/span&gt;&#x27; : &#x27;&#x27;}&lt;/div&gt;`; }).join(&#x27;&#x27;);
             gridHtml += `&lt;div class=&quot;mf-week-cell&quot;&gt;${chips}&lt;/div&gt;`;
           });
         });
