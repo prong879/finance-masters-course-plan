@@ -1036,10 +1036,31 @@ html&gt;body{padding:0}&lt;/style&gt;
       #mf-course-plans .mf-week-nav { grid-column: auto; }
       #mf-course-plans .mf-plan-head { grid-template-columns: 1fr; }
       #mf-course-plans .mf-load { text-align: left; }
-      #mf-course-plans .mf-dialog { grid-template-columns: 1fr; }
+      #mf-course-plans #mf-panel-custom, #mf-course-plans .mf-dialog { width: 100%; max-width: 100%; min-width: 0; }
+      #mf-course-plans .mf-dialog { grid-template-columns: minmax(0, 1fr); }
       #mf-course-plans .mf-dialog-turn, #mf-course-plans .mf-dialog-plan, #mf-course-plans .mf-dialog-politics, #mf-course-plans .mf-dialog-actions { grid-column: auto; }
-      #mf-course-plans .mf-dialog-turn &gt; :is(strong, legend, .form-label) { padding-right: 0; padding-top: 20px; }
-      #mf-course-plans .mf-dialog-turn::after { right: auto; left: 20px; }
+      #mf-course-plans .mf-dialog-turn { gap: 12px; padding: 16px; overflow: visible; }
+      #mf-course-plans .mf-dialog-turn::after { display: none; }
+      #mf-course-plans .mf-dialog-turn &gt; :is(strong, legend, .form-label) { width: 100%; max-width: 100%; margin: 0; padding: 0; }
+      #mf-course-plans .mf-dialog legend { display: block; float: none; line-height: 1.45; }
+      #mf-course-plans .mf-dialog-practice .viz-controls { display: grid; gap: 12px; }
+      #mf-course-plans .mf-dialog .form-check { align-items: flex-start; width: 100%; }
+      #mf-course-plans .mf-dialog .form-check-input { margin-top: 3px; }
+      #mf-course-plans .mf-choice-row { width: 100%; padding: 14px; overflow: visible; }
+      #mf-course-plans .mf-choice-row .form-check-label { min-width: 0; overflow-wrap: anywhere; }
+      #mf-course-plans .mf-dialog-plan .mf-selector { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #mf-course-plans .mf-dialog-plan .mf-selector .btn { width: 100%; min-width: 0; }
+      #mf-course-plans .mf-dialog-actions { padding-top: 0; }
+      #mf-course-plans .mf-dialog-actions .btn { width: 100%; min-width: 0; }
+      #mf-course-plans .mf-final-week-view .table-responsive { overflow-x: hidden; }
+      #mf-course-plans .mf-week-grid { --mf-period-height: 48px; width: 100%; min-width: 0; grid-template-columns: 28px repeat(7, minmax(0, 1fr)); }
+      #mf-course-plans .mf-week-cell { padding: 5px 1px; font-size: 10px; }
+      #mf-course-plans .mf-period-slot { padding: 0; font-size: 8px; }
+      #mf-course-plans .mf-class-chip { grid-template-rows: auto auto 1fr; gap: 2px; margin: 1px; padding: 3px 2px; border-left-width: 3px; border-radius: 3px; box-shadow: none; font-size: 8px; line-height: 1.15; }
+      #mf-course-plans .mf-class-badges, #mf-course-plans .mf-class-teacher { display: none; }
+      #mf-course-plans .mf-class-head strong { max-height: 2.4em; font-size: 9px; line-height: 1.2; }
+      #mf-course-plans .mf-class-meta, #mf-course-plans .mf-class-schedule { gap: 0; font-size: 7px; line-height: 1.15; }
+      #mf-course-plans .mf-class-meta span, #mf-course-plans .mf-class-schedule span { white-space: nowrap; }
     }
 
     /* Editorial handbook visual system: warm paper, ink green, restrained brass. */
@@ -1990,6 +2011,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       const weekGrid = root.querySelector(&#x27;#mf-week-grid&#x27;);
       const scheduleStatus = root.querySelector(&#x27;#mf-schedule-status&#x27;);
       const conflictBox = root.querySelector(&#x27;#mf-conflict-box&#x27;);
+      const mobileScheduleMedia = matchMedia(&#x27;(max-width: 620px)&#x27;);
 
       scheduleWeek.innerHTML = `&lt;option value=&quot;all&quot;&gt;整个学期&lt;/option&gt;${Array.from({ length: 16 }, (_, index) =&gt; `&lt;option value=&quot;${index + 1}&quot;&gt;第${index + 1}周&lt;/option&gt;`).join(&#x27;&#x27;)}`;
       englishSection.innerHTML = englishSections.map(section =&gt; `&lt;option value=&quot;${section.id}&quot;&gt;${section.label}&lt;/option&gt;`).join(&#x27;&#x27;);
@@ -2077,7 +2099,10 @@ html&gt;body{padding:0}&lt;/style&gt;
         const semester = scheduleSemester.value;
         const wholeSemester = scheduleWeek.value === &#x27;all&#x27;;
         const week = Number(scheduleWeek.value || 1);
-        const days = [&#x27;星期一&#x27;, &#x27;星期二&#x27;, &#x27;星期三&#x27;, &#x27;星期四&#x27;, &#x27;星期五&#x27;];
+        const mobileTimetable = mobileScheduleMedia.matches;
+        const days = mobileTimetable
+          ? [&#x27;一&#x27;, &#x27;二&#x27;, &#x27;三&#x27;, &#x27;四&#x27;, &#x27;五&#x27;, &#x27;六&#x27;, &#x27;日&#x27;]
+          : [&#x27;星期一&#x27;, &#x27;星期二&#x27;, &#x27;星期三&#x27;, &#x27;星期四&#x27;, &#x27;星期五&#x27;];
         const autumnCourseNames = new Set(currentFinalRows.filter(row =&gt; row[0] === &#x27;秋季&#x27;).map(row =&gt; row[1]));
         aiSectionControl.hidden = scheduleSemester.value !== &#x27;autumn&#x27; || !autumnCourseNames.has(&#x27;人工智能与机器学习&#x27;);
         ipSectionControl.hidden = scheduleSemester.value !== &#x27;autumn&#x27; || !autumnCourseNames.has(&#x27;知识产权与信息检索&#x27;);
@@ -2140,7 +2165,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         }));
         const conflictItems = new Set(conflictPairs.flatMap(pair =&gt; pair.items));
 
-        const periodSlots = Array.from({ length: 11 }, (_, index) =&gt; `&lt;div class=&quot;mf-period-slot&quot; style=&quot;grid-row:${index + 1}&quot;&gt;第${index + 1}节&lt;/div&gt;`).join(&#x27;&#x27;);
+        const periodSlots = Array.from({ length: 11 }, (_, index) =&gt; `&lt;div class=&quot;mf-period-slot&quot; style=&quot;grid-row:${index + 1}&quot;&gt;${mobileTimetable ? index + 1 : `第${index + 1}节`}&lt;/div&gt;`).join(&#x27;&#x27;);
         let gridHtml = `&lt;div class=&quot;mf-week-cell mf-week-head&quot;&gt;节次&lt;/div&gt;${days.map(day =&gt; `&lt;div class=&quot;mf-week-cell mf-week-head&quot;&gt;${day}&lt;/div&gt;`).join(&#x27;&#x27;)}&lt;div class=&quot;mf-period-track&quot;&gt;${periodSlots}&lt;/div&gt;`;
         days.forEach((_, dayIndex) =&gt; {
           const dayItems = mergeDisplayItems(active.filter(item =&gt; item.meeting.day === dayIndex + 1), conflictItems);
@@ -2149,9 +2174,13 @@ html&gt;body{padding:0}&lt;/style&gt;
           const chips = layout.items.map(item =&gt; {
             const scheduleRules = [...new Set(item.meetings.map(meeting =&gt; `${meeting.start}-${meeting.end}节 · ${rangesText(meeting.weeks)}`))];
             const scheduleLines = scheduleRules.join(&#x27;；&#x27;);
-            const scheduleHtml = scheduleRules.map(rule =&gt; `&lt;span&gt;${rule}&lt;/span&gt;`).join(&#x27;&#x27;);
+            const scheduleHtml = scheduleRules.map(rule =&gt; {
+              if (!mobileTimetable) return `&lt;span&gt;${rule}&lt;/span&gt;`;
+              const [periods, weeks] = rule.split(&#x27; · &#x27;);
+              return `&lt;span&gt;${periods}&lt;/span&gt;&lt;span&gt;${weeks || &#x27;&#x27;}&lt;/span&gt;`;
+            }).join(&#x27;&#x27;);
             const column = item.fullWidth ? &#x27;1 / -1&#x27; : String(item.lane + 1);
-            return `&lt;div class=&quot;mf-class-chip mf-course-color mf-type-${categoryColor(item.category)}${item.conflict ? &#x27; is-conflict&#x27; : &#x27;&#x27;}&quot; style=&quot;grid-row:${item.start}/${item.end + 1};grid-column:${column}&quot; title=&quot;${item.course} · ${item.category} · ${item.teacher} · ${item.meeting.room} · ${scheduleLines} · ${item.code}&quot;&gt;&lt;span class=&quot;mf-class-head&quot;&gt;&lt;span class=&quot;mf-class-badges&quot;&gt;&lt;span class=&quot;mf-class-category&quot;&gt;${item.category}&lt;/span&gt;${item.conflict ? &#x27;&lt;span class=&quot;mf-conflict-badge&quot;&gt;冲突&lt;/span&gt;&#x27; : &#x27;&#x27;}&lt;/span&gt;&lt;strong&gt;${item.course}&lt;/strong&gt;&lt;/span&gt;&lt;span class=&quot;mf-class-meta&quot;&gt;&lt;span&gt;${item.teacher}&lt;/span&gt;&lt;span&gt;${item.meeting.room}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mf-class-schedule&quot;&gt;${scheduleHtml}&lt;/span&gt;&lt;/div&gt;`;
+            return `&lt;div class=&quot;mf-class-chip mf-course-color mf-type-${categoryColor(item.category)}${item.conflict ? &#x27; is-conflict&#x27; : &#x27;&#x27;}&quot; style=&quot;grid-row:${item.start}/${item.end + 1};grid-column:${column}&quot; title=&quot;${item.course} · ${item.category} · ${item.teacher} · ${item.meeting.room} · ${scheduleLines} · ${item.code}&quot;&gt;&lt;span class=&quot;mf-class-head&quot;&gt;&lt;span class=&quot;mf-class-badges&quot;&gt;&lt;span class=&quot;mf-class-category&quot;&gt;${item.category}&lt;/span&gt;${item.conflict ? &#x27;&lt;span class=&quot;mf-conflict-badge&quot;&gt;冲突&lt;/span&gt;&#x27; : &#x27;&#x27;}&lt;/span&gt;&lt;strong&gt;${item.course}&lt;/strong&gt;&lt;/span&gt;&lt;span class=&quot;mf-class-meta&quot;&gt;&lt;span class=&quot;mf-class-teacher&quot;&gt;${item.teacher}&lt;/span&gt;&lt;span class=&quot;mf-class-room&quot;&gt;${item.meeting.room}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mf-class-schedule&quot;&gt;${scheduleHtml}&lt;/span&gt;&lt;/div&gt;`;
           }).join(&#x27;&#x27;);
           gridHtml += `&lt;div class=&quot;mf-day-track&quot; style=&quot;--mf-lanes:${layout.laneCount}&quot;&gt;${backgroundSlots}${chips}&lt;/div&gt;`;
         });
@@ -2162,7 +2191,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         scheduleStatus.innerHTML = `&lt;div class=&quot;mf-status-line&quot;&gt;&lt;span class=&quot;mf-status-mark&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;已纳入${publishedCourses.length}门：</strong&gt;${publishedCourses.length ? publishedCourses.join(&#x27;、&#x27;) : &#x27;尚未选择已发布教学班&#x27;}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;mf-status-line&quot;&gt;&lt;span class=&quot;mf-status-mark is-pending&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;待发布或待选班${pendingCourses.length}门：</strong&gt;${pendingCourses.length ? pendingCourses.join(&#x27;、&#x27;) : &#x27;无&#x27;}&lt;/span&gt;&lt;/div&gt;`;
         conflictBox.classList.toggle(&#x27;has-conflict&#x27;, conflictPairs.length &gt; 0);
         const scopeLabel = wholeSemester ? &#x27;整个学期&#x27; : `第${week}周`;
-        conflictBox.innerHTML = conflictPairs.length ? `&lt;strong&gt;${scopeLabel}发现${conflictPairs.length}组冲突：&lt;/strong&gt;${conflictPairs.map(pair =&gt; { const [first, second] = pair.items; const weeksLabel = wholeSemester ? `，${rangesText(pair.overlappingWeeks)}` : &#x27;&#x27;; return `${first.course} 与 ${second.course}（星期${&#x27;一二三四五&#x27;[first.meeting.day - 1]}第${Math.max(first.meeting.start, second.meeting.start)}-${Math.min(first.meeting.end, second.meeting.end)}节${weeksLabel}）`; }).join(&#x27;；&#x27;)}` : `&lt;strong&gt;${scopeLabel}未发现已发布课程之间的时间冲突。&lt;/strong&gt; 待发布课程仍不计入此结论。`;
+        conflictBox.innerHTML = conflictPairs.length ? `&lt;strong&gt;${scopeLabel}发现${conflictPairs.length}组冲突：&lt;/strong&gt;${conflictPairs.map(pair =&gt; { const [first, second] = pair.items; const weeksLabel = wholeSemester ? `，${rangesText(pair.overlappingWeeks)}` : &#x27;&#x27;; return `${first.course} 与 ${second.course}（星期${&#x27;一二三四五六日&#x27;[first.meeting.day - 1]}第${Math.max(first.meeting.start, second.meeting.start)}-${Math.min(first.meeting.end, second.meeting.end)}节${weeksLabel}）`; }).join(&#x27;；&#x27;)}` : `&lt;strong&gt;${scopeLabel}未发现已发布课程之间的时间冲突。&lt;/strong&gt; 待发布课程仍不计入此结论。`;
       }
 
       function renderFinalView(view) {
@@ -2294,6 +2323,12 @@ html&gt;body{padding:0}&lt;/style&gt;
         if (termControl) termControl.disabled = !checkbox.checked;
         if (!root.querySelector(&#x27;#mf-final-result&#x27;).hidden) generateFinalPlan();
       });
+
+      const rerenderScheduleForBreakpoint = () =&gt; {
+        if (currentFinalView === &#x27;week&#x27; &amp;&amp; !root.querySelector(&#x27;#mf-final-result&#x27;).hidden) renderWeekSchedule();
+      };
+      if (mobileScheduleMedia.addEventListener) mobileScheduleMedia.addEventListener(&#x27;change&#x27;, rerenderScheduleForBreakpoint);
+      else mobileScheduleMedia.addListener(rerenderScheduleForBreakpoint);
 
       render(plans[0]);
     })();
