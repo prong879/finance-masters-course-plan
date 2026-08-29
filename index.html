@@ -951,16 +951,23 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-dot { width: 10px; height: 10px; margin-top: 5px; flex: 0 0 auto; background: var(--viz-series-1); border-radius: 50%; }
     #mf-course-plans .mf-note { padding-left: 12px; border-left: 3px solid var(--viz-series-1); }
     #mf-course-plans .mf-note p { margin: 2px 0; }
-    #mf-course-plans .mf-dialog { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(24px, 3vw, 40px); }
-    #mf-course-plans .mf-dialog-turn { display: grid; align-content: start; gap: 9px; padding: 18px 0 20px; border-top: 1px solid var(--border); }
+    #mf-course-plans .mf-dialog { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 14px; }
+    #mf-course-plans .mf-dialog-turn { position: relative; display: grid; grid-column: 1 / -1; align-content: start; gap: 11px; min-width: 0; padding: 18px 20px 20px; border: 1px solid var(--border); border-radius: 11px; background: color-mix(in srgb, var(--card) 88%, var(--accent)); }
+    #mf-course-plans .mf-dialog-turn::after { content: attr(data-step); position: absolute; top: 15px; right: 18px; color: color-mix(in srgb, var(--muted-foreground) 70%, transparent); font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+    #mf-course-plans .mf-dialog-turn &gt; :is(strong, legend, .form-label) { padding-right: 108px; }
+    #mf-course-plans .mf-dialog-plan { grid-column: span 7; }
+    #mf-course-plans .mf-dialog-politics { grid-column: span 5; }
+    #mf-course-plans .mf-dialog-practice .viz-controls { display: flex; flex-wrap: wrap; gap: 10px 24px; }
     #mf-course-plans .mf-dialog-turn &gt; strong { display: block; }
-    #mf-course-plans .mf-dialog fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+    #mf-course-plans .mf-dialog fieldset { min-width: 0; margin: 0; }
     #mf-course-plans .mf-dialog legend { margin-bottom: 9px; font-weight: 500; }
-    #mf-course-plans .mf-dialog &gt; :last-child { grid-column: 1 / -1; padding-top: 4px; }
-    #mf-course-plans .mf-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px 20px; }
-    #mf-course-plans .mf-choice-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    #mf-course-plans .mf-dialog-actions { display: flex; grid-column: 1 / -1; justify-content: flex-end; padding-top: 4px; }
+    #mf-course-plans .mf-dialog-actions .btn { min-width: 210px; }
+    #mf-course-plans .mf-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    #mf-course-plans .mf-choice-row { display: flex; align-items: center; gap: 12px; min-width: 0; min-height: 62px; padding: 11px 12px; border: 1px solid color-mix(in srgb, var(--border) 82%, transparent); border-radius: 9px; background: color-mix(in srgb, var(--background) 46%, transparent); }
     #mf-course-plans .mf-choice-row .form-check { flex: 1 1 auto; min-width: 0; }
-    #mf-course-plans .mf-choice-row .form-select { flex: 0 0 88px; }
+    #mf-course-plans .mf-choice-row .form-check-label { line-height: 1.45; }
+    #mf-course-plans .mf-choice-row .form-select { flex: 0 0 92px; }
     #mf-course-plans .mf-final-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
     #mf-course-plans .mf-final-result[hidden] { display: none; }
     #mf-course-plans .mf-final-table-view[hidden], #mf-course-plans .mf-final-semester-view[hidden], #mf-course-plans .mf-final-week-view[hidden] { display: none; }
@@ -1030,7 +1037,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       #mf-course-plans .mf-plan-head { grid-template-columns: 1fr; }
       #mf-course-plans .mf-load { text-align: left; }
       #mf-course-plans .mf-dialog { grid-template-columns: 1fr; }
-      #mf-course-plans .mf-dialog &gt; :last-child { grid-column: auto; }
+      #mf-course-plans .mf-dialog-turn, #mf-course-plans .mf-dialog-plan, #mf-course-plans .mf-dialog-politics, #mf-course-plans .mf-dialog-actions { grid-column: auto; }
+      #mf-course-plans .mf-dialog-turn &gt; :is(strong, legend, .form-label) { padding-right: 0; padding-top: 20px; }
+      #mf-course-plans .mf-dialog-turn::after { right: auto; left: 20px; }
     }
 
     /* Editorial handbook visual system: warm paper, ink green, restrained brass. */
@@ -1264,8 +1273,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-check:nth-child(even) { padding-left: 18px; border-left: 1px solid var(--border); }
     #mf-course-plans .mf-dot { width: 7px; height: 7px; margin-top: 9px; border-radius: 1px; background: light-dark(#9f7b3d, #d6b875); transform: rotate(45deg); }
     #mf-course-plans .mf-note { border-color: light-dark(#9f7b3d, #d6b875); }
-    #mf-course-plans .mf-dialog-turn { padding: 18px 0 20px; border-color: var(--border); }
-    #mf-course-plans .mf-choice-row { min-height: 44px; }
+    #mf-course-plans .mf-dialog-turn { padding: 18px 20px 20px; border-color: var(--border); }
+    #mf-course-plans .mf-choice-row { min-height: 62px; }
     #mf-course-plans .mf-final-result {
       margin-top: 4px;
       padding-top: 26px;
@@ -1439,30 +1448,30 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;section class=&quot;mf-section&quot; id=&quot;mf-panel-custom&quot; role=&quot;tabpanel&quot; data-mf-tab-panel=&quot;custom&quot; aria-labelledby=&quot;mf-tab-custom&quot; hidden&gt;
       &lt;h2 id=&quot;mf-generator-title&quot;&gt;定制我的选课方案&lt;/h2&gt;
       &lt;div class=&quot;card mf-dialog&quot;&gt;
-        &lt;div class=&quot;mf-dialog-turn&quot;&gt;
+        &lt;div class=&quot;mf-dialog-turn mf-dialog-plan&quot; data-step=&quot;01 基础方案&quot;&gt;
           &lt;strong&gt;先选一个专业选修基础方案&lt;/strong&gt;
           &lt;div class=&quot;mf-selector&quot; id=&quot;mf-final-plan-options&quot; aria-label=&quot;选择专业选修基础方案&quot;&gt;&lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class=&quot;mf-dialog-turn&quot;&gt;
+        &lt;div class=&quot;mf-dialog-turn mf-dialog-politics&quot; data-step=&quot;02 思政课程&quot;&gt;
           &lt;label class=&quot;form-label&quot; for=&quot;mf-final-politics&quot;&gt;&lt;strong&gt;思政三选一，你准备选哪门？&lt;/strong&gt;&lt;/label&gt;
           &lt;select class=&quot;form-select&quot; id=&quot;mf-final-politics&quot;&gt;&lt;/select&gt;
         &lt;/div&gt;
-        &lt;fieldset class=&quot;mf-dialog-turn&quot;&gt;
+        &lt;fieldset class=&quot;mf-dialog-turn mf-dialog-practice&quot; data-step=&quot;03 必修环节&quot;&gt;
           &lt;legend&gt;必修环节二选一，你准备完成哪个？&lt;/legend&gt;
           &lt;div class=&quot;viz-controls&quot;&gt;
             &lt;div class=&quot;form-check&quot;&gt;&lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;mf-final-practice&quot; id=&quot;mf-final-teaching&quot; value=&quot;教学实践&quot; checked&gt;&lt;label class=&quot;form-check-label&quot; for=&quot;mf-final-teaching&quot;&gt;教学实践&lt;/label&gt;&lt;/div&gt;
             &lt;div class=&quot;form-check&quot;&gt;&lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;mf-final-practice&quot; id=&quot;mf-final-social&quot; value=&quot;创新创业与社会实践&quot;&gt;&lt;label class=&quot;form-check-label&quot; for=&quot;mf-final-social&quot;&gt;创新创业与社会实践&lt;/label&gt;&lt;/div&gt;
           &lt;/div&gt;
         &lt;/fieldset&gt;
-        &lt;fieldset class=&quot;mf-dialog-turn&quot;&gt;
+        &lt;fieldset class=&quot;mf-dialog-turn mf-dialog-quality&quot; data-step=&quot;04 素质教育&quot;&gt;
           &lt;legend&gt;素质教育公选课，你准备修哪些？ &lt;span class=&quot;text-small text-muted&quot;&gt;至少1学分&lt;/span&gt;&lt;/legend&gt;
           &lt;div class=&quot;mf-choice-grid&quot; id=&quot;mf-final-quality-options&quot;&gt;&lt;/div&gt;
         &lt;/fieldset&gt;
-        &lt;fieldset class=&quot;mf-dialog-turn&quot;&gt;
+        &lt;fieldset class=&quot;mf-dialog-turn mf-dialog-extra&quot; data-step=&quot;05 额外选修&quot;&gt;
           &lt;legend&gt;还有想额外增加的其他选修吗？ &lt;span class=&quot;text-small text-muted&quot;&gt;可不选&lt;/span&gt;&lt;/legend&gt;
           &lt;div class=&quot;mf-choice-grid&quot; id=&quot;mf-final-extra-options&quot;&gt;&lt;/div&gt;
         &lt;/fieldset&gt;
-        &lt;div&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; id=&quot;mf-generate-final&quot;&gt;生成并查看最终结果&lt;/button&gt;&lt;/div&gt;
+        &lt;div class=&quot;mf-dialog-actions&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; id=&quot;mf-generate-final&quot;&gt;生成并查看最终结果&lt;/button&gt;&lt;/div&gt;
       &lt;/div&gt;
 
     &lt;/section&gt;
@@ -2105,6 +2114,20 @@ html&gt;body{padding:0}&lt;/style&gt;
         if (autumnCourseNames.has(&#x27;知识产权与信息检索&#x27;) &amp;&amp; selectedIp.id !== &#x27;none&#x27;) {
           selectedIp.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;知识产权与信息检索&#x27;, category: &#x27;其他选修·加选&#x27;, code: &#x27;1500005004&#x27;, teacher: selectedIp.teacher, meeting }));
         }
+        const sportsValue = sportsSection.value;
+        sportsSections.forEach(section =&gt; {
+          const option = [...sportsSection.options].find(item =&gt; item.value === section.id);
+          if (!option) return;
+          const hasConflict = section.id !== &#x27;none&#x27; &amp;&amp; section.meetings.some(meeting =&gt;
+            scheduled.some(item =&gt;
+              meeting.day === item.meeting.day
+              &amp;&amp; periodsOverlap(meeting, item.meeting)
+              &amp;&amp; overlappingWeekRanges(meeting, item.meeting).length
+            )
+          );
+          option.textContent = `${section.label}${hasConflict ? &#x27;（冲突）&#x27; : &#x27;&#x27;}`;
+        });
+        sportsSection.value = sportsValue;
         const selectedSports = sportsSections.find(section =&gt; section.id === sportsSection.value) || sportsSections[0];
         if (autumnCourseNames.has(&#x27;体育技能、欣赏与文化&#x27;) &amp;&amp; selectedSports.id !== &#x27;none&#x27;) {
           selectedSports.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;体育技能、欣赏与文化&#x27;, category: &#x27;必修环节·素质教育&#x27;, code: &#x27;2000025001&#x27;, teacher: selectedSports.teacher, meeting }));
