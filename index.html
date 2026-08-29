@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>金融硕士一年选课方案</title>
-<style>:root{color-scheme:light dark;background:light-dark(#e8ece7,#0f1715)}html,body{margin:0;min-height:100%}body{box-sizing:border-box;padding:clamp(10px,2vw,24px);background:inherit}iframe{display:block;width:min(100%,1440px);height:calc(100vh - clamp(20px,4vw,48px));margin:0 auto;border:1px solid light-dark(rgb(24 62 52 / 12%),rgb(255 255 255 / 9%));border-radius:22px;background:light-dark(#f4f1e9,#14211e);box-shadow:0 24px 70px light-dark(rgb(31 55 48 / 14%),rgb(0 0 0 / 30%))}</style>
+<style>:root{color-scheme:light dark;background:light-dark(#f4f1e9,#14211e)}html,body{margin:0;min-height:100%}body{background:inherit}iframe{display:block;width:100%;height:100vh;margin:0;border:0;background:inherit}</style>
 </head>
 <body>
 <iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="金融硕士一年选课方案" srcdoc="&lt;!doctype html&gt;
@@ -926,6 +926,11 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-credit-segment:nth-child(4) { background: color-mix(in srgb, var(--mf-practice) 20%, transparent); }
     #mf-course-plans .mf-credit-segment:nth-child(5) { background: color-mix(in srgb, var(--mf-required) 18%, transparent); }
     #mf-course-plans .mf-selector { display: flex; flex-wrap: wrap; gap: 10px; }
+    #mf-course-plans .mf-tabs { display: flex; gap: 8px; margin-top: 22px; padding-top: 18px; overflow-x: auto; border-top: 1px solid rgb(247 244 233 / 18%); scrollbar-width: thin; }
+    #mf-course-plans .mf-tab { flex: 1 0 max-content; min-height: 42px; padding: 8px 14px; border: 1px solid rgb(247 244 233 / 22%); border-radius: 7px; color: rgb(247 244 233 / 76%); background: rgb(8 30 24 / 16%); font: inherit; font-weight: 600; cursor: pointer; }
+    #mf-course-plans .mf-tab[aria-selected=&quot;true&quot;] { border-color: #f0d590; color: #173129; background: #f0d590; }
+    #mf-course-plans .mf-tab:focus-visible { outline: 2px solid #f4d99b; outline-offset: 2px; }
+    #mf-course-plans [data-mf-tab-panel][hidden] { display: none !important; }
     #mf-course-plans .mf-plan-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 16px; }
     #mf-course-plans .mf-plan-head p { margin: 4px 0 0; }
     #mf-course-plans .mf-load { text-align: right; white-space: nowrap; }
@@ -947,11 +952,12 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-dot { width: 10px; height: 10px; margin-top: 5px; flex: 0 0 auto; background: var(--viz-series-1); border-radius: 50%; }
     #mf-course-plans .mf-note { padding-left: 12px; border-left: 3px solid var(--viz-series-1); }
     #mf-course-plans .mf-note p { margin: 2px 0; }
-    #mf-course-plans .mf-dialog { display: grid; gap: 20px; }
-    #mf-course-plans .mf-dialog-turn { display: grid; gap: 9px; padding-left: 14px; border-left: 3px solid var(--border); }
+    #mf-course-plans .mf-dialog { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(24px, 3vw, 40px); }
+    #mf-course-plans .mf-dialog-turn { display: grid; align-content: start; gap: 9px; padding: 18px 0 20px; border-top: 1px solid var(--border); }
     #mf-course-plans .mf-dialog-turn &gt; strong { display: block; }
     #mf-course-plans .mf-dialog fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
     #mf-course-plans .mf-dialog legend { margin-bottom: 9px; font-weight: 500; }
+    #mf-course-plans .mf-dialog &gt; :last-child { grid-column: 1 / -1; padding-top: 4px; }
     #mf-course-plans .mf-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px 20px; }
     #mf-course-plans .mf-choice-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
     #mf-course-plans .mf-choice-row .form-check { flex: 1 1 auto; min-width: 0; }
@@ -961,16 +967,28 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-final-table-view[hidden], #mf-course-plans .mf-final-semester-view[hidden], #mf-course-plans .mf-final-week-view[hidden] { display: none; }
     #mf-course-plans .mf-final-semester-view { display: grid; gap: 20px; }
     #mf-course-plans .mf-final-week-view { display: grid; gap: 18px; }
-    #mf-course-plans .mf-schedule-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: end; }
-    #mf-course-plans .mf-schedule-controls label { display: grid; gap: 6px; }
+    #mf-course-plans .mf-schedule-controls { display: grid; gap: 14px; }
+    #mf-course-plans .mf-schedule-row { display: grid; gap: 14px; align-items: end; }
+    #mf-course-plans .mf-schedule-row-primary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    #mf-course-plans .mf-schedule-row-sections { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    #mf-course-plans .mf-schedule-controls label, #mf-course-plans .mf-week-nav { display: grid; gap: 6px; }
+    #mf-course-plans .mf-week-nav-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    #mf-course-plans .mf-week-nav-buttons .btn { width: 100%; }
+    #mf-course-plans .mf-schedule-controls [hidden] { display: none !important; }
     #mf-course-plans .mf-schedule-status { display: grid; gap: 6px; padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px; background: color-mix(in srgb, var(--card) 88%, var(--accent)); }
     #mf-course-plans .mf-status-line { display: flex; gap: 8px; align-items: flex-start; }
     #mf-course-plans .mf-status-mark { width: 9px; height: 9px; margin-top: 6px; flex: 0 0 auto; border-radius: 50%; background: var(--mf-required); }
     #mf-course-plans .mf-status-mark.is-pending { background: var(--mf-practice); }
     #mf-course-plans .mf-status-mark.is-conflict { background: var(--mf-degree); }
-    #mf-course-plans .mf-week-grid { display: grid; grid-template-columns: 76px repeat(5, minmax(125px, 1fr)); min-width: 760px; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
-    #mf-course-plans .mf-week-cell { min-height: 76px; padding: 9px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    #mf-course-plans .mf-week-head, #mf-course-plans .mf-period-head { min-height: auto; background: color-mix(in srgb, var(--accent) 46%, transparent); font-weight: 500; text-align: center; }
+    #mf-course-plans .mf-week-grid { --mf-period-height: 54px; display: grid; grid-template-columns: 64px repeat(5, minmax(160px, 1fr)); min-width: 920px; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+    #mf-course-plans .mf-week-cell { min-width: 0; padding: 9px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    #mf-course-plans .mf-week-head { min-height: auto; background: color-mix(in srgb, var(--accent) 46%, transparent); font-weight: 500; text-align: center; }
+    #mf-course-plans .mf-period-track, #mf-course-plans .mf-day-track { display: grid; grid-template-rows: repeat(11, var(--mf-period-height)); min-width: 0; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    #mf-course-plans .mf-day-track { position: relative; grid-template-columns: repeat(var(--mf-lanes, 1), minmax(0, 1fr)); }
+    #mf-course-plans .mf-period-slot { z-index: 0; display: flex; align-items: center; justify-content: center; grid-column: 1 / -1; min-width: 0; padding: 4px; border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, transparent); color: var(--muted-foreground); background: color-mix(in srgb, var(--accent) 24%, transparent); font-size: 11px; font-weight: 500; }
+    #mf-course-plans .mf-period-slot:last-child { border-bottom: 0; }
+    #mf-course-plans .mf-day-track .mf-period-slot { pointer-events: none; background: transparent; }
+    #mf-course-plans .mf-week-empty { grid-column: 1 / -1; padding: 18px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); color: var(--muted-foreground); text-align: center; }
     #mf-course-plans .mf-course-color.mf-type-degree { --mf-type-color: var(--mf-course-degree); }
     #mf-course-plans .mf-course-color.mf-type-elective { --mf-type-color: var(--mf-course-elective); }
     #mf-course-plans .mf-course-color.mf-type-other { --mf-type-color: var(--mf-course-other); }
@@ -980,12 +998,16 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-legend-label { margin-right: 2px; color: var(--muted-foreground); font-size: 12px; }
     #mf-course-plans .mf-legend-item { --mf-type-color: var(--primary); display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; white-space: nowrap; }
     #mf-course-plans .mf-legend-swatch { width: 12px; height: 12px; border: 1px solid color-mix(in srgb, var(--mf-type-color) 80%, white); border-radius: 3px; background: color-mix(in srgb, var(--mf-type-color) 72%, var(--card)); box-shadow: 0 0 0 2px color-mix(in srgb, var(--mf-type-color) 14%, transparent); }
-    #mf-course-plans .mf-class-chip { --mf-type-color: var(--primary); display: grid; gap: 2px; margin-bottom: 7px; padding: 8px 9px; border: 1px solid color-mix(in srgb, var(--mf-type-color) 42%, var(--border)); border-left: 6px solid var(--mf-type-color); border-radius: 5px; background: color-mix(in srgb, var(--mf-type-color) 29%, var(--card)); box-shadow: 0 4px 12px color-mix(in srgb, var(--mf-type-color) 8%, transparent); font-size: 12px; line-height: 1.35; }
+    #mf-course-plans .mf-class-chip { --mf-type-color: var(--primary); z-index: 1; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 4px; min-width: 0; margin: 3px; padding: 6px 7px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--mf-type-color) 42%, var(--border)); border-left: 5px solid var(--mf-type-color); border-radius: 5px; background: color-mix(in srgb, var(--mf-type-color) 29%, var(--card)); box-shadow: 0 4px 12px color-mix(in srgb, var(--mf-type-color) 8%, transparent); font-size: 10px; line-height: 1.25; }
     #mf-course-plans .mf-class-chip.is-conflict { outline: 2px solid var(--mf-degree); outline-offset: 1px; }
-    #mf-course-plans .mf-class-chip strong { color: var(--foreground); font-size: 13px; font-weight: 600; }
-    #mf-course-plans .mf-class-chip &gt; span:not(.mf-class-category, .mf-conflict-badge) { color: color-mix(in srgb, var(--foreground) 78%, var(--muted-foreground)); }
-    #mf-course-plans .mf-class-category { width: max-content; margin-bottom: 3px; padding: 2px 6px; border: 1px solid color-mix(in srgb, var(--mf-type-color) 68%, var(--border)); border-radius: 999px; color: color-mix(in srgb, var(--mf-type-color) 78%, var(--foreground)); background: color-mix(in srgb, var(--mf-type-color) 27%, var(--card)); font-size: 10px; font-weight: 600; line-height: 1.3; }
-    #mf-course-plans .mf-conflict-badge { width: max-content; margin-top: 2px; padding: 2px 6px; border-radius: 3px; color: light-dark(#7f201b, #ffd8d3); background: color-mix(in srgb, var(--mf-degree) 24%, transparent); font-size: 10px; font-weight: 700; }
+    #mf-course-plans .mf-class-head { display: grid; gap: 2px; min-width: 0; }
+    #mf-course-plans .mf-class-head strong { display: block; max-height: 2.5em; overflow: hidden; color: var(--foreground); font-size: 12px; font-weight: 650; line-height: 1.25; overflow-wrap: anywhere; }
+    #mf-course-plans .mf-class-badges { display: flex; justify-content: end; gap: 3px; min-width: 0; }
+    #mf-course-plans .mf-class-meta, #mf-course-plans .mf-class-schedule { display: grid; align-content: start; gap: 1px; min-width: 0; color: color-mix(in srgb, var(--foreground) 78%, var(--muted-foreground)); }
+    #mf-course-plans .mf-class-meta span, #mf-course-plans .mf-class-schedule span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    #mf-course-plans .mf-class-schedule { align-content: end; font-size: 9px; font-variant-numeric: tabular-nums; }
+    #mf-course-plans .mf-class-category { width: max-content; max-width: 48px; padding: 1px 4px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--mf-type-color) 68%, var(--border)); border-radius: 999px; color: color-mix(in srgb, var(--mf-type-color) 78%, var(--foreground)); background: color-mix(in srgb, var(--mf-type-color) 27%, var(--card)); font-size: 8px; font-weight: 650; line-height: 1.3; text-overflow: ellipsis; white-space: nowrap; }
+    #mf-course-plans .mf-conflict-badge { width: max-content; padding: 1px 4px; border-radius: 3px; color: light-dark(#7f201b, #ffd8d3); background: color-mix(in srgb, var(--mf-degree) 24%, transparent); font-size: 8px; font-weight: 700; }
     #mf-course-plans .mf-conflict-box { padding: 12px 14px; border-left: 3px solid var(--mf-required); background: color-mix(in srgb, var(--mf-required) 8%, transparent); }
     #mf-course-plans .mf-conflict-box.has-conflict { border-left-color: var(--mf-degree); background: color-mix(in srgb, var(--mf-degree) 9%, transparent); }
     #mf-course-plans table button { white-space: nowrap; }
@@ -995,17 +1017,21 @@ html&gt;body{padding:0}&lt;/style&gt;
     @media (prefers-reduced-motion: reduce) {
       #mf-course-plans .mf-compare-table tbody tr { transition: none; }
     }
-    @media (max-width: 1000px) {
-      #mf-course-plans .mf-schedule-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 760px) {
+      #mf-course-plans .mf-schedule-row-primary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #mf-course-plans .mf-week-nav { grid-column: 1 / -1; }
     }
     @media (max-width: 620px) {
       #mf-course-plans .mf-credit-bar { grid-template-columns: 17fr 10fr 6fr; }
       #mf-course-plans .mf-credit-segment:nth-child(4), #mf-course-plans .mf-credit-segment:nth-child(5) { grid-column: span 1; }
       #mf-course-plans .mf-semesters, #mf-course-plans .mf-load-grid, #mf-course-plans .mf-checks { grid-template-columns: 1fr; }
       #mf-course-plans .mf-choice-grid { grid-template-columns: 1fr; }
-      #mf-course-plans .mf-schedule-controls { grid-template-columns: 1fr; }
+      #mf-course-plans .mf-schedule-row-primary, #mf-course-plans .mf-schedule-row-sections { grid-template-columns: 1fr; }
+      #mf-course-plans .mf-week-nav { grid-column: auto; }
       #mf-course-plans .mf-plan-head { grid-template-columns: 1fr; }
       #mf-course-plans .mf-load { text-align: left; }
+      #mf-course-plans .mf-dialog { grid-template-columns: 1fr; }
+      #mf-course-plans .mf-dialog &gt; :last-child { grid-column: auto; }
     }
 
     /* Editorial handbook visual system: warm paper, ink green, restrained brass. */
@@ -1239,7 +1265,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     #mf-course-plans .mf-check:nth-child(even) { padding-left: 18px; border-left: 1px solid var(--border); }
     #mf-course-plans .mf-dot { width: 7px; height: 7px; margin-top: 9px; border-radius: 1px; background: light-dark(#9f7b3d, #d6b875); transform: rotate(45deg); }
     #mf-course-plans .mf-note { border-color: light-dark(#9f7b3d, #d6b875); }
-    #mf-course-plans .mf-dialog-turn { padding: 18px 0 18px 20px; border-color: var(--border); }
+    #mf-course-plans .mf-dialog-turn { padding: 18px 0 20px; border-color: var(--border); }
     #mf-course-plans .mf-choice-row { min-height: 44px; }
     #mf-course-plans .mf-final-result {
       margin-top: 4px;
@@ -1263,10 +1289,13 @@ html&gt;body{padding:0}&lt;/style&gt;
       #mf-course-plans .mf-stack { gap: 38px; }
       #mf-course-plans .mf-section:first-child { padding: 28px 22px 30px; border-radius: 16px; }
       #mf-course-plans .mf-section:first-child .mf-title-row { gap: 18px; }
-      #mf-course-plans .mf-section:first-child .viz-grid { grid-template-columns: 1fr; gap: 10px; margin-top: 24px; }
-      #mf-course-plans .mf-section:first-child .viz-stat { min-height: 0; padding-block: 16px 13px; }
+      #mf-course-plans .mf-section:first-child .viz-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 20px; }
+      #mf-course-plans .mf-section:first-child .viz-stat:nth-child(3) { grid-column: 1 / -1; }
+      #mf-course-plans .mf-section:first-child .viz-stat { min-height: 0; padding-block: 12px 10px; }
+      #mf-course-plans .mf-section:first-child .viz-stat-value { font-size: 28px; }
+      #mf-course-plans .mf-section:first-child .viz-stat .text-small { font-size: 10px; line-height: 1.35; }
       #mf-course-plans .mf-credit-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      #mf-course-plans .mf-credit-segment:nth-child(n) { grid-column: auto; min-height: 72px; }
+      #mf-course-plans .mf-credit-segment:nth-child(n) { grid-column: auto; min-height: 62px; }
       #mf-course-plans .mf-credit-segment:first-child { grid-column: 1 / -1; }
       #mf-course-plans .mf-section:nth-child(2) { grid-template-columns: 1fr; gap: 18px; }
       #mf-course-plans .mf-section:nth-child(3),
@@ -1278,6 +1307,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       #mf-course-plans .mf-choice-row .form-select { width: 100%; flex-basis: auto; }
       #mf-course-plans .btn { min-height: 44px; white-space: normal; }
       #mf-course-plans .mf-selector .btn { flex: 1 1 calc(50% - 8px); }
+      #mf-course-plans .mf-tabs { margin-inline: -6px; padding-inline: 6px; }
+      #mf-course-plans .mf-tab { flex: 0 0 auto; }
     }
     @media (prefers-reduced-motion: reduce) {
       #mf-course-plans .btn, #mf-course-plans .table tbody tr { transition: none; }
@@ -1318,9 +1349,14 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;div class=&quot;mf-credit-segment&quot;&gt;&lt;span&gt;实践&lt;br&gt;&lt;strong&gt;5&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;
         &lt;div class=&quot;mf-credit-segment&quot;&gt;&lt;span&gt;必修环节&lt;br&gt;&lt;strong&gt;5&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;
       &lt;/div&gt;
+      &lt;nav class=&quot;mf-tabs&quot; role=&quot;tablist&quot; aria-label=&quot;选课方案内容&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;mf-tab&quot; role=&quot;tab&quot; id=&quot;mf-tab-overview&quot; data-mf-tab=&quot;overview&quot; aria-controls=&quot;mf-panel-overview&quot; aria-selected=&quot;true&quot; tabindex=&quot;0&quot;&gt;方案总览&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;mf-tab&quot; role=&quot;tab&quot; id=&quot;mf-tab-custom&quot; data-mf-tab=&quot;custom&quot; aria-controls=&quot;mf-panel-custom&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;定制选项&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;mf-tab&quot; role=&quot;tab&quot; id=&quot;mf-tab-final&quot; data-mf-tab=&quot;final&quot; aria-controls=&quot;mf-panel-final&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;最终结果&lt;/button&gt;
+      &lt;/nav&gt;
     &lt;/section&gt;
 
-    &lt;section class=&quot;mf-section&quot; aria-labelledby=&quot;mf-difference-title&quot;&gt;
+    &lt;section class=&quot;mf-section&quot; id=&quot;mf-panel-overview&quot; role=&quot;tabpanel&quot; data-mf-tab-panel=&quot;overview&quot; aria-labelledby=&quot;mf-tab-overview&quot;&gt;
       &lt;h2 id=&quot;mf-difference-title&quot;&gt;先看懂：四个方案只差专业选修组合&lt;/h2&gt;
       &lt;div class=&quot;mf-note&quot;&gt;
         &lt;p&gt;&lt;strong&gt;共同部分不变：&lt;/strong&gt;学位课17学分（公共基础4＋专业基础13）、思政三选一、量化投资、专业实践和5学分必修环节。&lt;/p&gt;
@@ -1329,7 +1365,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;/div&gt;
     &lt;/section&gt;
 
-    &lt;section class=&quot;mf-section&quot; aria-labelledby=&quot;mf-compare-title&quot;&gt;
+    &lt;section class=&quot;mf-section&quot; role=&quot;tabpanel&quot; data-mf-tab-panel=&quot;overview&quot; aria-labelledby=&quot;mf-tab-overview&quot;&gt;
       &lt;h2 id=&quot;mf-compare-title&quot;&gt;9学分专业选修组合对比&lt;/h2&gt;
       &lt;div class=&quot;table-responsive&quot;&gt;
         &lt;table class=&quot;table table-sm mf-compare-table&quot;&gt;
@@ -1341,7 +1377,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;/div&gt;
     &lt;/section&gt;
 
-    &lt;section class=&quot;mf-section&quot; aria-labelledby=&quot;mf-detail-title&quot;&gt;
+    &lt;section class=&quot;mf-section&quot; id=&quot;mf-panel-courses&quot; role=&quot;tabpanel&quot; data-mf-tab-panel=&quot;overview&quot; aria-labelledby=&quot;mf-tab-overview&quot;&gt;
       &lt;div class=&quot;mf-selector&quot; id=&quot;mf-selector&quot; aria-label=&quot;选择方案&quot;&gt;&lt;/div&gt;
       &lt;div class=&quot;card&quot; aria-live=&quot;polite&quot;&gt;
         &lt;div class=&quot;mf-plan-head&quot;&gt;
@@ -1385,7 +1421,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;/div&gt;
     &lt;/section&gt;
 
-    &lt;section class=&quot;mf-section&quot; aria-labelledby=&quot;mf-finish-title&quot;&gt;
+    &lt;section class=&quot;mf-section&quot; id=&quot;mf-panel-requirements&quot; role=&quot;tabpanel&quot; data-mf-tab-panel=&quot;overview&quot; aria-labelledby=&quot;mf-tab-overview&quot;&gt;
       &lt;h2 id=&quot;mf-finish-title&quot;&gt;第一年拿齐38学分，还要完成&lt;/h2&gt;
       &lt;div class=&quot;mf-checks&quot;&gt;
         &lt;div class=&quot;mf-check&quot;&gt;&lt;span class=&quot;mf-dot&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;专业实践&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;text-small text-muted&quot;&gt;至少3个月，2学分；提交报告和单位证明&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
@@ -1401,8 +1437,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;/div&gt;
     &lt;/section&gt;
 
-    &lt;section class=&quot;mf-section&quot; aria-labelledby=&quot;mf-generator-title&quot;&gt;
-      &lt;h2 id=&quot;mf-generator-title&quot;&gt;生成我的最终方案&lt;/h2&gt;
+    &lt;section class=&quot;mf-section&quot; id=&quot;mf-panel-custom&quot; role=&quot;tabpanel&quot; data-mf-tab-panel=&quot;custom&quot; aria-labelledby=&quot;mf-tab-custom&quot; hidden&gt;
+      &lt;h2 id=&quot;mf-generator-title&quot;&gt;定制我的选课方案&lt;/h2&gt;
       &lt;div class=&quot;card mf-dialog&quot;&gt;
         &lt;div class=&quot;mf-dialog-turn&quot;&gt;
           &lt;strong&gt;先选一个专业选修基础方案&lt;/strong&gt;
@@ -1423,7 +1459,16 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;legend&gt;还有想额外增加的其他选修吗？ &lt;span class=&quot;text-small text-muted&quot;&gt;可不选&lt;/span&gt;&lt;/legend&gt;
           &lt;div class=&quot;mf-choice-grid&quot; id=&quot;mf-final-extra-options&quot;&gt;&lt;/div&gt;
         &lt;/fieldset&gt;
-        &lt;div&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; id=&quot;mf-generate-final&quot;&gt;查看最终方案&lt;/button&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; id=&quot;mf-generate-final&quot;&gt;生成并查看最终结果&lt;/button&gt;&lt;/div&gt;
+      &lt;/div&gt;
+
+    &lt;/section&gt;
+
+    &lt;section class=&quot;mf-section&quot; id=&quot;mf-panel-final&quot; role=&quot;tabpanel&quot; data-mf-tab-panel=&quot;final&quot; aria-labelledby=&quot;mf-tab-final&quot; hidden&gt;
+      &lt;div class=&quot;mf-note&quot; id=&quot;mf-final-empty&quot;&gt;
+        &lt;p&gt;&lt;strong&gt;尚未生成最终方案。&lt;/strong&gt;&lt;/p&gt;
+        &lt;p class=&quot;text-small text-muted&quot;&gt;请先在“定制选项”中确定基础方案、思政课、必修环节和额外选修。&lt;/p&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-mf-tab-jump=&quot;custom&quot;&gt;前往定制选项&lt;/button&gt;
       &lt;/div&gt;
 
       &lt;div class=&quot;mf-final-result&quot; id=&quot;mf-final-result&quot; hidden aria-live=&quot;polite&quot;&gt;
@@ -1431,7 +1476,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;div&gt;&lt;h2 id=&quot;mf-final-title&quot;&gt;最终方案&lt;/h2&gt;&lt;div class=&quot;text-small text-muted&quot; id=&quot;mf-final-summary&quot;&gt;&lt;/div&gt;&lt;/div&gt;
           &lt;div class=&quot;viz-row&quot;&gt;
             &lt;div class=&quot;mf-selector&quot; id=&quot;mf-final-view-options&quot; aria-label=&quot;最终方案查看方式&quot;&gt;
-              &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-final-view=&quot;all&quot; aria-pressed=&quot;true&quot;&gt;整体查看&lt;/button&gt;
+              &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-final-view=&quot;all&quot; aria-pressed=&quot;true&quot;&gt;课程清单&lt;/button&gt;
               &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-final-view=&quot;semester&quot; aria-pressed=&quot;false&quot;&gt;春秋两栏&lt;/button&gt;
               &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-final-view=&quot;week&quot; aria-pressed=&quot;false&quot;&gt;星期课表&lt;/button&gt;
             &lt;/div&gt;
@@ -1490,13 +1535,25 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;/div&gt;
         &lt;div class=&quot;mf-final-week-view&quot; id=&quot;mf-final-week-view&quot; hidden&gt;
           &lt;div class=&quot;mf-schedule-controls&quot;&gt;
-            &lt;label&gt;&lt;span&gt;课表学期&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-schedule-semester&quot;&gt;&lt;option value=&quot;autumn&quot;&gt;2026秋季&lt;/option&gt;&lt;option value=&quot;spring&quot;&gt;2027春季（待发布）&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
-            &lt;label&gt;&lt;span&gt;教学范围&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-schedule-week&quot;&gt;&lt;/select&gt;&lt;/label&gt;
-            &lt;label&gt;&lt;span&gt;硕士研究生英语教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-english-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
-            &lt;label&gt;&lt;span&gt;中国式现代化教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-modernization-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
-            &lt;label id=&quot;mf-ai-section-control&quot; hidden&gt;&lt;span&gt;人工智能与机器学习教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-ai-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
-            &lt;label id=&quot;mf-ip-section-control&quot; hidden&gt;&lt;span&gt;知识产权与信息检索教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-ip-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+            &lt;div class=&quot;mf-schedule-row mf-schedule-row-primary&quot;&gt;
+              &lt;label&gt;&lt;span&gt;课表学期&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-schedule-semester&quot;&gt;&lt;option value=&quot;autumn&quot;&gt;2026秋季&lt;/option&gt;&lt;option value=&quot;spring&quot;&gt;2027春季（待发布）&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+              &lt;label&gt;&lt;span&gt;教学范围&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-schedule-week&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+              &lt;div class=&quot;mf-week-nav&quot; role=&quot;group&quot; aria-label=&quot;前后周切换&quot;&gt;
+                &lt;span&gt;前后周切换&lt;/span&gt;
+                &lt;div class=&quot;mf-week-nav-buttons&quot;&gt;
+                  &lt;button type=&quot;button&quot; class=&quot;btn&quot; id=&quot;mf-week-prev&quot; disabled&gt;← 上一周&lt;/button&gt;
+                  &lt;button type=&quot;button&quot; class=&quot;btn&quot; id=&quot;mf-week-next&quot;&gt;下一周 →&lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;mf-schedule-row mf-schedule-row-sections&quot;&gt;
+              &lt;label&gt;&lt;span&gt;硕士研究生英语教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-english-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+              &lt;label&gt;&lt;span&gt;中国式现代化教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-modernization-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+              &lt;label id=&quot;mf-ai-section-control&quot; hidden&gt;&lt;span&gt;人工智能与机器学习教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-ai-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+              &lt;label id=&quot;mf-ip-section-control&quot; hidden&gt;&lt;span&gt;知识产权与信息检索教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-ip-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+            &lt;/div&gt;
           &lt;/div&gt;
+          &lt;div class=&quot;table-responsive&quot;&gt;&lt;div class=&quot;mf-week-grid&quot; id=&quot;mf-week-grid&quot;&gt;&lt;/div&gt;&lt;/div&gt;
           &lt;div class=&quot;mf-course-legend&quot; aria-label=&quot;课程类别颜色说明&quot;&gt;
             &lt;span class=&quot;mf-legend-label&quot;&gt;课程类别&lt;/span&gt;
             &lt;span class=&quot;mf-legend-item mf-course-color mf-type-degree&quot;&gt;&lt;i class=&quot;mf-legend-swatch&quot;&gt;&lt;/i&gt;学位课&lt;/span&gt;
@@ -1506,7 +1563,6 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;span class=&quot;mf-legend-item mf-course-color mf-type-required&quot;&gt;&lt;i class=&quot;mf-legend-swatch&quot;&gt;&lt;/i&gt;必修环节&lt;/span&gt;
           &lt;/div&gt;
           &lt;div class=&quot;mf-schedule-status&quot; id=&quot;mf-schedule-status&quot;&gt;&lt;/div&gt;
-          &lt;div class=&quot;table-responsive&quot;&gt;&lt;div class=&quot;mf-week-grid&quot; id=&quot;mf-week-grid&quot;&gt;&lt;/div&gt;&lt;/div&gt;
           &lt;div class=&quot;mf-conflict-box&quot; id=&quot;mf-conflict-box&quot;&gt;&lt;/div&gt;
           &lt;p class=&quot;text-small text-muted&quot;&gt;数据读取于2026年8月28日“全校课表查询”。只把已查到具体周次与节次的教学班纳入冲突判断；未发布课程不会被误判为无冲突。&lt;/p&gt;
         &lt;/div&gt;
@@ -1521,6 +1577,38 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;script&gt;
     (() =&gt; {
       const root = document.getElementById(&#x27;mf-course-plans&#x27;);
+      const tabButtons = [...root.querySelectorAll(&#x27;[data-mf-tab]&#x27;)];
+      const tabPanels = [...root.querySelectorAll(&#x27;[data-mf-tab-panel]&#x27;)];
+
+      function activateTab(tabId, moveToPanel = false) {
+        tabButtons.forEach(button =&gt; {
+          const active = button.dataset.mfTab === tabId;
+          button.setAttribute(&#x27;aria-selected&#x27;, String(active));
+          button.tabIndex = active ? 0 : -1;
+        });
+        tabPanels.forEach(panel =&gt; { panel.hidden = panel.dataset.mfTabPanel !== tabId; });
+        if (moveToPanel) {
+          const panel = tabPanels.find(item =&gt; item.dataset.mfTabPanel === tabId);
+          panel?.scrollIntoView({ behavior: matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches ? &#x27;auto&#x27; : &#x27;smooth&#x27;, block: &#x27;start&#x27; });
+        }
+      }
+
+      root.addEventListener(&#x27;click&#x27;, event =&gt; {
+        const tabButton = event.target.closest(&#x27;[data-mf-tab]&#x27;);
+        if (tabButton) activateTab(tabButton.dataset.mfTab, true);
+        const tabJump = event.target.closest(&#x27;[data-mf-tab-jump]&#x27;);
+        if (tabJump) activateTab(tabJump.dataset.mfTabJump, true);
+      });
+
+      root.addEventListener(&#x27;keydown&#x27;, event =&gt; {
+        const tabButton = event.target.closest(&#x27;[data-mf-tab]&#x27;);
+        if (!tabButton || ![&#x27;ArrowLeft&#x27;, &#x27;ArrowRight&#x27;, &#x27;Home&#x27;, &#x27;End&#x27;].includes(event.key)) return;
+        event.preventDefault();
+        const current = tabButtons.indexOf(tabButton);
+        const next = event.key === &#x27;Home&#x27; ? 0 : event.key === &#x27;End&#x27; ? tabButtons.length - 1 : (current + (event.key === &#x27;ArrowRight&#x27; ? 1 : -1) + tabButtons.length) % tabButtons.length;
+        tabButtons[next].focus();
+        activateTab(tabButtons[next].dataset.mfTab, true);
+      });
       const plans = [
         {
           id: &#x27;balanced&#x27;, name: &#x27;均衡通用&#x27;, recommended: true,
@@ -1814,7 +1902,13 @@ html&gt;body{padding:0}&lt;/style&gt;
         if (!button) return;
         const id = button.dataset.plan || button.dataset.planJump;
         const plan = plans.find(item =&gt; item.id === id);
-        if (plan) render(plan);
+        if (plan) {
+          render(plan);
+          if (button.dataset.planJump) {
+            activateTab(&#x27;overview&#x27;);
+            root.querySelector(&#x27;#mf-panel-courses&#x27;)?.scrollIntoView({ behavior: matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches ? &#x27;auto&#x27; : &#x27;smooth&#x27;, block: &#x27;start&#x27; });
+          }
+        }
       });
 
       const finalPlanOptions = root.querySelector(&#x27;#mf-final-plan-options&#x27;);
@@ -1826,6 +1920,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       let currentFinalView = &#x27;all&#x27;;
       const scheduleSemester = root.querySelector(&#x27;#mf-schedule-semester&#x27;);
       const scheduleWeek = root.querySelector(&#x27;#mf-schedule-week&#x27;);
+      const weekPrev = root.querySelector(&#x27;#mf-week-prev&#x27;);
+      const weekNext = root.querySelector(&#x27;#mf-week-next&#x27;);
       const englishSection = root.querySelector(&#x27;#mf-english-section&#x27;);
       const modernizationSection = root.querySelector(&#x27;#mf-modernization-section&#x27;);
       const aiSection = root.querySelector(&#x27;#mf-ai-section&#x27;);
@@ -1864,20 +1960,63 @@ html&gt;body{padding:0}&lt;/style&gt;
       const periodsOverlap = (a, b) =&gt; a.start &lt;= b.end &amp;&amp; b.start &lt;= a.end;
       const rangesText = weeks =&gt; weeks.map(range =&gt; range[0] === range[1] ? `${range[0]}周` : `${range[0]}-${range[1]}周`).join(&#x27;、&#x27;);
       const overlappingWeekRanges = (a, b) =&gt; a.weeks.flatMap(left =&gt; b.weeks.map(right =&gt; [Math.max(left[0], right[0]), Math.min(left[1], right[1])])).filter(range =&gt; range[0] &lt;= range[1]);
+      const visualItemKey = item =&gt; [item.course, item.category, item.code, item.teacher, item.meeting.day, item.meeting.room].join(&#x27;|&#x27;);
+
+      function mergeDisplayItems(items, conflictItems) {
+        const groups = new Map();
+        items.forEach(item =&gt; {
+          const key = visualItemKey(item);
+          if (!groups.has(key)) groups.set(key, { ...item, meetings: [], sourceItems: [] });
+          groups.get(key).meetings.push(item.meeting);
+          groups.get(key).sourceItems.push(item);
+        });
+        return [...groups.values()].map(item =&gt; ({
+          ...item,
+          start: Math.min(...item.meetings.map(meeting =&gt; meeting.start)),
+          end: Math.max(...item.meetings.map(meeting =&gt; meeting.end)),
+          conflict: item.sourceItems.some(source =&gt; conflictItems.has(source))
+        }));
+      }
+
+      function assignDisplayLanes(items) {
+        const sorted = [...items].sort((a, b) =&gt; a.start - b.start || a.end - b.end || a.course.localeCompare(b.course, &#x27;zh-CN&#x27;));
+        const hasVisualOverlap = item =&gt; sorted.some(other =&gt; other !== item &amp;&amp; periodsOverlap(item, other));
+        const laneEnds = [];
+        sorted.forEach(item =&gt; {
+          if (!hasVisualOverlap(item)) {
+            item.fullWidth = true;
+            item.lane = 0;
+            return;
+          }
+          let lane = laneEnds.findIndex(end =&gt; item.start &gt; end);
+          if (lane === -1) lane = laneEnds.length;
+          laneEnds[lane] = item.end;
+          item.fullWidth = false;
+          item.lane = lane;
+        });
+        return { items: sorted, laneCount: Math.max(1, laneEnds.length) };
+      }
+
+      function updateWeekNavigation() {
+        const wholeSemester = scheduleWeek.value === &#x27;all&#x27;;
+        const week = Number(scheduleWeek.value || 0);
+        weekPrev.disabled = wholeSemester || week &lt;= 1;
+        weekNext.disabled = !wholeSemester &amp;&amp; week &gt;= 16;
+      }
 
       function renderWeekSchedule() {
+        updateWeekNavigation();
         const semester = scheduleSemester.value;
         const wholeSemester = scheduleWeek.value === &#x27;all&#x27;;
         const week = Number(scheduleWeek.value || 1);
         const days = [&#x27;星期一&#x27;, &#x27;星期二&#x27;, &#x27;星期三&#x27;, &#x27;星期四&#x27;, &#x27;星期五&#x27;];
-        const periodGroups = [[1,2],[3,4],[5,6],[7,8],[9,11]];
         const autumnCourseNames = new Set(currentFinalRows.filter(row =&gt; row[0] === &#x27;秋季&#x27;).map(row =&gt; row[1]));
         aiSectionControl.hidden = scheduleSemester.value !== &#x27;autumn&#x27; || !autumnCourseNames.has(&#x27;人工智能与机器学习&#x27;);
         ipSectionControl.hidden = scheduleSemester.value !== &#x27;autumn&#x27; || !autumnCourseNames.has(&#x27;知识产权与信息检索&#x27;);
 
         if (semester === &#x27;spring&#x27;) {
           scheduleStatus.innerHTML = `&lt;div class=&quot;mf-status-line&quot;&gt;&lt;span class=&quot;mf-status-mark is-pending&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;2027春季课表尚未发布。&lt;/strong&gt;课程清单可以按春季查看，但当前不能做可靠冲突判断。&lt;/span&gt;&lt;/div&gt;`;
-          weekGrid.innerHTML = `&lt;div class=&quot;mf-week-cell mf-week-head&quot; style=&quot;grid-column:1/-1&quot;&gt;等待学校发布春季教学班周次与节次&lt;/div&gt;`;
+          weekGrid.innerHTML = `&lt;div class=&quot;mf-week-empty&quot;&gt;等待学校发布春季教学班周次与节次&lt;/div&gt;`;
           conflictBox.classList.remove(&#x27;has-conflict&#x27;);
           conflictBox.textContent = &#x27;春季排课未发布：不把“尚无数据”解释成“没有冲突”。&#x27;;
           return;
@@ -1913,14 +2052,20 @@ html&gt;body{padding:0}&lt;/style&gt;
         }));
         const conflictItems = new Set(conflictPairs.flatMap(pair =&gt; pair.items));
 
-        let gridHtml = `&lt;div class=&quot;mf-week-cell mf-week-head&quot;&gt;节次&lt;/div&gt;${days.map(day =&gt; `&lt;div class=&quot;mf-week-cell mf-week-head&quot;&gt;${day}&lt;/div&gt;`).join(&#x27;&#x27;)}`;
-        periodGroups.forEach(group =&gt; {
-          gridHtml += `&lt;div class=&quot;mf-week-cell mf-period-head&quot;&gt;第${group[0]}-${group[1]}节&lt;/div&gt;`;
-          days.forEach((_, dayIndex) =&gt; {
-            const cellItems = active.filter(item =&gt; item.meeting.day === dayIndex + 1 &amp;&amp; periodsOverlap(item.meeting, { start: group[0], end: group[1] }));
-            const chips = cellItems.map(item =&gt; { const conflict = conflictItems.has(item); return `&lt;div class=&quot;mf-class-chip mf-course-color mf-type-${categoryColor(item.category)}${conflict ? &#x27; is-conflict&#x27; : &#x27;&#x27;}&quot;&gt;&lt;span class=&quot;mf-class-category&quot;&gt;${item.category}&lt;/span&gt;&lt;strong&gt;${item.course}&lt;/strong&gt;&lt;span&gt;${item.code} · 第${item.meeting.start}-${item.meeting.end}节&lt;/span&gt;&lt;span&gt;${item.teacher} · ${item.meeting.room}&lt;/span&gt;&lt;span&gt;${rangesText(item.meeting.weeks)}&lt;/span&gt;${conflict ? &#x27;&lt;span class=&quot;mf-conflict-badge&quot;&gt;时间冲突&lt;/span&gt;&#x27; : &#x27;&#x27;}&lt;/div&gt;`; }).join(&#x27;&#x27;);
-            gridHtml += `&lt;div class=&quot;mf-week-cell&quot;&gt;${chips}&lt;/div&gt;`;
-          });
+        const periodSlots = Array.from({ length: 11 }, (_, index) =&gt; `&lt;div class=&quot;mf-period-slot&quot; style=&quot;grid-row:${index + 1}&quot;&gt;第${index + 1}节&lt;/div&gt;`).join(&#x27;&#x27;);
+        let gridHtml = `&lt;div class=&quot;mf-week-cell mf-week-head&quot;&gt;节次&lt;/div&gt;${days.map(day =&gt; `&lt;div class=&quot;mf-week-cell mf-week-head&quot;&gt;${day}&lt;/div&gt;`).join(&#x27;&#x27;)}&lt;div class=&quot;mf-period-track&quot;&gt;${periodSlots}&lt;/div&gt;`;
+        days.forEach((_, dayIndex) =&gt; {
+          const dayItems = mergeDisplayItems(active.filter(item =&gt; item.meeting.day === dayIndex + 1), conflictItems);
+          const layout = assignDisplayLanes(dayItems);
+          const backgroundSlots = Array.from({ length: 11 }, (_, index) =&gt; `&lt;div class=&quot;mf-period-slot&quot; style=&quot;grid-row:${index + 1}&quot;&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+          const chips = layout.items.map(item =&gt; {
+            const scheduleRules = [...new Set(item.meetings.map(meeting =&gt; `${meeting.start}-${meeting.end}节 · ${rangesText(meeting.weeks)}`))];
+            const scheduleLines = scheduleRules.join(&#x27;；&#x27;);
+            const scheduleHtml = scheduleRules.map(rule =&gt; `&lt;span&gt;${rule}&lt;/span&gt;`).join(&#x27;&#x27;);
+            const column = item.fullWidth ? &#x27;1 / -1&#x27; : String(item.lane + 1);
+            return `&lt;div class=&quot;mf-class-chip mf-course-color mf-type-${categoryColor(item.category)}${item.conflict ? &#x27; is-conflict&#x27; : &#x27;&#x27;}&quot; style=&quot;grid-row:${item.start}/${item.end + 1};grid-column:${column}&quot; title=&quot;${item.course} · ${item.category} · ${item.teacher} · ${item.meeting.room} · ${scheduleLines} · ${item.code}&quot;&gt;&lt;span class=&quot;mf-class-head&quot;&gt;&lt;span class=&quot;mf-class-badges&quot;&gt;&lt;span class=&quot;mf-class-category&quot;&gt;${item.category}&lt;/span&gt;${item.conflict ? &#x27;&lt;span class=&quot;mf-conflict-badge&quot;&gt;冲突&lt;/span&gt;&#x27; : &#x27;&#x27;}&lt;/span&gt;&lt;strong&gt;${item.course}&lt;/strong&gt;&lt;/span&gt;&lt;span class=&quot;mf-class-meta&quot;&gt;&lt;span&gt;${item.teacher}&lt;/span&gt;&lt;span&gt;${item.meeting.room}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mf-class-schedule&quot;&gt;${scheduleHtml}&lt;/span&gt;&lt;/div&gt;`;
+          }).join(&#x27;&#x27;);
+          gridHtml += `&lt;div class=&quot;mf-day-track&quot; style=&quot;--mf-lanes:${layout.laneCount}&quot;&gt;${backgroundSlots}${chips}&lt;/div&gt;`;
         });
         weekGrid.innerHTML = gridHtml;
 
@@ -1997,11 +2142,20 @@ html&gt;body{padding:0}&lt;/style&gt;
         currentFinalPlanName = plan.name;
         root.querySelector(&#x27;#mf-final-summary&#x27;).textContent = `思政：${politics}；必修环节：${practice}；额外其他选修：${extras.length ? extras.map(course =&gt; course.name).join(&#x27;、&#x27;) : &#x27;不加选&#x27;}`;
         root.querySelector(&#x27;#mf-final-check&#x27;).textContent = extraCredits ? `满足最低38学分要求，并额外加选${extraCredits}学分。` : &#x27;按最低38学分生成，培养方案各类别要求完整。&#x27;;
+        root.querySelector(&#x27;#mf-final-empty&#x27;).hidden = true;
         root.querySelector(&#x27;#mf-final-result&#x27;).hidden = false;
         renderFinalView(currentFinalView);
       }
 
       root.addEventListener(&#x27;click&#x27;, event =&gt; {
+        const weekStepButton = event.target.closest(&#x27;#mf-week-prev, #mf-week-next&#x27;);
+        if (weekStepButton) {
+          const currentWeek = scheduleWeek.value === &#x27;all&#x27; ? 0 : Number(scheduleWeek.value);
+          const nextWeek = weekStepButton === weekNext ? Math.min(16, currentWeek + 1) : Math.max(1, currentWeek - 1);
+          scheduleWeek.value = String(nextWeek);
+          renderWeekSchedule();
+          return;
+        }
         const finalPlanButton = event.target.closest(&#x27;[data-final-plan]&#x27;);
         if (finalPlanButton) {
           const plan = plans.find(item =&gt; item.id === finalPlanButton.dataset.finalPlan);
@@ -2009,7 +2163,10 @@ html&gt;body{padding:0}&lt;/style&gt;
         }
         const finalViewButton = event.target.closest(&#x27;[data-final-view]&#x27;);
         if (finalViewButton) renderFinalView(finalViewButton.dataset.finalView);
-        if (event.target.closest(&#x27;#mf-generate-final&#x27;)) generateFinalPlan();
+        if (event.target.closest(&#x27;#mf-generate-final&#x27;)) {
+          generateFinalPlan();
+          activateTab(&#x27;final&#x27;, true);
+        }
       });
 
       root.addEventListener(&#x27;change&#x27;, event =&gt; {
@@ -2017,10 +2174,20 @@ html&gt;body{padding:0}&lt;/style&gt;
           renderWeekSchedule();
           return;
         }
+        const extraTermControl = event.target.closest(&#x27;[data-extra-term]&#x27;);
+        if (extraTermControl) {
+          if (!root.querySelector(&#x27;#mf-final-result&#x27;).hidden) generateFinalPlan();
+          return;
+        }
+        if (event.target.closest(&#x27;#mf-final-politics, input[name=&quot;mf-final-practice&quot;]&#x27;)) {
+          if (!root.querySelector(&#x27;#mf-final-result&#x27;).hidden) generateFinalPlan();
+          return;
+        }
         const checkbox = event.target.closest(&#x27;[data-extra]&#x27;);
         if (!checkbox) return;
         const termControl = root.querySelector(`[data-extra-term=&quot;${checkbox.dataset.extra}&quot;]`);
         if (termControl) termControl.disabled = !checkbox.checked;
+        if (!root.querySelector(&#x27;#mf-final-result&#x27;).hidden) generateFinalPlan();
       });
 
       render(plans[0]);
