@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>金融硕士一年选课方案</title>
 <style>:root{color-scheme:light dark;background:light-dark(#f4f1e9,#14211e)}html,body{margin:0;min-height:100%}body{background:inherit}iframe{display:block;width:100%;height:100vh;margin:0;border:0;background:inherit}</style>
 </head>
@@ -1456,6 +1455,10 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;/div&gt;
         &lt;/fieldset&gt;
         &lt;fieldset class=&quot;mf-dialog-turn&quot;&gt;
+          &lt;legend&gt;素质教育公选课，你准备修哪些？ &lt;span class=&quot;text-small text-muted&quot;&gt;至少1学分&lt;/span&gt;&lt;/legend&gt;
+          &lt;div class=&quot;mf-choice-grid&quot; id=&quot;mf-final-quality-options&quot;&gt;&lt;/div&gt;
+        &lt;/fieldset&gt;
+        &lt;fieldset class=&quot;mf-dialog-turn&quot;&gt;
           &lt;legend&gt;还有想额外增加的其他选修吗？ &lt;span class=&quot;text-small text-muted&quot;&gt;可不选&lt;/span&gt;&lt;/legend&gt;
           &lt;div class=&quot;mf-choice-grid&quot; id=&quot;mf-final-extra-options&quot;&gt;&lt;/div&gt;
         &lt;/fieldset&gt;
@@ -1467,7 +1470,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;section class=&quot;mf-section&quot; id=&quot;mf-panel-final&quot; role=&quot;tabpanel&quot; data-mf-tab-panel=&quot;final&quot; aria-labelledby=&quot;mf-tab-final&quot; hidden&gt;
       &lt;div class=&quot;mf-note&quot; id=&quot;mf-final-empty&quot;&gt;
         &lt;p&gt;&lt;strong&gt;尚未生成最终方案。&lt;/strong&gt;&lt;/p&gt;
-        &lt;p class=&quot;text-small text-muted&quot;&gt;请先在“定制选项”中确定基础方案、思政课、必修环节和额外选修。&lt;/p&gt;
+        &lt;p class=&quot;text-small text-muted&quot;&gt;请先在“定制选项”中确定基础方案、思政课、必修环节、素质教育公选课和额外选修。&lt;/p&gt;
         &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-mf-tab-jump=&quot;custom&quot;&gt;前往定制选项&lt;/button&gt;
       &lt;/div&gt;
 
@@ -1551,6 +1554,8 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;label&gt;&lt;span&gt;中国式现代化教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-modernization-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
               &lt;label id=&quot;mf-ai-section-control&quot; hidden&gt;&lt;span&gt;人工智能与机器学习教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-ai-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
               &lt;label id=&quot;mf-ip-section-control&quot; hidden&gt;&lt;span&gt;知识产权与信息检索教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-ip-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+              &lt;label id=&quot;mf-sports-section-control&quot; hidden&gt;&lt;span&gt;体育技能、欣赏与文化教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-sports-section&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+              &lt;label id=&quot;mf-stress-section-control&quot; hidden&gt;&lt;span&gt;压力管理的艺术教学班&lt;/span&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-stress-section&quot; disabled&gt;&lt;option&gt;2026秋未发布教学班&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
             &lt;/div&gt;
           &lt;/div&gt;
           &lt;div class=&quot;table-responsive&quot;&gt;&lt;div class=&quot;mf-week-grid&quot; id=&quot;mf-week-grid&quot;&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1564,7 +1569,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;/div&gt;
           &lt;div class=&quot;mf-schedule-status&quot; id=&quot;mf-schedule-status&quot;&gt;&lt;/div&gt;
           &lt;div class=&quot;mf-conflict-box&quot; id=&quot;mf-conflict-box&quot;&gt;&lt;/div&gt;
-          &lt;p class=&quot;text-small text-muted&quot;&gt;数据读取于2026年8月28日“全校课表查询”。只把已查到具体周次与节次的教学班纳入冲突判断；未发布课程不会被误判为无冲突。&lt;/p&gt;
+          &lt;p class=&quot;text-small text-muted&quot;&gt;课表数据更新至2026年8月29日教务系统：体育技能、欣赏与文化已查到30个秋季教学班，压力管理的艺术暂未发布秋季教学班。只把已查到具体周次与节次的教学班纳入冲突判断；未发布课程不会被误判为无冲突。&lt;/p&gt;
         &lt;/div&gt;
         &lt;div class=&quot;mf-note&quot;&gt;
           &lt;p&gt;&lt;strong id=&quot;mf-final-check&quot;&gt;&lt;/strong&gt;&lt;/p&gt;
@@ -1660,6 +1665,10 @@ html&gt;body{padding:0}&lt;/style&gt;
         { id: &#x27;ai-ml&#x27;, name: &#x27;人工智能与机器学习&#x27;, credits: 2, hours: 32, opening: &#x27;秋&#x27;, term: &#x27;秋季&#x27;, scheduleNote: &#x27;2026秋已查到2班&#x27; },
         { id: &#x27;data-mining&#x27;, name: &#x27;数据挖掘与信息管理&#x27;, credits: 3, hours: 48, opening: &#x27;秋&#x27;, term: &#x27;秋季&#x27;, scheduleNote: &#x27;2026秋未检索到&#x27; }
       ];
+      const qualityCourses = [
+        { id: &#x27;sports-culture&#x27;, name: &#x27;体育技能、欣赏与文化&#x27;, code: &#x27;2000025001&#x27;, credits: 1.5, hours: 30, opening: &#x27;春与秋&#x27;, term: &#x27;秋季&#x27;, scheduleNote: &#x27;2026秋已查到30班&#x27; },
+        { id: &#x27;stress-art&#x27;, name: &#x27;压力管理的艺术&#x27;, code: &#x27;9A00025001&#x27;, credits: 1, hours: 16, opening: &#x27;春与秋&#x27;, term: &#x27;秋季&#x27;, scheduleNote: &#x27;2026秋教学班待发布&#x27; }
+      ];
       const requiredLinks = [
         [&#x27;专业实践&#x27;,&#x27;实践教学&#x27;,2,&#x27;持续完成&#x27;],
         [&#x27;学术活动&#x27;,&#x27;必修环节&#x27;,1,&#x27;培养期内&#x27;],
@@ -1697,6 +1706,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         &#x27;数据分析与决策&#x27;: &#x27;春&#x27;,
         &#x27;人工智能与机器学习&#x27;: &#x27;秋&#x27;,
         &#x27;数据挖掘与信息管理&#x27;: &#x27;秋&#x27;,
+        &#x27;体育技能、欣赏与文化&#x27;: &#x27;春与秋&#x27;,
+        &#x27;压力管理的艺术&#x27;: &#x27;春与秋&#x27;,
         &#x27;量化投资&#x27;: &#x27;春&#x27;
       };
       const assessmentByCourse = {
@@ -1727,6 +1738,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         &#x27;区块链与数字货币&#x27;: &#x27;考查&#x27;,
         &#x27;知识产权与信息检索&#x27;: &#x27;考查&#x27;,
         &#x27;数据挖掘与信息管理&#x27;: &#x27;考查&#x27;,
+        &#x27;体育技能、欣赏与文化&#x27;: &#x27;考查&#x27;,
+        &#x27;压力管理的艺术&#x27;: &#x27;考查&#x27;,
         &#x27;量化投资&#x27;: &#x27;考查&#x27;
       };
       const verifiedSchedules = {
@@ -1795,6 +1808,39 @@ html&gt;body{padding:0}&lt;/style&gt;
           { weeks:[[11,11]], day:2, start:9, end:10, room:&#x27;品学楼B101&#x27; }
         ]}
       ];
+      const sportsSections = [
+        { id: &#x27;none&#x27;, label: &#x27;暂不指定教学班&#x27;, teacher: &#x27;&#x27;, meetings: [] },
+        { id: &#x27;sp-board-1&#x27;, label: &#x27;板网1班 · 周二7-8 · 江英俊 · 清水河&#x27;, teacher: &#x27;江英俊&#x27;, meetings: [{ weeks:[[3,17]], day:2, start:7, end:8, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-board-2&#x27;, label: &#x27;板网2班 · 周三7-8 · 江英俊 · 沙河&#x27;, teacher: &#x27;江英俊&#x27;, meetings: [{ weeks:[[3,17]], day:3, start:7, end:8, room:&#x27;沙河网球场&#x27; }] },
+        { id: &#x27;sp-fencing-1&#x27;, label: &#x27;击剑1班 · 周一5-6 · 梁伟&#x27;, teacher: &#x27;梁伟&#x27;, meetings: [{ weeks:[[3,17]], day:1, start:5, end:6, room:&#x27;击剑室&#x27; }] },
+        { id: &#x27;sp-fencing-2&#x27;, label: &#x27;击剑2班 · 周三5-6 · 梁伟&#x27;, teacher: &#x27;梁伟&#x27;, meetings: [{ weeks:[[3,17]], day:3, start:5, end:6, room:&#x27;击剑室&#x27; }] },
+        { id: &#x27;sp-cheer-1&#x27;, label: &#x27;啦啦操1班 · 周二3-4 · 邓陈亮&#x27;, teacher: &#x27;邓陈亮&#x27;, meetings: [{ weeks:[[3,17]], day:2, start:3, end:4, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-basketball-1&#x27;, label: &#x27;篮球1班 · 周一3-4 · 刘扉&#x27;, teacher: &#x27;刘扉&#x27;, meetings: [{ weeks:[[3,17]], day:1, start:3, end:4, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-basketball-2&#x27;, label: &#x27;篮球2班 · 周三3-4 · 刘治&#x27;, teacher: &#x27;刘治&#x27;, meetings: [{ weeks:[[3,17]], day:3, start:3, end:4, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-basketball-3&#x27;, label: &#x27;篮球3班 · 周三3-4 · 彭福栋&#x27;, teacher: &#x27;彭福栋&#x27;, meetings: [{ weeks:[[3,17]], day:3, start:3, end:4, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-basketball-4&#x27;, label: &#x27;篮球4班 · 周三5-6 · 彭福栋&#x27;, teacher: &#x27;彭福栋&#x27;, meetings: [{ weeks:[[3,17]], day:3, start:5, end:6, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-basketball-5&#x27;, label: &#x27;篮球5班 · 周三7-8 · 彭福栋&#x27;, teacher: &#x27;彭福栋&#x27;, meetings: [{ weeks:[[3,17]], day:3, start:7, end:8, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-basketball-6&#x27;, label: &#x27;篮球6班 · 周四7-8 · 刘扉&#x27;, teacher: &#x27;刘扉&#x27;, meetings: [{ weeks:[[3,17]], day:4, start:7, end:8, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-pickleball-1&#x27;, label: &#x27;匹克球1班 · 周一3-4 · 李新文&#x27;, teacher: &#x27;李新文&#x27;, meetings: [{ weeks:[[3,17]], day:1, start:3, end:4, room:&#x27;清水河室外羽毛球场&#x27; }] },
+        { id: &#x27;sp-air-volleyball-1&#x27;, label: &#x27;气排球1班 · 周四5-6 · 汪婕&#x27;, teacher: &#x27;汪婕&#x27;, meetings: [{ weeks:[[3,17]], day:4, start:5, end:6, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-archery-1&#x27;, label: &#x27;射箭1班 · 周一5-6 · 李晶晶&#x27;, teacher: &#x27;李晶晶&#x27;, meetings: [{ weeks:[[3,17]], day:1, start:5, end:6, room:&#x27;射箭场&#x27; }] },
+        { id: &#x27;sp-functional-1&#x27;, label: &#x27;身体运动功能训练1班 · 周一5-6 · 谢燕妮&#x27;, teacher: &#x27;谢燕妮&#x27;, meetings: [{ weeks:[[3,17]], day:1, start:5, end:6, room:&#x27;校园健身房旁&#x27; }] },
+        { id: &#x27;sp-billiards-1&#x27;, label: &#x27;台球1班 · 周二5-6 · 欧阳玉富&#x27;, teacher: &#x27;欧阳玉富&#x27;, meetings: [{ weeks:[[3,17]], day:2, start:5, end:6, room:&#x27;清水河台球室&#x27; }] },
+        { id: &#x27;sp-billiards-2&#x27;, label: &#x27;台球2班 · 周四5-6 · 欧阳玉富&#x27;, teacher: &#x27;欧阳玉富&#x27;, meetings: [{ weeks:[[3,17]], day:4, start:5, end:6, room:&#x27;清水河台球室&#x27; }] },
+        { id: &#x27;sp-tennis-1&#x27;, label: &#x27;网球1班 · 周一5-6 · 李新文&#x27;, teacher: &#x27;李新文&#x27;, meetings: [{ weeks:[[3,17]], day:1, start:5, end:6, room:&#x27;清水河网球场&#x27; }] },
+        { id: &#x27;sp-tennis-2&#x27;, label: &#x27;网球2班 · 周四7-8 · 熊妮&#x27;, teacher: &#x27;熊妮&#x27;, meetings: [{ weeks:[[3,17]], day:4, start:7, end:8, room:&#x27;清水河网球场&#x27; }] },
+        { id: &#x27;sp-tennis-3&#x27;, label: &#x27;网球3班 · 周三5-6 · 熊妮 · 沙河&#x27;, teacher: &#x27;熊妮&#x27;, meetings: [{ weeks:[[3,17]], day:3, start:5, end:6, room:&#x27;沙河网球场&#x27; }] },
+        { id: &#x27;sp-swim-1&#x27;, label: &#x27;游泳1班 · 周一5-6 · 邓运来&#x27;, teacher: &#x27;邓运来&#x27;, meetings: [{ weeks:[[3,17]], day:1, start:5, end:6, room:&#x27;清水河游泳馆&#x27; }] },
+        { id: &#x27;sp-swim-2&#x27;, label: &#x27;游泳2班 · 周二5-6 · 李平&#x27;, teacher: &#x27;李平&#x27;, meetings: [{ weeks:[[3,17]], day:2, start:5, end:6, room:&#x27;清水河游泳馆&#x27; }] },
+        { id: &#x27;sp-swim-3&#x27;, label: &#x27;游泳3班 · 周二7-8 · 罗飞&#x27;, teacher: &#x27;罗飞&#x27;, meetings: [{ weeks:[[3,17]], day:2, start:7, end:8, room:&#x27;清水河游泳馆&#x27; }] },
+        { id: &#x27;sp-swim-4&#x27;, label: &#x27;游泳4班 · 周四9-10 · 梁媛&#x27;, teacher: &#x27;梁媛&#x27;, meetings: [{ weeks:[[3,17]], day:4, start:9, end:10, room:&#x27;清水河游泳馆&#x27; }] },
+        { id: &#x27;sp-swim-5&#x27;, label: &#x27;游泳5班 · 周五5-6 · 李平&#x27;, teacher: &#x27;李平&#x27;, meetings: [{ weeks:[[3,17]], day:5, start:5, end:6, room:&#x27;清水河游泳馆&#x27; }] },
+        { id: &#x27;sp-badminton-1&#x27;, label: &#x27;羽毛球1班 · 周一5-6 · 金辉&#x27;, teacher: &#x27;金辉&#x27;, meetings: [{ weeks:[[3,17]], day:1, start:5, end:6, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-badminton-2&#x27;, label: &#x27;羽毛球2班 · 周三3-4 · 马强&#x27;, teacher: &#x27;马强&#x27;, meetings: [{ weeks:[[3,17]], day:3, start:3, end:4, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-badminton-3&#x27;, label: &#x27;羽毛球3班 · 周三5-6 · 马强&#x27;, teacher: &#x27;马强&#x27;, meetings: [{ weeks:[[3,17]], day:3, start:5, end:6, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-self-defense-1&#x27;, label: &#x27;自卫防身术1班 · 周四9-10 · 赵章志&#x27;, teacher: &#x27;赵章志&#x27;, meetings: [{ weeks:[[3,17]], day:4, start:9, end:10, room:&#x27;综合训练馆&#x27; }] },
+        { id: &#x27;sp-taekwondo-1&#x27;, label: &#x27;跆拳道1班 · 周二7-8 · 耿迪&#x27;, teacher: &#x27;耿迪&#x27;, meetings: [{ weeks:[[3,17]], day:2, start:7, end:8, room:&#x27;综合训练馆&#x27; }] }
+      ];
       const modernizationSections = [
         { id: &#x27;none&#x27;, label: &#x27;暂不指定教学班&#x27;, meetings: [] },
         { id: &#x27;m1&#x27;, label: &#x27;1班 · 周一3-4＋周三3-4 · 唐登蕓（冲突）&#x27;, meetings: [
@@ -1844,7 +1890,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         if (category === &#x27;公共基础&#x27; || category === &#x27;专业基础&#x27;) return &#x27;degree&#x27;;
         if (category.startsWith(&#x27;专业选修&#x27;)) return &#x27;elective&#x27;;
         if (category.startsWith(&#x27;其他选修&#x27;)) return &#x27;other&#x27;;
-        if (category === &#x27;必修环节&#x27;) return &#x27;required&#x27;;
+        if (category.startsWith(&#x27;必修环节&#x27;)) return &#x27;required&#x27;;
         return &#x27;practice&#x27;;
       };
       const credits = rows =&gt; rows.reduce((sum, row) =&gt; sum + row[2], 0);
@@ -1913,6 +1959,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       const finalPlanOptions = root.querySelector(&#x27;#mf-final-plan-options&#x27;);
       const finalPolitics = root.querySelector(&#x27;#mf-final-politics&#x27;);
+      const finalQualityOptions = root.querySelector(&#x27;#mf-final-quality-options&#x27;);
       const finalExtraOptions = root.querySelector(&#x27;#mf-final-extra-options&#x27;);
       let selectedFinalPlanId = plans[0].id;
       let currentFinalRows = [];
@@ -1926,8 +1973,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       const modernizationSection = root.querySelector(&#x27;#mf-modernization-section&#x27;);
       const aiSection = root.querySelector(&#x27;#mf-ai-section&#x27;);
       const ipSection = root.querySelector(&#x27;#mf-ip-section&#x27;);
+      const sportsSection = root.querySelector(&#x27;#mf-sports-section&#x27;);
       const aiSectionControl = root.querySelector(&#x27;#mf-ai-section-control&#x27;);
       const ipSectionControl = root.querySelector(&#x27;#mf-ip-section-control&#x27;);
+      const sportsSectionControl = root.querySelector(&#x27;#mf-sports-section-control&#x27;);
+      const stressSectionControl = root.querySelector(&#x27;#mf-stress-section-control&#x27;);
       const weekGrid = root.querySelector(&#x27;#mf-week-grid&#x27;);
       const scheduleStatus = root.querySelector(&#x27;#mf-schedule-status&#x27;);
       const conflictBox = root.querySelector(&#x27;#mf-conflict-box&#x27;);
@@ -1937,9 +1987,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       modernizationSection.innerHTML = modernizationSections.map(section =&gt; `&lt;option value=&quot;${section.id}&quot;&gt;${section.label}&lt;/option&gt;`).join(&#x27;&#x27;);
       aiSection.innerHTML = aiSections.map(section =&gt; `&lt;option value=&quot;${section.id}&quot;&gt;${section.label}&lt;/option&gt;`).join(&#x27;&#x27;);
       ipSection.innerHTML = ipSections.map(section =&gt; `&lt;option value=&quot;${section.id}&quot;&gt;${section.label}&lt;/option&gt;`).join(&#x27;&#x27;);
+      sportsSection.innerHTML = sportsSections.map(section =&gt; `&lt;option value=&quot;${section.id}&quot;&gt;${section.label}&lt;/option&gt;`).join(&#x27;&#x27;);
 
       finalPlanOptions.innerHTML = plans.map((plan, index) =&gt; `&lt;button type=&quot;button&quot; class=&quot;btn${index === 0 ? &#x27; btn-primary&#x27; : &#x27;&#x27;}&quot; data-final-plan=&quot;${plan.id}&quot; aria-pressed=&quot;${index === 0 ? &#x27;true&#x27; : &#x27;false&#x27;}&quot;&gt;${plan.name}&lt;/button&gt;`).join(&#x27;&#x27;);
       finalPolitics.innerHTML = politicsCourses.map(course =&gt; `&lt;option value=&quot;${course}&quot;&gt;${course}&lt;/option&gt;`).join(&#x27;&#x27;);
+      finalQualityOptions.innerHTML = qualityCourses.map(course =&gt; `&lt;div class=&quot;mf-choice-row&quot;&gt;&lt;div class=&quot;form-check&quot;&gt;&lt;input class=&quot;form-check-input&quot; type=&quot;checkbox&quot; id=&quot;mf-quality-${course.id}&quot; data-quality=&quot;${course.id}&quot; checked&gt;&lt;label class=&quot;form-check-label&quot; for=&quot;mf-quality-${course.id}&quot;&gt;${course.name} · ${course.credits}学分 · ${course.opening} · 考查 · ${course.scheduleNote}&lt;/label&gt;&lt;/div&gt;&lt;label class=&quot;sr-only&quot; for=&quot;mf-quality-term-${course.id}&quot;&gt;${course.name}安排学期&lt;/label&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-quality-term-${course.id}&quot; data-quality-term=&quot;${course.id}&quot;&gt;&lt;option value=&quot;秋季&quot; selected&gt;秋季&lt;/option&gt;&lt;option value=&quot;春季&quot;&gt;春季&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
       finalExtraOptions.innerHTML = extraCourses.map(course =&gt; {
         const selector = course.flexible ? `&lt;label class=&quot;sr-only&quot; for=&quot;mf-extra-term-${course.id}&quot;&gt;${course.name}安排学期&lt;/label&gt;&lt;select class=&quot;form-select&quot; id=&quot;mf-extra-term-${course.id}&quot; data-extra-term=&quot;${course.id}&quot; disabled&gt;&lt;option value=&quot;秋季&quot;&gt;秋季&lt;/option&gt;&lt;option value=&quot;春季&quot; selected&gt;春季&lt;/option&gt;&lt;/select&gt;` : &#x27;&#x27;;
         return `&lt;div class=&quot;mf-choice-row&quot;&gt;&lt;div class=&quot;form-check&quot;&gt;&lt;input class=&quot;form-check-input&quot; type=&quot;checkbox&quot; id=&quot;mf-extra-${course.id}&quot; data-extra=&quot;${course.id}&quot;&gt;&lt;label class=&quot;form-check-label&quot; for=&quot;mf-extra-${course.id}&quot;&gt;${course.name} · ${course.credits}学分 · ${course.opening} · ${assessmentByCourse[course.name]} · ${course.scheduleNote}&lt;/label&gt;&lt;/div&gt;${selector}&lt;/div&gt;`;
@@ -1954,6 +2006,13 @@ html&gt;body{padding:0}&lt;/style&gt;
           const termControl = root.querySelector(`[data-extra-term=&quot;${course.id}&quot;]`);
           return { ...course, term: termControl ? termControl.value : course.term };
         });
+      }
+
+      function selectedQualityCourses() {
+        return qualityCourses.filter(course =&gt; root.querySelector(`[data-quality=&quot;${course.id}&quot;]`).checked).map(course =&gt; ({
+          ...course,
+          term: root.querySelector(`[data-quality-term=&quot;${course.id}&quot;]`).value
+        }));
       }
 
       const meetingRunsInWeek = (meeting, week) =&gt; meeting.weeks.some(range =&gt; week &gt;= range[0] &amp;&amp; week &lt;= range[1]);
@@ -2013,6 +2072,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         const autumnCourseNames = new Set(currentFinalRows.filter(row =&gt; row[0] === &#x27;秋季&#x27;).map(row =&gt; row[1]));
         aiSectionControl.hidden = scheduleSemester.value !== &#x27;autumn&#x27; || !autumnCourseNames.has(&#x27;人工智能与机器学习&#x27;);
         ipSectionControl.hidden = scheduleSemester.value !== &#x27;autumn&#x27; || !autumnCourseNames.has(&#x27;知识产权与信息检索&#x27;);
+        sportsSectionControl.hidden = scheduleSemester.value !== &#x27;autumn&#x27; || !autumnCourseNames.has(&#x27;体育技能、欣赏与文化&#x27;);
+        stressSectionControl.hidden = scheduleSemester.value !== &#x27;autumn&#x27; || !autumnCourseNames.has(&#x27;压力管理的艺术&#x27;);
 
         if (semester === &#x27;spring&#x27;) {
           scheduleStatus.innerHTML = `&lt;div class=&quot;mf-status-line&quot;&gt;&lt;span class=&quot;mf-status-mark is-pending&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;2027春季课表尚未发布。&lt;/strong&gt;课程清单可以按春季查看，但当前不能做可靠冲突判断。&lt;/span&gt;&lt;/div&gt;`;
@@ -2043,6 +2104,10 @@ html&gt;body{padding:0}&lt;/style&gt;
         const selectedIp = ipSections.find(section =&gt; section.id === ipSection.value) || ipSections[0];
         if (autumnCourseNames.has(&#x27;知识产权与信息检索&#x27;) &amp;&amp; selectedIp.id !== &#x27;none&#x27;) {
           selectedIp.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;知识产权与信息检索&#x27;, category: &#x27;其他选修·加选&#x27;, code: &#x27;1500005004&#x27;, teacher: selectedIp.teacher, meeting }));
+        }
+        const selectedSports = sportsSections.find(section =&gt; section.id === sportsSection.value) || sportsSections[0];
+        if (autumnCourseNames.has(&#x27;体育技能、欣赏与文化&#x27;) &amp;&amp; selectedSports.id !== &#x27;none&#x27;) {
+          selectedSports.meetings.forEach(meeting =&gt; scheduled.push({ course: &#x27;体育技能、欣赏与文化&#x27;, category: &#x27;必修环节·素质教育&#x27;, code: &#x27;2000025001&#x27;, teacher: selectedSports.teacher, meeting }));
         }
         const active = wholeSemester ? scheduled : scheduled.filter(item =&gt; meetingRunsInWeek(item.meeting, week));
         const conflictPairs = [];
@@ -2084,9 +2149,9 @@ html&gt;body{padding:0}&lt;/style&gt;
         const requiredRows = currentFinalRows.filter(row =&gt; row[0] === &#x27;培养环节&#x27;);
         const sumRows = rows =&gt; rows.reduce((sum, row) =&gt; sum + row[4], 0);
         const total = sumRows(currentFinalRows);
-        const courseCredits = sumRows(currentFinalRows.filter(row =&gt; row[2] !== &#x27;实践教学&#x27; &amp;&amp; row[2] !== &#x27;必修环节&#x27;));
+        const courseCredits = sumRows(currentFinalRows.filter(row =&gt; row[2] !== &#x27;实践教学&#x27; &amp;&amp; !row[2].startsWith(&#x27;必修环节&#x27;)));
         const practiceCredits = sumRows(currentFinalRows.filter(row =&gt; row[2] === &#x27;实践教学&#x27;));
-        const requiredCredits = sumRows(currentFinalRows.filter(row =&gt; row[2] === &#x27;必修环节&#x27;));
+        const requiredCredits = sumRows(currentFinalRows.filter(row =&gt; row[2].startsWith(&#x27;必修环节&#x27;)));
         const assessmentDetail = rows =&gt; {
           const exams = rows.filter(row =&gt; (assessmentByCourse[row[1]] || &#x27;考查&#x27;) === &#x27;考试&#x27;).length;
           return `${rows.length}门 · 考试${exams}＋考查${rows.length - exams}`;
@@ -2124,24 +2189,30 @@ html&gt;body{padding:0}&lt;/style&gt;
         const politics = finalPolitics.value;
         const practice = root.querySelector(&#x27;input[name=&quot;mf-final-practice&quot;]:checked&#x27;).value;
         const extras = selectedExtras();
+        const quality = selectedQualityCourses();
         const rows = [];
 
         plan.autumn.forEach(course =&gt; rows.push([&#x27;秋季&#x27;, course[0], course[1], termByCourse[course[0]], course[2]]));
         extras.filter(course =&gt; course.term === &#x27;秋季&#x27;).forEach(course =&gt; rows.push([&#x27;秋季&#x27;, course.name, &#x27;其他选修·加选&#x27;, course.opening, course.credits]));
+        quality.filter(course =&gt; course.term === &#x27;秋季&#x27;).forEach(course =&gt; rows.push([&#x27;秋季&#x27;, course.name, &#x27;必修环节·素质教育&#x27;, course.opening, course.credits]));
         plan.spring.forEach(course =&gt; {
           const name = course[0] === &#x27;思政课程三选一&#x27; ? politics : course[0];
           rows.push([&#x27;春季&#x27;, name, course[1], termByCourse[name], course[2]]);
         });
         extras.filter(course =&gt; course.term === &#x27;春季&#x27;).forEach(course =&gt; rows.push([&#x27;春季&#x27;, course.name, &#x27;其他选修·加选&#x27;, course.opening, course.credits]));
+        quality.filter(course =&gt; course.term === &#x27;春季&#x27;).forEach(course =&gt; rows.push([&#x27;春季&#x27;, course.name, &#x27;必修环节·素质教育&#x27;, course.opening, course.credits]));
         rows.push([&#x27;培养环节&#x27;, requiredLinks[0][0], requiredLinks[0][1], requiredLinks[0][3], requiredLinks[0][2]]);
         rows.push([&#x27;培养环节&#x27;, practice, &#x27;必修环节&#x27;, &#x27;培养期内&#x27;, 1]);
-        requiredLinks.slice(1).forEach(item =&gt; rows.push([&#x27;培养环节&#x27;, item[0], item[1], item[3], item[2]]));
+        requiredLinks.slice(1).filter(item =&gt; item[0] !== &#x27;素质教育公选课&#x27;).forEach(item =&gt; rows.push([&#x27;培养环节&#x27;, item[0], item[1], item[3], item[2]]));
 
         const extraCredits = extras.reduce((sum, course) =&gt; sum + course.credits, 0);
+        const qualityCredits = quality.reduce((sum, course) =&gt; sum + course.credits, 0);
+        if (qualityCredits &lt; 1) rows.push([&#x27;培养环节&#x27;, &#x27;素质教育公选课（待选）&#x27;, &#x27;必修环节&#x27;, &#x27;培养期内&#x27;, 1]);
         currentFinalRows = rows;
         currentFinalPlanName = plan.name;
-        root.querySelector(&#x27;#mf-final-summary&#x27;).textContent = `思政：${politics}；必修环节：${practice}；额外其他选修：${extras.length ? extras.map(course =&gt; course.name).join(&#x27;、&#x27;) : &#x27;不加选&#x27;}`;
-        root.querySelector(&#x27;#mf-final-check&#x27;).textContent = extraCredits ? `满足最低38学分要求，并额外加选${extraCredits}学分。` : &#x27;按最低38学分生成，培养方案各类别要求完整。&#x27;;
+        root.querySelector(&#x27;#mf-final-summary&#x27;).textContent = `思政：${politics}；必修环节：${practice}；素质教育：${quality.length ? quality.map(course =&gt; course.name).join(&#x27;、&#x27;) : &#x27;尚未选课&#x27;}；额外其他选修：${extras.length ? extras.map(course =&gt; course.name).join(&#x27;、&#x27;) : &#x27;不加选&#x27;}`;
+        const additionalCredits = extraCredits + Math.max(0, qualityCredits - 1);
+        root.querySelector(&#x27;#mf-final-check&#x27;).textContent = qualityCredits &lt; 1 ? &#x27;仍需选择至少1学分素质教育公选课；当前以1学分待选项保留最低培养要求。&#x27; : additionalCredits ? `满足最低38学分要求，并在最低方案上增加${additionalCredits}学分。` : &#x27;按最低38学分生成，培养方案各类别要求完整。&#x27;;
         root.querySelector(&#x27;#mf-final-empty&#x27;).hidden = true;
         root.querySelector(&#x27;#mf-final-result&#x27;).hidden = false;
         renderFinalView(currentFinalView);
@@ -2170,8 +2241,13 @@ html&gt;body{padding:0}&lt;/style&gt;
       });
 
       root.addEventListener(&#x27;change&#x27;, event =&gt; {
-        if (event.target.closest(&#x27;#mf-schedule-semester, #mf-schedule-week, #mf-english-section, #mf-modernization-section, #mf-ai-section, #mf-ip-section&#x27;)) {
+        if (event.target.closest(&#x27;#mf-schedule-semester, #mf-schedule-week, #mf-english-section, #mf-modernization-section, #mf-ai-section, #mf-ip-section, #mf-sports-section&#x27;)) {
           renderWeekSchedule();
+          return;
+        }
+        const qualityTermControl = event.target.closest(&#x27;[data-quality-term]&#x27;);
+        if (qualityTermControl) {
+          if (!root.querySelector(&#x27;#mf-final-result&#x27;).hidden) generateFinalPlan();
           return;
         }
         const extraTermControl = event.target.closest(&#x27;[data-extra-term]&#x27;);
@@ -2180,6 +2256,12 @@ html&gt;body{padding:0}&lt;/style&gt;
           return;
         }
         if (event.target.closest(&#x27;#mf-final-politics, input[name=&quot;mf-final-practice&quot;]&#x27;)) {
+          if (!root.querySelector(&#x27;#mf-final-result&#x27;).hidden) generateFinalPlan();
+          return;
+        }
+        const qualityCheckbox = event.target.closest(&#x27;[data-quality]&#x27;);
+        if (qualityCheckbox) {
+          root.querySelector(`[data-quality-term=&quot;${qualityCheckbox.dataset.quality}&quot;]`).disabled = !qualityCheckbox.checked;
           if (!root.querySelector(&#x27;#mf-final-result&#x27;).hidden) generateFinalPlan();
           return;
         }
