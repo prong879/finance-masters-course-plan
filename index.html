@@ -8,13 +8,13 @@
 <style>:root{color-scheme:light dark;background:light-dark(#f4f1e9,#14211e)}html,body{margin:0;min-height:100%}body{background:inherit}iframe{display:block;width:100%;height:100vh;margin:0;border:0;background:inherit}</style>
 </head>
 <body>
-<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="金融硕士一年选课方案" srcdoc="&lt;!doctype html&gt;
+<iframe sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation" referrerpolicy="no-referrer" title="金融硕士一年选课方案" srcdoc="&lt;!doctype html&gt;
 &lt;html lang=&quot;zh-CN&quot;&gt;
 &lt;head&gt;
 &lt;meta charset=&quot;utf-8&quot;&gt;
 &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
 &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
-&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://uestc.edu.cn https://*.uestc.edu.cn https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
 &lt;title&gt;金融硕士一年选课方案&lt;/title&gt;
 &lt;style&gt;:root {
   color-scheme: light dark;
@@ -1344,12 +1344,159 @@ html&gt;body{padding:0}&lt;/style&gt;
       #mf-course-plans .mf-tabs { margin-inline: -6px; padding-inline: 6px; }
       #mf-course-plans .mf-tab { flex: 0 0 auto; }
     }
+    #mf-course-plans .mf-app-nav {
+      position: sticky;
+      top: 10px;
+      z-index: 30;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 24px;
+      padding: 7px;
+      border: 1px solid color-mix(in srgb, var(--border) 86%, transparent);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--background) 90%, transparent);
+      box-shadow: 0 10px 30px light-dark(rgb(33 63 54 / 10%), rgb(0 0 0 / 18%));
+      backdrop-filter: blur(16px);
+    }
+    #mf-course-plans .mf-app-tab {
+      min-height: 42px;
+      padding: 9px 18px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      color: var(--muted-foreground);
+      background: transparent;
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+      transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+    }
+    #mf-course-plans .mf-app-tab[aria-selected=&quot;true&quot;] {
+      border-color: color-mix(in srgb, var(--primary) 62%, var(--border));
+      color: light-dark(#f8f4e9, #10251f);
+      background: var(--primary);
+    }
+    #mf-course-plans .mf-app-tab:focus-visible { outline: 2px solid light-dark(#9f7b3d, #d6b875); outline-offset: 2px; }
+    #mf-course-plans :is(#mf-course-view, #mf-teacher-view)[hidden] { display: none !important; }
+    #mf-course-plans .mf-teacher-view { display: grid; gap: 22px; }
+    #mf-course-plans .mf-teacher-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 18px;
+      padding: clamp(24px, 3vw, 36px);
+      border-radius: 18px;
+      color: #f7f4e9;
+      background: light-dark(#1f4a40, #203b34);
+      box-shadow: 0 18px 42px light-dark(rgb(26 63 52 / 16%), rgb(0 0 0 / 20%));
+    }
+    #mf-course-plans .mf-teacher-hero h2 { margin-bottom: 6px; color: inherit; font-size: clamp(26px, 3vw, 36px); }
+    #mf-course-plans .mf-teacher-hero p { max-width: 760px; margin: 0; color: rgb(247 244 233 / 76%); }
+    #mf-course-plans .mf-teacher-total { color: #f0d590; font-family: &quot;Songti SC&quot;, &quot;STSong&quot;, serif; font-size: 28px; white-space: nowrap; }
+    #mf-course-plans .mf-teacher-panel { display: grid; gap: 18px; padding: clamp(20px, 2.8vw, 30px); border: 1px solid var(--border); border-radius: 16px; background: var(--card); }
+    #mf-course-plans .mf-teacher-toolbar { display: grid; grid-template-columns: minmax(260px, 1.4fr) repeat(3, minmax(150px, .62fr)); gap: 14px; }
+    #mf-course-plans .mf-teacher-field { display: grid; gap: 7px; }
+    #mf-course-plans .mf-teacher-field label { color: var(--muted-foreground); font-size: 12px; font-weight: 650; }
+    #mf-course-plans .mf-teacher-field :is(input, select) { width: 100%; min-height: 44px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 7px; color: var(--foreground); background: var(--background); font: inherit; }
+    #mf-course-plans .mf-teacher-field :is(input, select):focus-visible { outline: 2px solid color-mix(in srgb, var(--primary) 66%, transparent); outline-offset: 2px; }
+    #mf-course-plans .mf-teacher-rank-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; padding: 12px 14px; border: 1px solid var(--border); border-radius: 9px; background: color-mix(in srgb, var(--background) 38%, var(--card)); }
+    #mf-course-plans .mf-teacher-rank-filter legend { padding: 0 6px; color: var(--muted-foreground); font-size: 12px; font-weight: 700; }
+    #mf-course-plans .mf-teacher-rank-option { position: relative; display: inline-flex; align-items: center; min-height: 34px; padding: 6px 11px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted-foreground); background: var(--background); font-size: 12px; font-weight: 650; cursor: pointer; }
+    #mf-course-plans .mf-teacher-rank-option:has(input:checked) { border-color: color-mix(in srgb, var(--primary) 55%, var(--border)); color: var(--primary); background: color-mix(in srgb, var(--primary) 10%, transparent); }
+    #mf-course-plans .mf-teacher-rank-option input { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; pointer-events: none; }
+    #mf-course-plans .mf-teacher-rank-hint { margin-left: auto; color: var(--muted-foreground); font-size: 11px; }
+    #mf-course-plans .mf-teacher-result-line { display: flex; justify-content: space-between; gap: 16px; color: var(--muted-foreground); font-size: 13px; }
+    #mf-course-plans .mf-teacher-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    #mf-course-plans .mf-teacher-card { display: grid; grid-template-rows: 1fr auto; gap: 11px; min-width: 0; padding: 18px; border: 1px solid var(--border); border-radius: 11px; background: color-mix(in srgb, var(--background) 52%, var(--card)); transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease; }
+    #mf-course-plans .mf-teacher-card:hover { border-color: color-mix(in srgb, var(--primary) 42%, var(--border)); box-shadow: 0 10px 24px light-dark(rgb(28 67 56 / 10%), rgb(0 0 0 / 18%)); transform: translateY(-2px); }
+    #mf-course-plans .mf-teacher-card-open { display: grid; grid-template-rows: auto 1fr auto; gap: 11px; width: 100%; min-width: 0; padding: 0; border: 0; color: inherit; background: transparent; font: inherit; text-align: left; cursor: pointer; }
+    #mf-course-plans .mf-teacher-card-open:focus-visible { outline: 2px solid color-mix(in srgb, var(--primary) 64%, transparent); outline-offset: 5px; border-radius: 5px; }
+    #mf-course-plans .mf-teacher-identity { display: grid; grid-template-columns: 58px minmax(0, 1fr); align-items: start; gap: 12px; }
+    #mf-course-plans .mf-teacher-identity-copy { display: grid; gap: 6px; min-width: 0; }
+    #mf-course-plans .mf-teacher-avatar { position: relative; display: grid; place-items: center; width: 58px; height: 70px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--primary) 25%, var(--border)); border-radius: 9px; color: var(--primary); background: color-mix(in srgb, var(--primary) 9%, var(--background)); font-family: &quot;Songti SC&quot;, &quot;STSong&quot;, serif; font-size: 21px; font-weight: 700; }
+    #mf-course-plans .mf-teacher-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; background: var(--background); }
+    #mf-course-plans .mf-teacher-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    #mf-course-plans .mf-teacher-name-line { display: inline-flex; align-items: baseline; gap: 7px; min-width: 0; }
+    #mf-course-plans .mf-teacher-name { margin: 0; font-family: &quot;Songti SC&quot;, &quot;STSong&quot;, &quot;Noto Serif CJK SC&quot;, serif; font-size: 22px; font-weight: 600; }
+    #mf-course-plans .mf-teacher-status { flex: 0 0 auto; padding: 2px 7px; border: 1px solid color-mix(in srgb, var(--primary) 40%, var(--border)); border-radius: 999px; color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); font-size: 10px; font-weight: 700; }
+    #mf-course-plans .mf-teacher-status.is-basic { color: var(--muted-foreground); border-color: var(--border); background: transparent; }
+    #mf-course-plans .mf-teacher-title { color: var(--muted-foreground); font-size: 13px; }
+    #mf-course-plans .mf-teacher-age { flex: 0 0 auto; color: var(--muted-foreground); font-size: 12px; font-weight: 650; white-space: nowrap; }
+    #mf-course-plans .mf-teacher-role { display: flex; align-items: flex-start; gap: 5px; color: light-dark(#725a24, #e1c779); font-size: 11px; font-weight: 700; line-height: 1.5; }
+    #mf-course-plans .mf-teacher-role::before { content: &quot;职务&quot;; flex: 0 0 auto; padding: 0 5px; border: 1px solid color-mix(in srgb, currentColor 34%, transparent); border-radius: 999px; font-size: 9px; letter-spacing: .04em; }
+    #mf-course-plans .mf-teacher-focus { margin: 0; color: var(--foreground); font-size: 13px; line-height: 1.65; }
+    #mf-course-plans .mf-teacher-courses { display: flex; flex-wrap: wrap; gap: 6px; min-height: 24px; }
+    #mf-course-plans .mf-teacher-course { padding: 3px 7px; border-radius: 4px; color: light-dark(#1d5b4e, #95dcc8); background: color-mix(in srgb, var(--mf-course-elective) 14%, transparent); font-size: 11px; font-weight: 650; }
+    #mf-course-plans .mf-teacher-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; }
+    #mf-course-plans .mf-teacher-actions :is(a, button) { padding: 0; border: 0; color: var(--primary); background: transparent; font: inherit; font-weight: 600; text-decoration: none; overflow-wrap: anywhere; cursor: pointer; }
+    #mf-course-plans .mf-teacher-actions :is(a, button):hover { text-decoration: underline; }
+    #mf-course-plans .mf-teacher-empty { grid-column: 1 / -1; padding: 42px 20px; border: 1px dashed var(--border); border-radius: 10px; color: var(--muted-foreground); text-align: center; }
+    #mf-course-plans .mf-teacher-dialog { width: min(780px, calc(100% - 32px)); max-height: min(86vh, 880px); padding: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 16px; color: var(--foreground); background: var(--card); box-shadow: 0 28px 80px rgb(0 0 0 / 28%); }
+    #mf-course-plans .mf-teacher-dialog::backdrop { background: rgb(6 21 17 / 64%); backdrop-filter: blur(4px); }
+    #mf-course-plans .mf-teacher-dialog-shell { display: grid; grid-template-rows: auto minmax(0, 1fr); max-height: inherit; }
+    #mf-course-plans .mf-teacher-dialog-head { display: flex; align-items: center; gap: 16px; padding: 22px 24px 18px; color: #f7f4e9; background: light-dark(#1f4a40, #203b34); }
+    #mf-course-plans .mf-teacher-dialog-photo { flex: 0 0 auto; }
+    #mf-course-plans .mf-teacher-dialog-photo .mf-teacher-avatar { width: 72px; height: 88px; border-color: rgb(247 244 233 / 28%); color: #f0d590; background: rgb(8 30 24 / 30%); font-size: 25px; }
+    #mf-course-plans .mf-teacher-dialog-title-wrap { display: grid; gap: 5px; }
+    #mf-course-plans .mf-teacher-dialog-head h2 { margin: 0; color: inherit; font-size: clamp(25px, 3vw, 34px); }
+    #mf-course-plans .mf-teacher-dialog-subtitle { color: rgb(247 244 233 / 72%); font-size: 13px; }
+    #mf-course-plans .mf-teacher-dialog-close { flex: 0 0 auto; width: 38px; height: 38px; margin-left: auto; border: 1px solid rgb(247 244 233 / 25%); border-radius: 50%; color: #f7f4e9; background: rgb(8 30 24 / 24%); font: inherit; font-size: 22px; line-height: 1; cursor: pointer; }
+    #mf-course-plans .mf-teacher-dialog-close:focus-visible { outline: 2px solid #f0d590; outline-offset: 2px; }
+    #mf-course-plans .mf-teacher-dialog-body { display: grid; gap: 18px; padding: 22px 24px 26px; overflow-y: auto; overscroll-behavior: contain; }
+    #mf-course-plans .mf-teacher-dialog-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+    #mf-course-plans .mf-teacher-dialog-meta span { padding: 4px 8px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted-foreground); font-size: 11px; }
+    #mf-course-plans .mf-teacher-detail-section { display: grid; gap: 7px; padding-bottom: 17px; border-bottom: 1px solid var(--border); }
+    #mf-course-plans .mf-teacher-detail-section:last-of-type { padding-bottom: 0; border-bottom: 0; }
+    #mf-course-plans .mf-teacher-detail-section h3 { margin: 0; color: var(--muted-foreground); font-family: inherit; font-size: 12px; font-weight: 750; letter-spacing: .08em; }
+    #mf-course-plans .mf-teacher-detail-section p { margin: 0; line-height: 1.75; }
+    #mf-course-plans .mf-teacher-relation { padding: 13px 14px; border-left: 3px solid var(--mf-course-elective); background: color-mix(in srgb, var(--mf-course-elective) 9%, transparent); }
+    #mf-course-plans .mf-teacher-source-list { display: grid; gap: 11px; }
+    #mf-course-plans .mf-teacher-source-list &gt; a { width: fit-content; color: var(--primary); font-weight: 600; text-decoration: none; }
+    #mf-course-plans .mf-teacher-source-list &gt; a:hover { text-decoration: underline; }
+    #mf-course-plans .mf-teacher-source-note { color: var(--muted-foreground); font-size: 12px; line-height: 1.7; }
+    #mf-course-plans #mf-teacher-dialog-sources { display: grid; gap: 8px; }
+    #mf-course-plans .mf-teacher-source-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 5px 14px; width: auto; padding: 12px 13px; border: 1px solid var(--border); border-radius: 9px; color: inherit; background: color-mix(in srgb, var(--background) 48%, var(--card)); text-decoration: none; }
+    #mf-course-plans .mf-teacher-source-card:hover { border-color: color-mix(in srgb, var(--primary) 46%, var(--border)); background: color-mix(in srgb, var(--primary) 5%, var(--card)); text-decoration: none; }
+    #mf-course-plans .mf-teacher-source-heading { min-width: 0; color: var(--foreground); font-size: 13px; font-weight: 720; }
+    #mf-course-plans .mf-teacher-source-badge { align-self: start; padding: 2px 7px; border: 1px solid color-mix(in srgb, var(--primary) 34%, var(--border)); border-radius: 999px; color: var(--primary); font-size: 9px; font-weight: 750; white-space: nowrap; }
+    #mf-course-plans .mf-teacher-source-badge.is-external { border-color: color-mix(in srgb, #a57c2b 44%, var(--border)); color: light-dark(#79580f, #e0c171); }
+    #mf-course-plans .mf-teacher-source-purpose { grid-column: 1 / -1; color: var(--muted-foreground); font-size: 11px; line-height: 1.55; }
+    #mf-course-plans .mf-teacher-source-domain { grid-column: 1 / -1; color: color-mix(in srgb, var(--muted-foreground) 78%, transparent); font-size: 10px; overflow-wrap: anywhere; }
+    @media (max-width: 960px) {
+      #mf-course-plans .mf-teacher-toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #mf-course-plans .mf-teacher-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 620px) {
+      #mf-course-plans .mf-app-nav { top: 6px; margin-bottom: 18px; padding: 5px; }
+      #mf-course-plans .mf-app-tab { min-height: 40px; padding-inline: 10px; }
+      #mf-course-plans .mf-teacher-hero { grid-template-columns: 1fr; align-items: start; padding: 24px 20px; border-radius: 14px; }
+      #mf-course-plans .mf-teacher-total { font-size: 22px; }
+      #mf-course-plans .mf-teacher-toolbar, #mf-course-plans .mf-teacher-grid { grid-template-columns: 1fr; }
+      #mf-course-plans .mf-teacher-panel { padding: 16px; }
+      #mf-course-plans .mf-teacher-result-line { align-items: flex-start; flex-direction: column; gap: 4px; }
+      #mf-course-plans .mf-teacher-card { padding: 16px; }
+      #mf-course-plans .mf-teacher-rank-hint { flex-basis: 100%; margin-left: 0; }
+      #mf-course-plans .mf-teacher-identity { grid-template-columns: 52px minmax(0, 1fr); gap: 10px; }
+      #mf-course-plans .mf-teacher-avatar { width: 52px; height: 64px; }
+      #mf-course-plans .mf-teacher-card:hover { transform: none; }
+      #mf-course-plans .mf-teacher-dialog { width: 100%; max-width: none; height: min(92dvh, 900px); max-height: 92dvh; margin: auto 0 0; border-right: 0; border-bottom: 0; border-left: 0; border-radius: 16px 16px 0 0; }
+      #mf-course-plans .mf-teacher-dialog-head { padding: 20px 18px 16px; }
+      #mf-course-plans .mf-teacher-dialog-photo .mf-teacher-avatar { width: 60px; height: 74px; }
+      #mf-course-plans .mf-teacher-dialog-body { padding: 18px 18px 24px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       #mf-course-plans .btn, #mf-course-plans .table tbody tr { transition: none; }
       #mf-course-plans .btn:not(:disabled):hover { transform: none; }
+      #mf-course-plans .mf-app-tab, #mf-course-plans .mf-teacher-card { transition: none; }
     }
   &lt;/style&gt;
 
+  &lt;nav class=&quot;mf-app-nav&quot; role=&quot;tablist&quot; aria-label=&quot;金融硕士选课工具&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;mf-app-tab&quot; role=&quot;tab&quot; id=&quot;mf-view-tab-courses&quot; data-mf-view=&quot;courses&quot; aria-controls=&quot;mf-course-view&quot; aria-selected=&quot;true&quot; tabindex=&quot;0&quot;&gt;选课&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;mf-app-tab&quot; role=&quot;tab&quot; id=&quot;mf-view-tab-teachers&quot; data-mf-view=&quot;teachers&quot; aria-controls=&quot;mf-teacher-view&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;教师信息&lt;/button&gt;
+  &lt;/nav&gt;
+
+  &lt;div id=&quot;mf-course-view&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;mf-view-tab-courses&quot;&gt;
   &lt;div class=&quot;mf-stack&quot;&gt;
     &lt;section class=&quot;mf-section&quot; aria-labelledby=&quot;mf-main-title&quot;&gt;
       &lt;div class=&quot;mf-title-row&quot;&gt;
@@ -1613,12 +1760,128 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;/div&gt;
     &lt;/section&gt;
   &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;section id=&quot;mf-teacher-view&quot; class=&quot;mf-teacher-view&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;mf-view-tab-teachers&quot; hidden&gt;
+    &lt;header class=&quot;mf-teacher-hero&quot;&gt;
+      &lt;div&gt;
+        &lt;h2&gt;教师信息&lt;/h2&gt;
+        &lt;p&gt;依据电子科技大学校内公开资料整理，将研究方向、当前课程关联和联系方式放在同一处，帮助你在选课时快速了解教师情况。&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;mf-teacher-total&quot;&gt;26 位教师&lt;/div&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;mf-teacher-panel&quot;&gt;
+      &lt;div class=&quot;mf-teacher-toolbar&quot;&gt;
+        &lt;div class=&quot;mf-teacher-field&quot;&gt;
+          &lt;label for=&quot;mf-teacher-search&quot;&gt;搜索教师&lt;/label&gt;
+          &lt;input type=&quot;search&quot; id=&quot;mf-teacher-search&quot; placeholder=&quot;搜索姓名、研究方向、课程或邮箱&quot; autocomplete=&quot;off&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;mf-teacher-field&quot;&gt;
+          &lt;label for=&quot;mf-teacher-filter&quot;&gt;资料范围&lt;/label&gt;
+          &lt;select id=&quot;mf-teacher-filter&quot;&gt;
+            &lt;option value=&quot;all&quot;&gt;全部教师&lt;/option&gt;
+            &lt;option value=&quot;related&quot;&gt;与当前课程关联&lt;/option&gt;
+            &lt;option value=&quot;verified&quot;&gt;已有详细公开资料&lt;/option&gt;
+            &lt;option value=&quot;basic&quot;&gt;待继续核验&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;mf-teacher-field&quot;&gt;
+          &lt;label for=&quot;mf-teacher-area&quot;&gt;研究领域&lt;/label&gt;
+          &lt;select id=&quot;mf-teacher-area&quot;&gt;
+            &lt;option value=&quot;all&quot;&gt;全部领域&lt;/option&gt;
+            &lt;option value=&quot;finance&quot;&gt;金融与资本市场&lt;/option&gt;
+            &lt;option value=&quot;quant&quot;&gt;金融科技与量化&lt;/option&gt;
+            &lt;option value=&quot;corporate&quot;&gt;公司金融与会计&lt;/option&gt;
+            &lt;option value=&quot;industry&quot;&gt;产业与数字经济&lt;/option&gt;
+            &lt;option value=&quot;innovation&quot;&gt;创新创业与战略&lt;/option&gt;
+            &lt;option value=&quot;risk&quot;&gt;风险、保险与固收&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;mf-teacher-field&quot;&gt;
+          &lt;label for=&quot;mf-teacher-sort&quot;&gt;排列方式&lt;/label&gt;
+          &lt;select id=&quot;mf-teacher-sort&quot;&gt;
+            &lt;option value=&quot;related&quot;&gt;当前方案课程优先&lt;/option&gt;
+            &lt;option value=&quot;rank&quot;&gt;职称从高到低&lt;/option&gt;
+            &lt;option value=&quot;name&quot;&gt;姓名拼音&lt;/option&gt;
+            &lt;option value=&quot;directory&quot;&gt;联系名单顺序&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;fieldset class=&quot;mf-teacher-rank-filter&quot; id=&quot;mf-teacher-rank-filter&quot;&gt;
+        &lt;legend&gt;职称（可多选）&lt;/legend&gt;
+        &lt;label class=&quot;mf-teacher-rank-option&quot;&gt;&lt;input type=&quot;checkbox&quot; value=&quot;professor&quot;&gt;&lt;span&gt;教授&lt;/span&gt;&lt;/label&gt;
+        &lt;label class=&quot;mf-teacher-rank-option&quot;&gt;&lt;input type=&quot;checkbox&quot; value=&quot;associate&quot;&gt;&lt;span&gt;副教授&lt;/span&gt;&lt;/label&gt;
+        &lt;label class=&quot;mf-teacher-rank-option&quot;&gt;&lt;input type=&quot;checkbox&quot; value=&quot;lecturer&quot;&gt;&lt;span&gt;讲师&lt;/span&gt;&lt;/label&gt;
+        &lt;label class=&quot;mf-teacher-rank-option&quot;&gt;&lt;input type=&quot;checkbox&quot; value=&quot;other&quot;&gt;&lt;span&gt;其他或未明确&lt;/span&gt;&lt;/label&gt;
+        &lt;span class=&quot;mf-teacher-rank-hint&quot;&gt;未勾选时不限；多选按“或”筛选&lt;/span&gt;
+      &lt;/fieldset&gt;
+      &lt;div class=&quot;mf-teacher-result-line&quot;&gt;
+        &lt;span id=&quot;mf-teacher-count&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;
+        &lt;span id=&quot;mf-teacher-sort-note&quot;&gt;当前方案已关联课程的教师优先，其余保持名单顺序&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;mf-teacher-grid&quot; id=&quot;mf-teacher-grid&quot;&gt;&lt;/div&gt;
+      &lt;p class=&quot;text-small text-muted&quot;&gt;教师职称和研究方向可能调整，卡片中的“官方资料”链接用于回看来源；最终请以学院和研究生院最新页面为准。当前课表中不在这份导师联系名单内的任课教师，后续可继续补充。&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;dialog id=&quot;mf-teacher-dialog&quot; class=&quot;mf-teacher-dialog&quot; aria-labelledby=&quot;mf-teacher-dialog-name&quot;&gt;
+    &lt;div class=&quot;mf-teacher-dialog-shell&quot;&gt;
+      &lt;header class=&quot;mf-teacher-dialog-head&quot;&gt;
+        &lt;div class=&quot;mf-teacher-dialog-photo&quot; id=&quot;mf-teacher-dialog-photo&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;mf-teacher-dialog-title-wrap&quot;&gt;
+          &lt;h2 id=&quot;mf-teacher-dialog-name&quot;&gt;&lt;/h2&gt;
+          &lt;div class=&quot;mf-teacher-dialog-subtitle&quot; id=&quot;mf-teacher-dialog-title&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button type=&quot;button&quot; class=&quot;mf-teacher-dialog-close&quot; data-mf-teacher-close aria-label=&quot;关闭教师详情&quot;&gt;×&lt;/button&gt;
+      &lt;/header&gt;
+      &lt;div class=&quot;mf-teacher-dialog-body&quot;&gt;
+        &lt;div class=&quot;mf-teacher-dialog-meta&quot; id=&quot;mf-teacher-dialog-meta&quot;&gt;&lt;/div&gt;
+        &lt;section class=&quot;mf-teacher-detail-section&quot;&gt;
+          &lt;h3&gt;与你的选课关系&lt;/h3&gt;
+          &lt;p class=&quot;mf-teacher-relation&quot; id=&quot;mf-teacher-dialog-relation&quot;&gt;&lt;/p&gt;
+        &lt;/section&gt;
+        &lt;section class=&quot;mf-teacher-detail-section&quot;&gt;
+          &lt;h3&gt;公开资料摘要&lt;/h3&gt;
+          &lt;p id=&quot;mf-teacher-dialog-summary&quot;&gt;&lt;/p&gt;
+        &lt;/section&gt;
+        &lt;section class=&quot;mf-teacher-detail-section&quot;&gt;
+          &lt;h3&gt;选课参考&lt;/h3&gt;
+          &lt;p id=&quot;mf-teacher-dialog-decision&quot;&gt;&lt;/p&gt;
+        &lt;/section&gt;
+        &lt;section class=&quot;mf-teacher-detail-section&quot;&gt;
+          &lt;h3&gt;信息边界与来源&lt;/h3&gt;
+          &lt;div class=&quot;mf-teacher-source-list&quot;&gt;
+            &lt;span class=&quot;mf-teacher-source-note&quot; id=&quot;mf-teacher-dialog-boundary&quot;&gt;&lt;/span&gt;
+            &lt;a id=&quot;mf-teacher-dialog-email&quot; href=&quot;&quot;&gt;&lt;/a&gt;
+            &lt;div id=&quot;mf-teacher-dialog-sources&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/dialog&gt;
 
   &lt;script&gt;
     (() =&gt; {
       const root = document.getElementById(&#x27;mf-course-plans&#x27;);
+      const appViewButtons = [...root.querySelectorAll(&#x27;[data-mf-view]&#x27;)];
+      const appViews = {
+        courses: root.querySelector(&#x27;#mf-course-view&#x27;),
+        teachers: root.querySelector(&#x27;#mf-teacher-view&#x27;)
+      };
       const tabButtons = [...root.querySelectorAll(&#x27;[data-mf-tab]&#x27;)];
       const tabPanels = [...root.querySelectorAll(&#x27;[data-mf-tab-panel]&#x27;)];
+
+      function activateAppView(viewId, moveToView = false) {
+        appViewButtons.forEach(button =&gt; {
+          const active = button.dataset.mfView === viewId;
+          button.setAttribute(&#x27;aria-selected&#x27;, String(active));
+          button.tabIndex = active ? 0 : -1;
+        });
+        Object.entries(appViews).forEach(([id, view]) =&gt; { view.hidden = id !== viewId; });
+        if (moveToView) {
+          root.querySelector(&#x27;.mf-app-nav&#x27;)?.scrollIntoView({ behavior: matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches ? &#x27;auto&#x27; : &#x27;smooth&#x27;, block: &#x27;start&#x27; });
+        }
+      }
 
       function activateTab(tabId, moveToPanel = false) {
         tabButtons.forEach(button =&gt; {
@@ -1634,6 +1897,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       }
 
       root.addEventListener(&#x27;click&#x27;, event =&gt; {
+        const appViewButton = event.target.closest(&#x27;[data-mf-view]&#x27;);
+        if (appViewButton) activateAppView(appViewButton.dataset.mfView, true);
         const tabButton = event.target.closest(&#x27;[data-mf-tab]&#x27;);
         if (tabButton) activateTab(tabButton.dataset.mfTab, true);
         const tabJump = event.target.closest(&#x27;[data-mf-tab-jump]&#x27;);
@@ -1641,6 +1906,15 @@ html&gt;body{padding:0}&lt;/style&gt;
       });
 
       root.addEventListener(&#x27;keydown&#x27;, event =&gt; {
+        const appViewButton = event.target.closest(&#x27;[data-mf-view]&#x27;);
+        if (appViewButton &amp;&amp; [&#x27;ArrowLeft&#x27;, &#x27;ArrowRight&#x27;, &#x27;Home&#x27;, &#x27;End&#x27;].includes(event.key)) {
+          event.preventDefault();
+          const currentView = appViewButtons.indexOf(appViewButton);
+          const nextView = event.key === &#x27;Home&#x27; ? 0 : event.key === &#x27;End&#x27; ? appViewButtons.length - 1 : (currentView + (event.key === &#x27;ArrowRight&#x27; ? 1 : -1) + appViewButtons.length) % appViewButtons.length;
+          appViewButtons[nextView].focus();
+          activateAppView(appViewButtons[nextView].dataset.mfView, true);
+          return;
+        }
         const tabButton = event.target.closest(&#x27;[data-mf-tab]&#x27;);
         if (!tabButton || ![&#x27;ArrowLeft&#x27;, &#x27;ArrowRight&#x27;, &#x27;Home&#x27;, &#x27;End&#x27;].includes(event.key)) return;
         event.preventDefault();
@@ -1649,6 +1923,371 @@ html&gt;body{padding:0}&lt;/style&gt;
         tabButtons[next].focus();
         activateTab(tabButtons[next].dataset.mfTab, true);
       });
+
+      const financeFacultyUrl = &#x27;https://edp.uestc.edu.cn/teacher/list/48_jinrong__.jhtml&#x27;;
+      const advisorUrl = id =&gt; `https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/${id}?yxsh=15`;
+      const teachers = [
+        { name: &#x27;曾勇&#x27;, email: &#x27;zengy@uestc.edu.cn&#x27;, title: &#x27;教授、博士生导师&#x27;, focus: &#x27;金融工程、公司金融、资本市场与科技创新投资&#x27;, areas: [&#x27;finance&#x27;,&#x27;corporate&#x27;,&#x27;innovation&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(10506), sourceLabel: &#x27;研究生院导师详情&#x27;, extraSources: [{label:&#x27;学院教师介绍&#x27;,url:&#x27;https://aihss.uestc.edu.cn/info/1263/1170.htm&#x27;}], summary: &#x27;研究生院与学院公开资料显示，其研究覆盖金融工程、公司金融与资本市场，并长期关注科技创新投融资、投资决策和资产定价。公开页面列有科研项目、论文和著作。&#x27; },
+        { name: &#x27;陈磊&#x27;, email: &#x27;chenlei@uestc.edu.cn&#x27;, title: &#x27;副教授&#x27;, focus: &#x27;证券期货投资、金融计量经济学与量化交易&#x27;, areas: [&#x27;finance&#x27;,&#x27;quant&#x27;], courses: [], status: &#x27;学院资料&#x27;, source: &#x27;https://jgsy.uestc.edu.cn/info/1040/1629.htm&#x27;, sourceLabel: &#x27;学院量化交易教学报道&#x27;, extraSources: [{label:&#x27;学院金融师资名单&#x27;,url:financeFacultyUrl}], summary: &#x27;学院公开资料将证券与期货投资、金融计量经济学列为主要方向；2025年学院报道还介绍了其量化交易课程建设和实验教学框架，适合关注实证与交易实践的同学进一步了解。&#x27; },
+        { name: &#x27;陈林&#x27;, email: &#x27;chenlin2@uestc.edu.cn&#x27;, title: &#x27;副教授、硕士生导师&#x27;, focus: &#x27;信用风险、互联网金融与固定收益证券&#x27;, areas: [&#x27;finance&#x27;,&#x27;risk&#x27;,&#x27;quant&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(11285), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;导师详情页集中列出信用风险评价与管理、互联网金融和固定收益证券等方向，并展示相关科研项目、论文与教材成果，与债券、风险管理和金融科技方向有较强联系。&#x27; },
+        { name: &#x27;邓光军&#x27;, email: &#x27;denggj@uestc.edu.cn&#x27;, title: &#x27;副教授&#x27;, focus: &#x27;金融工程、金融投资、实物期权与技术创新&#x27;, areas: [&#x27;finance&#x27;,&#x27;innovation&#x27;], courses: [], status: &#x27;学院资料&#x27;, source: financeFacultyUrl, sourceLabel: &#x27;学院金融师资名单&#x27;, summary: &#x27;学院师资介绍将金融工程和金融投资、新兴技术管理与技术创新列为主要方向；其公开论文还涉及实物期权方法与模块化创新决策。&#x27; },
+        { name: &#x27;丁亚&#x27;, email: &#x27;dingya@uestc.edu.cn&#x27;, title: &#x27;教授、硕士生导师&#x27;, focus: &#x27;农业经济、老龄经济、长期照护与公共政策&#x27;, areas: [&#x27;industry&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(11201), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;公开导师页显示其受训背景为农业经济学，研究集中在老龄经济、长期照护与养老、农村发展及可持续农业技术，偏政策评估和应用经济研究。&#x27; },
+        { name: &#x27;鞠晴江&#x27;, email: &#x27;juzzy@uestc.edu.cn&#x27;, title: &#x27;副教授、硕士生导师&#x27;, focus: &#x27;产业经济与政策、区域可持续发展、创新合作&#x27;, areas: [&#x27;industry&#x27;,&#x27;innovation&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(11691), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;导师页列出的重点包括产业经济与产业政策、区域和可持续发展、创新合作等，科研项目具有明显的应用经济与公共政策取向。&#x27; },
+        { name: &#x27;李平&#x27;, email: &#x27;lip@uestc.edu.cn&#x27;, title: &#x27;教授、博士生导师&#x27;, focus: &#x27;金融市场微观结构、高频交易、企业投融资与金融科技&#x27;, areas: [&#x27;finance&#x27;,&#x27;quant&#x27;,&#x27;corporate&#x27;], courses: [&#x27;金融科技导论&#x27;], status: &#x27;现行资料&#x27;, source: advisorUrl(10536), sourceLabel: &#x27;研究生院导师详情&#x27;, relation: &#x27;当前一年方案中，李平与李强共同承担秋季“金融科技导论”。这门课属于专业基础课，是四个方案都包含的共同课程。&#x27;, summary: &#x27;公开导师页将金融市场微观结构、金融高频交易、企业投融资和金融科技列为主要方向，页面还展示了大量论文、著作和科研项目。&#x27;, decision: &#x27;如果你希望通过金融科技导论建立市场机制、数据技术与企业融资之间的联系，这些研究方向具有直接参考价值；公开资料不能说明具体课堂节奏、考核难度或给分情况。&#x27; },
+        { name: &#x27;李强&#x27;, email: &#x27;liq@uestc.edu.cn&#x27;, title: &#x27;教授&#x27;, focus: &#x27;金融工程、商业银行与金融科技、公司金融与资本市场&#x27;, areas: [&#x27;finance&#x27;,&#x27;quant&#x27;,&#x27;corporate&#x27;], courses: [&#x27;金融科技导论&#x27;], status: &#x27;现行资料&#x27;, source: advisorUrl(10928), sourceLabel: &#x27;研究生院导师详情&#x27;, relation: &#x27;当前一年方案中，李强与李平共同承担秋季“金融科技导论”。这门课属于专业基础课，是四个方案都包含的共同课程。&#x27;, summary: &#x27;导师详情页显示其方向横跨金融工程、商业银行与金融科技、公司金融与资本市场，并涉及风险投资和科技金融。注意同名教师较多，本链接已核对为经济与管理学院本人页面。&#x27;, decision: &#x27;这些方向有助于理解金融科技导论中技术如何进入银行、资产定价和公司投融资场景；现有资料不足以判断具体课堂分工与考核安排。&#x27; },
+        { name: &#x27;李睿&#x27;, email: &#x27;liruicc@uestc.edu.cn&#x27;, title: &#x27;副教授、硕士生导师&#x27;, focus: &#x27;家庭金融、创业创新、国际金融与衍生品&#x27;, areas: [&#x27;finance&#x27;,&#x27;innovation&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(20788), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;公开资料显示其研究集中在家庭金融与创业创新，并承担国际金融、衍生金融工具等课程；北京大学博士背景和论文信息均可在导师页核对。&#x27; },
+        { name: &#x27;梁媛&#x27;, email: &#x27;liangy@uestc.edu.cn&#x27;, title: &#x27;副教授&#x27;, focus: &#x27;宏观经济、外资并购与委托代理理论&#x27;, areas: [&#x27;corporate&#x27;,&#x27;industry&#x27;], courses: [], status: &#x27;学院资料&#x27;, source: &#x27;https://www.imba.uestc.edu.cn/kcysz/szll.htm&#x27;, sourceLabel: &#x27;学院课程师资页&#x27;, summary: &#x27;学院课程师资页面将宏观经济、外资并购和委托代理理论列为其研究方向；学院教学报道中亦有其课程建设与教学成果信息。&#x27; },
+        { name: &#x27;刘波&#x27;, email: &#x27;liub@uestc.edu.cn&#x27;, title: &#x27;教授、博士生导师&#x27;, focus: &#x27;企业战略与投融资、数字化转型、金融科技与资本市场&#x27;, areas: [&#x27;corporate&#x27;,&#x27;quant&#x27;,&#x27;innovation&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(11194), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;导师页显示其研究覆盖企业战略与投融资、数字化转型、金融科技和资本市场，兼具战略管理与公司金融视角。&#x27; },
+        { name: &#x27;刘英&#x27;, email: &#x27;liuying@uestc.edu.cn&#x27;, title: &#x27;副教授、硕士生导师&#x27;, focus: &#x27;会计理论、营运资金、供应链金融与数字金融&#x27;, areas: [&#x27;corporate&#x27;,&#x27;quant&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(12374), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;公开导师页显示其具有注册会计师背景，研究涉及会计理论、营运资金管理、供应链金融和数字金融，适合关注财务分析与金融业务结合的同学。&#x27; },
+        { name: &#x27;马捷&#x27;, email: &#x27;maj@uestc.edu.cn&#x27;, title: &#x27;教授、博士生导师&#x27;, focus: &#x27;产业经济、数字经济与公共资源治理&#x27;, areas: [&#x27;industry&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(10927), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;导师资料覆盖产业经济和数字经济，同时保留其在水资源与公共治理方面的长期研究线索；学院公开报道显示其承担经济与金融系管理工作。&#x27; },
+        { name: &#x27;毛奕欢&#x27;, email: &#x27;maoyh@uestc.edu.cn&#x27;, title: &#x27;副教授&#x27;, focus: &#x27;资本市场会计行为、制度环境与公司治理&#x27;, areas: [&#x27;corporate&#x27;,&#x27;finance&#x27;], courses: [], status: &#x27;学院资料&#x27;, source: &#x27;https://www.mba.uestc.edu.cn/info/1014/7601.htm&#x27;, sourceLabel: &#x27;学院专题讲座介绍&#x27;, summary: &#x27;学院2025年公开介绍显示其具有管理学博士、经济学博士后及注册会计师、税务师背景，研究聚焦资本市场中的财务会计行为、制度环境和公司治理。&#x27; },
+        { name: &#x27;倪得兵&#x27;, email: &#x27;nidb@uestc.edu.cn&#x27;, title: &#x27;教授、博士生导师&#x27;, focus: &#x27;博弈论、供应链与数字化运营、产业与数字经济&#x27;, areas: [&#x27;industry&#x27;,&#x27;quant&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(10537), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;导师页当前将数字化运营与供应链、产业经济和数字经济列为重点，公开成果还反映其在博弈论、供应链协调和柔性决策方面的研究积累。&#x27; },
+        { name: &#x27;沈玉清&#x27;, email: &#x27;shenyq@uestc.edu.cn&#x27;, title: &#x27;副教授&#x27;, focus: &#x27;公司财务、实证会计、审计与创业融资&#x27;, areas: [&#x27;corporate&#x27;,&#x27;innovation&#x27;], courses: [], status: &#x27;学院资料&#x27;, source: &#x27;https://i.study.uestc.edu.cn/VCFE/menu/team-members&#x27;, sourceLabel: &#x27;校级课程团队页&#x27;, summary: &#x27;校级课程团队页面将公司财务、实证会计、审计和创业融资列为其研究方向，信息与公司金融和财务分析课程选择直接相关。&#x27; },
+        { name: &#x27;宋娜&#x27;, email: &#x27;songna@uestc.edu.cn&#x27;, title: &#x27;副教授、硕士生导师&#x27;, focus: &#x27;数理金融、资产配置、债券风险与随机利率&#x27;, areas: [&#x27;finance&#x27;,&#x27;quant&#x27;,&#x27;risk&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(11857), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;公开导师页显示其具有香港大学数理金融博士背景，研究涉及资产配置、债券风险、随机利率和现金管理，并承担金融经济学等课程。&#x27; },
+        { name: &#x27;滕颖&#x27;, email: &#x27;tengy@uestc.edu.cn&#x27;, title: &#x27;教授、博士生导师&#x27;, focus: &#x27;平台战略、数字化转型、社会网络与国际技术合作&#x27;, areas: [&#x27;industry&#x27;,&#x27;innovation&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(10529), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;导师详情页显示其研究聚焦平台战略、数字化转型、社会网络和国际技术合作，适合数字经济、科技创新与战略方向的比较。&#x27; },
+        { name: &#x27;田益祥&#x27;, email: &#x27;tianyx@uestc.edu.cn&#x27;, title: &#x27;教授、博士生导师&#x27;, focus: &#x27;绿色债券、信用评级、系统性风险与金融计量&#x27;, areas: [&#x27;risk&#x27;,&#x27;quant&#x27;,&#x27;finance&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(10518), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;公开导师页显示其研究涉及绿色债券定价、信用评级、系统性风险和金融计量，近年科研项目仍延续绿色债券与风险研究，和债券市场、风险管理方向高度相关。&#x27; },
+        { name: &#x27;王啸远&#x27;, email: &#x27;wangxy@uestc.edu.cn&#x27;, title: &#x27;讲师&#x27;, focus: &#x27;实验经济学、行为与产业组织、应用微观经济学&#x27;, areas: [&#x27;industry&#x27;], courses: [], status: &#x27;学院资料&#x27;, source: &#x27;https://jgsy.uestc.edu.cn/info/1023/1088.htm&#x27;, sourceLabel: &#x27;学院金融实验团队页&#x27;, extraSources: [{label:&#x27;学校早期教师报道&#x27;,url:&#x27;https://news.uestc.edu.cn/info/1008/20705.htm&#x27;}], summary: &#x27;学院金融实验团队页面确认其参与实验教学；学校早期公开介绍显示其研究偏实验经济学、行为与产业组织及应用微观经济学。此前推测的研究生院个人编号实际返回“暂无数据”，本页已改用可核对的学院和学校来源。&#x27; },
+        { name: &#x27;夏晖&#x27;, email: &#x27;xiahui@uestc.edu.cn&#x27;, title: &#x27;教授、硕士生导师&#x27;, focus: &#x27;科技创新投资、碳资产与交易策略、公司金融&#x27;, areas: [&#x27;finance&#x27;,&#x27;corporate&#x27;,&#x27;innovation&#x27;], courses: [&#x27;金融经济学&#x27;], status: &#x27;学院资料&#x27;, source: &#x27;https://i.study.uestc.edu.cn/VC/menu/team-members&#x27;, sourceLabel: &#x27;校级课程团队页&#x27;, extraSources: [{label:&#x27;学院金融实验团队页&#x27;,url:&#x27;https://jgsy.uestc.edu.cn/info/1023/1088.htm&#x27;}], relation: &#x27;当前一年方案中，夏晖承担秋季“金融经济学”。该课属于专业选修，但目前四个基础方案都将它作为共同组成部分。&#x27;, summary: &#x27;课程团队页显示其研究涉及科技创新投资、碳排放权与交易策略等方向，学院金融实验团队页可进一步核对其实验教学关联。&#x27;, decision: &#x27;对于希望走公司金融、投研、资管或资本市场方向的方案，这一研究背景与金融经济学的课程定位较为贴近；公开资料不能替代对正式教学大纲和考核方式的确认。&#x27; },
+        { name: &#x27;杨政&#x27;, email: &#x27;yangzheng@uestc.edu.cn&#x27;, title: &#x27;副教授、硕士生导师&#x27;, focus: &#x27;金融计量、非线性协整、汇率与金融市场&#x27;, areas: [&#x27;quant&#x27;,&#x27;finance&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(11196), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;导师页列有计量经济学、高级计量和金融计量等教学信息，研究重点包括非线性协整、汇率、贸易与金融市场，是量化实证路线的重要参考。&#x27; },
+        { name: &#x27;尹宇明&#x27;, email: &#x27;yinym@uestc.edu.cn&#x27;, title: &#x27;副教授、硕士生导师&#x27;, focus: &#x27;创业金融、资产定价、宏观金融与并购&#x27;, areas: [&#x27;finance&#x27;,&#x27;innovation&#x27;,&#x27;corporate&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(11486), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;导师页显示其研究涉及创业金融、宏观经济、资产定价、并购和风险资本，并承担创业金融等课程；学院公开报道显示其负责金融专硕相关工作。&#x27; },
+        { name: &#x27;赵洪江&#x27;, email: &#x27;zhaohj@uestc.edu.cn&#x27;, title: &#x27;副教授、硕士生导师&#x27;, focus: &#x27;投资学、公司金融、创业金融与公司治理&#x27;, areas: [&#x27;finance&#x27;,&#x27;corporate&#x27;,&#x27;innovation&#x27;], courses: [&#x27;投资学&#x27;], status: &#x27;现行资料&#x27;, source: advisorUrl(11101), sourceLabel: &#x27;研究生院导师详情&#x27;, relation: &#x27;当前一年方案中，赵洪江承担秋季“投资学”。该课是专业基础课，也是四个方案都必须安排的共同课程。&#x27;, summary: &#x27;导师详情页明确列出投资学、公司金融、创业金融、公司治理与投资银行等研究和教学线索，与当前“投资学”教学班的对应关系清晰。&#x27;, decision: &#x27;投资学是后续理解资产定价、债券市场、风险投资和量化投资的重要基础；现有资料不能据此推断具体教学风格。&#x27; },
+        { name: &#x27;赵武&#x27;, email: &#x27;zhaowu@uestc.edu.cn&#x27;, title: &#x27;副教授、硕士生导师&#x27;, focus: &#x27;精算保险、金融数学、破产理论与投资组合&#x27;, areas: [&#x27;risk&#x27;,&#x27;quant&#x27;], courses: [], status: &#x27;现行资料&#x27;, source: advisorUrl(11689), sourceLabel: &#x27;研究生院导师详情&#x27;, summary: &#x27;导师页显示其研究集中在精算保险、金融工程与金融数学，并涉及破产理论和投资组合，适合风险管理、保险与数量金融方向。&#x27; },
+        { name: &#x27;钟朝宏&#x27;, email: &#x27;zhongch@uestc.edu.cn&#x27;, title: &#x27;副教授、硕士生导师&#x27;, focus: &#x27;管理学与经济管理研究（个人页未公开细分方向）&#x27;, areas: [&#x27;industry&#x27;], courses: [], status: &#x27;基础信息&#x27;, source: &#x27;https://faculty.uestc.edu.cn/zhongchaohong/zh_CN/index.htm&#x27;, sourceLabel: &#x27;教师个人主页&#x27;, summary: &#x27;已核对到其电子科技大学个人主页，可确认副教授、硕士生导师和管理学博士等基础信息；页面当前未公开可用于选课判断的细分研究方向，因此不作延伸推断。&#x27; }
+      ];
+      const teacherPhotos = {
+        &#x27;曾勇&#x27;: { url: &#x27;https://aihss.uestc.edu.cn/__local/9/23/28/5ACEC978191678FA538B864888B_A312608B_34079.jpg&#x27;, credit: &#x27;学院教师介绍&#x27; },
+        &#x27;丁亚&#x27;: { url: &#x27;https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/zp/11201&#x27;, credit: &#x27;研究生院导师页&#x27; },
+        &#x27;李平&#x27;: { url: &#x27;https://i.study.uestc.edu.cn/storage//articles/2020-10-22//npzcXjHqBgjenYgd71aY2eEjoZnEhdj2u13ceaQI.png&#x27;, credit: &#x27;校级课程团队页&#x27; },
+        &#x27;李强&#x27;: { url: &#x27;https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/zp/10928&#x27;, credit: &#x27;研究生院导师页&#x27; },
+        &#x27;李睿&#x27;: { url: &#x27;https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/zp/20788&#x27;, credit: &#x27;研究生院导师页&#x27; },
+        &#x27;梁媛&#x27;: { url: &#x27;https://www.imba.uestc.edu.cn/__local/7/A1/05/CD668C6A608E93531B256AD38B1_CB466D9C_44E4.jpg&#x27;, credit: &#x27;学院课程师资页&#x27; },
+        &#x27;毛奕欢&#x27;: { url: &#x27;https://www.mba.uestc.edu.cn/__local/C/A2/FD/B6CDFFDC2B4CD0E074EE0F3BFC3_89570288_CD813.png&#x27;, credit: &#x27;学院专题讲座介绍&#x27; },
+        &#x27;沈玉清&#x27;: { url: &#x27;https://i.study.uestc.edu.cn/storage//articles/2020-10-22//mTEsHvWw9IB9HXriptfP6KlkTeVS3Y6S56l6WCVI.png&#x27;, credit: &#x27;校级课程团队页&#x27; },
+        &#x27;滕颖&#x27;: { url: &#x27;https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/zp/10529&#x27;, credit: &#x27;研究生院导师页&#x27; },
+        &#x27;倪得兵&#x27;: { url: &#x27;https://faculty.uestc.edu.cn/__local/D/55/48/CD8E7A24502B108A5B85E4A9435_6331C972_CB36.png&#x27;, credit: &#x27;教师个人主页&#x27; },
+        &#x27;夏晖&#x27;: { url: &#x27;https://i.study.uestc.edu.cn/storage//articles/2020-10-22//4BJmCYHO7AhU8YDYF6EWbnU7gIIESCOfYHgZLUcj.png&#x27;, credit: &#x27;校级课程团队页&#x27; },
+        &#x27;杨政&#x27;: { url: &#x27;https://faculty.uestc.edu.cn/__local/D/8E/0C/8459662DE1450FA0F30127D97C5_2FA49C38_5A705.jpg&#x27;, credit: &#x27;教师个人主页&#x27; },
+        &#x27;尹宇明&#x27;: { url: &#x27;https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/zp/11486&#x27;, credit: &#x27;研究生院导师页&#x27; },
+      };
+      const teacherDirectory = {
+        &#x27;曾勇&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3270&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/A/4E/9F/7B4B9DDBE00D28A9936F764B0C7_8C7AADB8_30B3B.jpg&#x27; },
+        &#x27;陈磊&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3246&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/C/89/B5/06D36CB757A3837C086402CABC7_C308548D_1619E5.jpg&#x27; },
+        &#x27;陈林&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3245&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/E/BD/53/DA3445ED824B1009240F37D9A64_2A66974D_7853D.jpg&#x27; },
+        &#x27;邓光军&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3247&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/3/36/BF/04D2313FF27E5C9EE5E000F8C98_34B29E26_7E2C2.jpg&#x27; },
+        &#x27;丁亚&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3248&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/0/11/C3/F53527CC336C8EAFE2F07454659_24F14E40_397BE.jpg&#x27; },
+        &#x27;鞠晴江&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=5348&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/7/F2/6A/16C50F3A41261EFB62C21D4D732_09A595CE_A4737.jpg&#x27; },
+        &#x27;李平&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3254&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/2/BA/31/7C2BA98587301B3A00947771E67_D2D85C6E_CB452.jpg&#x27; },
+        &#x27;李强&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=5349&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/D/D2/C2/A9AA23E6CE69158468D400C6D8D_9CBD312B_2A7AF.jpg&#x27; },
+        &#x27;李睿&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3256&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/1/E0/C1/5C38D22BDC19096E2182CF9FCCE_281335E5_32C49.jpg&#x27; },
+        &#x27;梁媛&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3257&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/8/AF/89/800F3D822263369DB874C8B4AA8_20939A7E_3BB60.jpg&#x27; },
+        &#x27;刘波&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3259&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/0/2B/1F/4F9FE2208C4F497FDC954DE89BF_0C3ED874_23916.jpg&#x27; },
+        &#x27;刘英&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=22329&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/0/25/1D/EEFE59F1F4A8B20DF18DCB98685_2EE8BBAE_296C9.jpg&#x27; },
+        &#x27;马捷&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3260&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/C/51/73/FD4C49FAE24DD1175F811F72B17_45A56738_2C125F.jpg&#x27; },
+        &#x27;毛奕欢&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=24325&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/A/CE/9D/536041111E3E7EBB440F09D14E5_813B7AA7_54B7D.jpg&#x27; },
+        &#x27;倪得兵&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3262&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/3/FA/06/1223FD89B9382A1126AE3516E3D_065030BB_78B74.jpg&#x27; },
+        &#x27;沈玉清&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=5358&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/D/AB/D9/134BB3B885F881437B295838750_CDF6860C_3666F.jpg&#x27; },
+        &#x27;宋娜&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3264&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/9/B3/4E/8143AADF5685D317F30766CAA58_9A48EA31_351A0.jpg&#x27; },
+        &#x27;滕颖&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3274&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/9/EE/7D/08F944ED2B05FC69DCB19B1E9AB_1E2479ED_33D6E.jpg&#x27; },
+        &#x27;田益祥&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3265&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/6/56/29/8310515572E15BF3A86CF76712B_26ADCEED_395C3.jpg&#x27; },
+        &#x27;王啸远&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3266&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/9/D9/13/2F9D403C59BC4219AF0D16EA55A_48D3D5DE_7BA19.jpg&#x27; },
+        &#x27;夏晖&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=5346&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/9/3E/14/697D067E8453C73E5DA8E77389B_C2DC5764_92A9F.jpg&#x27; },
+        &#x27;杨政&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3268&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/5/30/3D/E6E8E3DD5082DE90D91A3DB3F43_DE23996D_47234.jpg&#x27; },
+        &#x27;尹宇明&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3269&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/6/BC/F0/C919ACD7DAEB5459B351FBB4012_23A8BC10_30D30.jpg&#x27; },
+        &#x27;赵洪江&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3272&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/A/9A/55/94BFACBF2A0FC9466E57AC1BD93_87487C46_68AB6.jpg&#x27; },
+        &#x27;赵武&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3271&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/1/4B/70/3A9D6C7018252BB91F194423047_6306AADD_50F40.jpg&#x27; },
+        &#x27;钟朝宏&#x27;: { url: &#x27;https://www.mgmt.uestc.edu.cn/szxq.jsp?urltype=news.NewsContentUrl&amp;wbtreeid=1098&amp;wbnewsid=3207&#x27;, photo: &#x27;https://www.mgmt.uestc.edu.cn/__local/9/E2/31/6F80563E34F31D7CDAB082F9FE8_D96505AD_2DD49.jpg&#x27; }
+      };
+      const teacherRoles = {
+        &#x27;李强&#x27;: { text: &#x27;经济与管理学院副院长&#x27;, source: &#x27;学院2026年公开报道&#x27; },
+        &#x27;李睿&#x27;: { text: &#x27;经济学与金融学系副主任&#x27;, source: &#x27;学院师资目录；用户提供的系负责人名单&#x27; },
+        &#x27;马捷&#x27;: { text: &#x27;经济学与金融学系主任&#x27;, source: &#x27;学院师资目录；用户提供的系负责人名单&#x27; },
+        &#x27;宋娜&#x27;: { text: &#x27;经济学与金融学系支部书记&#x27;, source: &#x27;学院师资目录；用户提供的系负责人名单&#x27; },
+        &#x27;尹宇明&#x27;: { text: &#x27;金融专硕项目主任&#x27;, source: &#x27;用户提供的系负责人名单；学院公开报道交叉核验&#x27; }
+      };
+      const teacherBirthYears = {
+        &#x27;曾勇&#x27;: 1963,
+        &#x27;陈磊&#x27;: 1981,
+        &#x27;陈林&#x27;: 1973,
+        &#x27;邓光军&#x27;: 1971,
+        &#x27;丁亚&#x27;: 1977,
+        &#x27;鞠晴江&#x27;: 1977,
+        &#x27;李平&#x27;: 1977,
+        &#x27;李强&#x27;: 1980,
+        &#x27;马捷&#x27;: 1978,
+        &#x27;倪得兵&#x27;: 1973,
+        &#x27;滕颖&#x27;: 1967,
+        &#x27;田益祥&#x27;: 1963,
+        &#x27;王啸远&#x27;: 1987,
+        &#x27;杨政&#x27;: 1978,
+        &#x27;赵洪江&#x27;: 1970,
+        &#x27;赵武&#x27;: 1980,
+        &#x27;钟朝宏&#x27;: 1970
+      };
+      const teacherSupplementalSources = {
+        &#x27;曾勇&#x27;: [{ label: &#x27;百度百科人物词条&#x27;, url: &#x27;https://baike.baidu.com/item/%E6%9B%BE%E5%8B%87/3343236&#x27; }]
+      };
+      const teacherExpandedSummaries = {
+        &#x27;曾勇&#x27;: &#x27;曾勇长期在电子科技大学从事管理科学与金融工程研究，教育背景横跨自动化、系统工程与管理科学，曾任经济与管理学院院长、电子科技大学副校长和校长。其研究覆盖公司财务与资本市场、金融投资与金融工程、技术创新投资与定价，强调数量方法在投资和创新决策中的应用。学校资料与已核对的百度百科词条还列有其论文、学术著作、科研奖励及国际欧亚科学院院士等公开履历。&#x27;,
+        &#x27;陈磊&#x27;: &#x27;陈磊的公开研究方向集中在证券期货投资、金融计量经济学和量化交易，兼具金融理论、统计建模与交易实验三个层面。学院2025年量化交易教学报道介绍了其课程建设、交易策略验证和实验教学框架，说明其公开教学活动与数据驱动的投资研究联系较紧。现有学院页面能够支持研究和教学方向判断，但暂未公开足够信息用于推断具体授课风格或考核难度。&#x27;,
+        &#x27;陈林&#x27;: &#x27;陈林主要研究信用风险评价与管理、互联网金融和固定收益证券，研究主题连接商业银行风险、债券市场与金融科技。研究生院页面列有相关科研项目、论文和教材成果；其公开合作成果还涉及互联网金融的发展、监管及中小企业贷款技术。对于债券、银行风控或金融科技方向，这些研究线索比单纯的职称信息更有参考价值。&#x27;,
+        &#x27;邓光军&#x27;: &#x27;邓光军的公开方向包括金融工程、金融投资、新兴技术管理与技术创新，研究中可见实物期权方法的应用。实物期权强调在不确定性下对投资时机和管理弹性进行估值，因此其研究与科技项目投资、创新决策及公司金融存在交叉。学院资料目前主要提供研究方向和代表性论文线索，尚不足以判断具体课程安排。&#x27;,
+        &#x27;丁亚&#x27;: &#x27;丁亚具有农业经济学训练背景，研究从传统农业与农村发展延伸到老龄经济、长期照护、养老政策和可持续农业技术。公开项目与成果体现出较强的政策评估和应用经济学取向，关注人口结构、公共服务与农村经济行为。其方向与纯金融课程的直接关联较弱，但适合对公共政策、发展经济和实证评估感兴趣的同学了解。&#x27;,
+        &#x27;鞠晴江&#x27;: &#x27;鞠晴江主要关注产业经济与产业政策、区域可持续发展及创新合作，研究对象通常处于产业、区域和公共政策的交叉处。导师资料中的科研项目体现出应用经济分析特点，强调政策环境、区域发展和合作创新机制。若计划选择产业经济、数字经济或政策研究方向，这些主题可作为判断研究匹配度的线索。&#x27;,
+        &#x27;李平&#x27;: &#x27;李平具有数学、应用数学和金融相关的交叉训练，并有瑞士弗里堡大学访问经历，现为教授、博士生导师。其研究从金融市场微观结构延伸到量化交易、高频数据、风险投资、互联网金融、金融科技与碳金融，既关注市场机制，也重视数据分析和现实监管问题。公开页面还列有专著、科研项目、教学成果奖和金融科技人才培养项目，与当前“金融科技导论”的课程定位有直接联系。&#x27;,
+        &#x27;李强&#x27;: &#x27;李强长期从事金融工程、商业银行与金融科技、公司金融与资本市场、风险投资和科技金融研究，现任经济与管理学院副院长。学校教学报道显示其承担金融学基础、金融工程、互联网金融及金融市场等不同层次课程，并重视用导论课程建立金融科技的逻辑框架。研究生院页面还列有多项科研项目、学术专著、论文与省部级成果奖励；同名教师较多，本页只采用已经与经管学院邮箱和研究方向核对一致的资料。&#x27;,
+        &#x27;李睿&#x27;: &#x27;李睿本科毕业于西南财经大学，后在北京大学取得博士学位，现为副教授、硕士生导师。其研究集中在家庭金融、创业创新、国际金融与金融衍生品，并讲授国际金融、金融衍生工具等课程。研究生院公开页显示其主持国家自然科学基金青年项目，相关成果发表于Journal of Empirical Finance、The European Journal of Finance、《金融研究》等期刊。&#x27;,
+        &#x27;梁媛&#x27;: &#x27;梁媛的公开研究方向包括宏观经济、外资并购和委托代理理论，研究主题连接宏观环境、跨国投资与企业治理。学校报道还显示其参与经济学课程数字化建设，将经济学概念、决策分析和新技术工具结合到教学改革中。当前资料更能说明其经济学教学与课程建设背景，不能据此推断具体课堂评分或作业强度。&#x27;,
+        &#x27;刘波&#x27;: &#x27;刘波为教授、博士生导师，并担任电子科技大学iMBA项目相关工作，研究覆盖企业战略与投融资、数字化转型、金融科技和资本市场。研究生院页面列明其主持多项国家自然科学基金项目，论文发表于European Journal of Finance、《经济研究》《金融研究》等期刊，并获得多项金融学术会议与省级科研奖励。其研究兼具公司金融、战略管理和数字化视角，适合关注企业投融资与金融科技结合的方向。&#x27;,
+        &#x27;刘英&#x27;: &#x27;刘英具有注册会计师相关专业背景，研究涉及会计理论、营运资金管理、供应链金融和数字金融。其公开方向把财务报表、企业资金运作与金融业务联系起来，既包括传统会计与公司财务问题，也关注数字技术对资金和供应链关系的影响。对于财务分析、公司金融或供应链金融方向，这类交叉背景具有较直接的参考意义。&#x27;,
+        &#x27;马捷&#x27;: &#x27;马捷为教授、博士生导师，现承担经济学与金融学系管理工作。公开资料显示其研究覆盖产业经济、数字经济与公共资源治理，同时保留水资源和公共治理等长期研究线索，整体偏产业、制度与政策分析。网络中存在与其职称和研究方向不一致的同名百科条目，因此本页没有将这些条目作为资料来源。&#x27;,
+        &#x27;毛奕欢&#x27;: &#x27;毛奕欢具有管理学博士、经济学博士后以及注册会计师、税务师背景，研究聚焦资本市场中的财务会计行为、制度变迁和公司治理。学院公开介绍显示其主持国家自然科学基金和博士后项目，成果发表于Journal of Accounting and Public Policy、China Journal of Accounting Studies、《会计研究》《金融研究》等期刊。其研究适合用于理解信息披露、制度环境和投资者判断之间的关系。&#x27;,
+        &#x27;倪得兵&#x27;: &#x27;倪得兵具有工业管理工程、数量经济学和管理科学与工程的连续训练，并曾赴加拿大温莎大学和美国南卫理公会大学访问。其研究重点包括博弈理论、供应链与数字化运营、产业和数字经济，尤其关注平台与制造商竞合、供应链协调和企业社会责任。高研院公开页列有多项国家自然科学基金项目、教育部人才计划及国内外期刊成果，数量模型和机制分析特征较突出。&#x27;,
+        &#x27;沈玉清&#x27;: &#x27;沈玉清的公开研究方向包括公司财务、实证会计、审计和创业融资，核心问题涉及企业信息、融资决策与治理机制。校级课程团队页面能够确认其公司财务和创业融资方向，公开论文索引还可见盈余管理、企业网络及上市公司收购风险等主题。当前页面将这些内容作为研究方向线索，不使用学术索引中的统计数字替代学校官方履历。&#x27;,
+        &#x27;宋娜&#x27;: &#x27;宋娜本科接受数学基地班训练并辅修金融学，后在香港大学取得数理金融博士学位，曾赴澳大利亚麦考瑞大学访问。其研究涉及资产配置、债券风险、随机利率、现金和存货管理，具有明显的随机模型与数量金融特征。研究生院页面还列有金融学基础、金融经济学等课程及相关英文论文，与债券、风险管理和量化方向联系紧密。&#x27;,
+        &#x27;滕颖&#x27;: &#x27;滕颖为教授、博士生导师，并担任电子科技大学以色列研究中心主任。其研究聚焦平台战略、数字化转型、社会网络、国际技术合作与战略创业，关注组织和企业如何在技术与网络环境中形成合作和竞争优势。公开成果还涉及私募股权投资项目风险评估与创新领导力培养，适合数字经济和科技创新方向参考。&#x27;,
+        &#x27;田益祥&#x27;: &#x27;田益祥长期研究绿色债券、信用评级、系统性金融风险和金融计量，研究对象同时覆盖债券定价、评级监管与风险传染。公开项目和论文显示，其近年仍持续关注绿色债券市场和企业债券信用评级问题，强调计量模型在金融风险识别中的应用。对于债券市场、银行风控或量化实证路线，这些成果具有较高的方向匹配度。&#x27;,
+        &#x27;王啸远&#x27;: &#x27;王啸远的公开研究方向偏实验经济学、行为与产业组织以及应用微观经济学。学院金融实验团队资料能够确认其参与实验教学，学校早期介绍则提供了研究方向和教学背景线索。实验经济学通常通过可控制的决策情境观察行为，其方法与传统金融计量不同，适合对行为和机制设计感兴趣的同学进一步了解。&#x27;,
+        &#x27;夏晖&#x27;: &#x27;夏晖为教授、博士，公开课程团队资料显示其曾赴香港中文大学和美国佐治亚理工学院访问，并承担金融工程研究与实验教学相关工作。其研究涉及科技创新投资、碳资产与交易策略、公司金融和风险投资，强调创新项目、资本市场与绿色金融之间的联系。当前方案中的“金融经济学”与其市场和投资研究背景相关，但公开资料不能说明具体课堂分工和考核方式。&#x27;,
+        &#x27;杨政&#x27;: &#x27;杨政本科就读应用数学，后接受统计学和应用数学博士训练，并曾赴美国雪城大学访问。其研究重点为金融计量、非线性时间序列与协整分析，同时涉及汇率、贸易和金融市场；导师页还列有计量经济学、高级计量及金融计量等教学信息。其训练和研究方法与量化实证路线高度一致，尤其适合关注时间序列和金融市场建模的同学。&#x27;,
+        &#x27;尹宇明&#x27;: &#x27;尹宇明的公开研究方向包括创业金融、资产定价、宏观金融、并购与风险资本，并承担金融专硕项目相关管理工作。其早期公开成果涉及资本流动、金融深化、商业银行风险及企业海外并购，近年来的导师信息则更突出创业和资本市场问题。整体方向连接宏观环境、企业融资和投资决策，适合创业金融与公司金融路线参考。&#x27;,
+        &#x27;赵洪江&#x27;: &#x27;赵洪江本科接受工程训练，后在西南财经大学获得经济学硕士和博士学位，现主要从事资本市场与公司金融教学研究。研究生院页面列有金融学、证券投资学、金融市场与机构、投资银行学和金融数学等授课经历，并公开了论文和专著信息。其研究还涉及互联网金融、中小企业融资、股权众筹和公司治理，与当前“投资学”及后续资本市场课程关联直接。&#x27;,
+        &#x27;赵武&#x27;: &#x27;赵武主要研究精算保险、金融工程与金融数学，并将破产理论、风险过程和投资组合纳入同一数量分析框架。其方向强调不确定性下的损失分布、偿付能力和资产配置问题，和风险管理、保险及数量金融联系紧密。当前官方资料能够确认研究方向和导师身份，但网络上存在西安电子科技大学同名教师，本页没有混用其履历。&#x27;,
+        &#x27;钟朝宏&#x27;: &#x27;钟朝宏现有校内个人主页能够确认副教授、硕士生导师和管理学博士等基础信息，学院历史资料还显示其参与MBA或高层培训中的财务类教学。现行个人页面未公开足够细分的研究方向、项目和论文信息，因此本页不将早期课程活动扩写为当前研究专长。若准备联系导师或选择相关课程，仍应通过官方邮箱进一步确认最新方向与教学安排。&#x27;
+      };
+      teachers.forEach(teacher =&gt; {
+        teacher.directory = teacherDirectory[teacher.name] || null;
+        teacher.photo = teacher.directory ? { url: teacher.directory.photo, credit: &#x27;经济与管理学院师资详情&#x27; } : (teacherPhotos[teacher.name] || null);
+        teacher.role = teacherRoles[teacher.name] || null;
+        teacher.birthYear = teacherBirthYears[teacher.name] || null;
+        teacher.extraSources = [...(teacher.extraSources || []), ...(teacherSupplementalSources[teacher.name] || [])];
+        teacher.summary = teacherExpandedSummaries[teacher.name] || teacher.summary;
+      });
+      const teacherSearch = root.querySelector(&#x27;#mf-teacher-search&#x27;);
+      const teacherFilter = root.querySelector(&#x27;#mf-teacher-filter&#x27;);
+      const teacherArea = root.querySelector(&#x27;#mf-teacher-area&#x27;);
+      const teacherSort = root.querySelector(&#x27;#mf-teacher-sort&#x27;);
+      const teacherRankInputs = [...root.querySelectorAll(&#x27;#mf-teacher-rank-filter input[type=&quot;checkbox&quot;]&#x27;)];
+      const teacherGrid = root.querySelector(&#x27;#mf-teacher-grid&#x27;);
+      const teacherCount = root.querySelector(&#x27;#mf-teacher-count&#x27;);
+      const teacherSortNote = root.querySelector(&#x27;#mf-teacher-sort-note&#x27;);
+      const teacherDialog = root.querySelector(&#x27;#mf-teacher-dialog&#x27;);
+      const teacherDialogPhoto = root.querySelector(&#x27;#mf-teacher-dialog-photo&#x27;);
+      const teacherDialogName = root.querySelector(&#x27;#mf-teacher-dialog-name&#x27;);
+      const teacherDialogTitle = root.querySelector(&#x27;#mf-teacher-dialog-title&#x27;);
+      const teacherDialogMeta = root.querySelector(&#x27;#mf-teacher-dialog-meta&#x27;);
+      const teacherDialogRelation = root.querySelector(&#x27;#mf-teacher-dialog-relation&#x27;);
+      const teacherDialogSummary = root.querySelector(&#x27;#mf-teacher-dialog-summary&#x27;);
+      const teacherDialogDecision = root.querySelector(&#x27;#mf-teacher-dialog-decision&#x27;);
+      const teacherDialogBoundary = root.querySelector(&#x27;#mf-teacher-dialog-boundary&#x27;);
+      const teacherDialogEmail = root.querySelector(&#x27;#mf-teacher-dialog-email&#x27;);
+      const teacherDialogSources = root.querySelector(&#x27;#mf-teacher-dialog-sources&#x27;);
+      const teacherAreaLabels = { finance: &#x27;金融与资本市场&#x27;, quant: &#x27;金融科技与量化&#x27;, corporate: &#x27;公司金融与会计&#x27;, industry: &#x27;产业与数字经济&#x27;, innovation: &#x27;创新创业与战略&#x27;, risk: &#x27;风险、保险与固收&#x27; };
+      const teacherSortLabels = { directory: &#x27;按联系名单顺序排列，不含主观评分&#x27;, name: &#x27;按姓名拼音排列&#x27;, related: &#x27;当前方案已关联课程的教师优先，其余保持名单顺序&#x27;, rank: &#x27;按教授、副教授、讲师、其他的顺序排列，同职称保持名单顺序&#x27; };
+      const teacherNameCollator = new Intl.Collator(&#x27;zh-CN-u-co-pinyin&#x27;);
+      const teacherDirectoryIndex = new Map(teachers.map((teacher, index) =&gt; [teacher.name, index]));
+
+      function teacherRank(teacher) {
+        if (teacher.title.includes(&#x27;副教授&#x27;)) return &#x27;associate&#x27;;
+        if (teacher.title.includes(&#x27;教授&#x27;)) return &#x27;professor&#x27;;
+        if (teacher.title.includes(&#x27;讲师&#x27;)) return &#x27;lecturer&#x27;;
+        return &#x27;other&#x27;;
+      }
+
+      function teacherRankScore(teacher) {
+        return { professor: 3, associate: 2, lecturer: 1, other: 0 }[teacherRank(teacher)];
+      }
+
+      function teacherAge(teacher) {
+        return teacher.birthYear ? new Date().getFullYear() - teacher.birthYear : null;
+      }
+
+      function teacherSearchScore(teacher, query) {
+        if (!query) return 0;
+        const name = teacher.name.toLocaleLowerCase(&#x27;zh-CN&#x27;);
+        const email = teacher.email.toLocaleLowerCase(&#x27;zh-CN&#x27;);
+        const title = teacher.title.toLocaleLowerCase(&#x27;zh-CN&#x27;);
+        const role = (teacher.role?.text || &#x27;&#x27;).toLocaleLowerCase(&#x27;zh-CN&#x27;);
+        const focus = teacher.focus.toLocaleLowerCase(&#x27;zh-CN&#x27;);
+        const courses = teacher.courses.map(course =&gt; course.toLocaleLowerCase(&#x27;zh-CN&#x27;));
+        const areas = teacher.areas.map(area =&gt; teacherAreaLabels[area].toLocaleLowerCase(&#x27;zh-CN&#x27;));
+        let score = 0;
+        if (name === query) score += 120;
+        else if (name.startsWith(query)) score += 100;
+        else if (name.includes(query)) score += 80;
+        if (courses.some(course =&gt; course === query)) score += 70;
+        else if (courses.some(course =&gt; course.includes(query))) score += 60;
+        if (focus.includes(query)) score += 40;
+        if (areas.some(area =&gt; area.includes(query))) score += 30;
+        if (role.includes(query)) score += 25;
+        if (title.includes(query)) score += 20;
+        if (email.includes(query)) score += 15;
+        if ((teacher.summary || &#x27;&#x27;).toLocaleLowerCase(&#x27;zh-CN&#x27;).includes(query)) score += 10;
+        if ((teacher.decision || &#x27;&#x27;).toLocaleLowerCase(&#x27;zh-CN&#x27;).includes(query)) score += 5;
+        return score;
+      }
+
+      function compareTeachers(a, b, sort) {
+        if (sort === &#x27;name&#x27;) return teacherNameCollator.compare(a.name, b.name);
+        if (sort === &#x27;related&#x27;) return b.courses.length - a.courses.length || teacherDirectoryIndex.get(a.name) - teacherDirectoryIndex.get(b.name);
+        if (sort === &#x27;rank&#x27;) return teacherRankScore(b) - teacherRankScore(a) || teacherDirectoryIndex.get(a.name) - teacherDirectoryIndex.get(b.name);
+        return teacherDirectoryIndex.get(a.name) - teacherDirectoryIndex.get(b.name);
+      }
+
+      function teacherPhotoMarkup(teacher) {
+        const image = teacher.photo ? `&lt;img src=&quot;${teacher.photo.url}&quot; alt=&quot;${teacher.name}公开头像&quot; referrerpolicy=&quot;no-referrer&quot; loading=&quot;lazy&quot; onerror=&quot;this.remove()&quot;&gt;` : &#x27;&#x27;;
+        return `&lt;span class=&quot;mf-teacher-avatar&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;${teacher.name.slice(-1)}&lt;/span&gt;${image}&lt;/span&gt;`;
+      }
+
+      function teacherBoundary(teacher) {
+        if (teacher.status === &#x27;现行资料&#x27;) return &#x27;已找到现行导师、招生或个人主页资料；职称和研究方向仍应以学校最新发布内容为准。&#x27;;
+        if (teacher.status === &#x27;学院资料&#x27;) return &#x27;摘要来自学院公开介绍，页面更新时间和当前招生状态可能不同步，使用时建议查看原始页面。&#x27;;
+        return &#x27;目前以联系人名单和导师目录中的基础信息为主，研究方向仅作初步线索，不能视为完整或最新履历。&#x27;;
+      }
+
+      function teacherSourceDescriptor(source) {
+        let url;
+        try {
+          url = new URL(source.url);
+        } catch (_) {
+          return { organization: &#x27;其他公开来源&#x27;, type: source.label, badge: &#x27;辅助资料&#x27;, purpose: &#x27;用于补充公开信息，使用时请核对页面发布主体。&#x27;, priority: 90, external: true, domain: source.url };
+        }
+        const host = url.hostname.replace(/^www\./, &#x27;&#x27;);
+        const descriptors = [
+          { test: host === &#x27;mgmt.uestc.edu.cn&#x27;, organization: &#x27;电子科大经济与管理学院&#x27;, type: &#x27;教师档案&#x27;, badge: &#x27;主要来源&#x27;, purpose: &#x27;主要核对身份、职称、职务、教育经历、研究方向与教师照片。&#x27;, priority: 10 },
+          { test: host === &#x27;yjsjy.uestc.edu.cn&#x27;, organization: &#x27;电子科大研究生院&#x27;, type: &#x27;导师档案&#x27;, badge: &#x27;导师信息&#x27;, purpose: &#x27;主要核对导师资格、招生方向、学术经历、科研项目与成果。&#x27;, priority: 20 },
+          { test: host === &#x27;faculty.uestc.edu.cn&#x27;, organization: &#x27;电子科大教师主页系统&#x27;, type: &#x27;个人主页&#x27;, badge: &#x27;校内官方&#x27;, purpose: &#x27;补充个人简介、教育经历、研究领域和论文成果。&#x27;, priority: 30 },
+          { test: host === &#x27;aihss.uestc.edu.cn&#x27;, organization: &#x27;电子科大人文社科高研院&#x27;, type: &#x27;人物介绍&#x27;, badge: &#x27;校内补充&#x27;, purpose: &#x27;补充较完整的学术履历、科研成果、奖励与学术任职。&#x27;, priority: 35 },
+          { test: host === &#x27;i.study.uestc.edu.cn&#x27;, organization: &#x27;电子科大课程平台&#x27;, type: &#x27;课程团队&#x27;, badge: &#x27;教学补充&#x27;, purpose: &#x27;用于核对课程团队、教学关系和页面公开的研究方向。&#x27;, priority: 40 },
+          { test: host === &#x27;jgsy.uestc.edu.cn&#x27;, organization: &#x27;电子科大经管实验中心&#x27;, type: &#x27;教学与团队报道&#x27;, badge: &#x27;教学补充&#x27;, purpose: &#x27;补充课程建设、实验教学、量化交易或金融实验团队信息。&#x27;, priority: 45 },
+          { test: host === &#x27;mba.uestc.edu.cn&#x27;, organization: &#x27;电子科大MBA项目&#x27;, type: &#x27;教师专题介绍&#x27;, badge: &#x27;学院补充&#x27;, purpose: &#x27;补充教师背景、讲座主题和研究方向介绍。&#x27;, priority: 50 },
+          { test: host === &#x27;imba.uestc.edu.cn&#x27;, organization: &#x27;电子科大IMBA项目&#x27;, type: &#x27;课程师资页&#x27;, badge: &#x27;学院补充&#x27;, purpose: &#x27;用于核对课程师资和项目页面公开的研究方向。&#x27;, priority: 50 },
+          { test: host === &#x27;edp.uestc.edu.cn&#x27;, organization: &#x27;电子科大EDP项目&#x27;, type: &#x27;金融师资名单&#x27;, badge: &#x27;学院补充&#x27;, purpose: &#x27;用于核对金融方向师资及基础研究领域。&#x27;, priority: 50 },
+          { test: host === &#x27;news.uestc.edu.cn&#x27;, organization: &#x27;电子科技大学新闻网&#x27;, type: &#x27;学校报道&#x27;, badge: &#x27;历史补充&#x27;, purpose: &#x27;用于补充早期履历、研究方向或学校公开活动信息。&#x27;, priority: 55 },
+          { test: host === &#x27;baike.baidu.com&#x27; || host === &#x27;wapbaike.baidu.com&#x27;, organization: &#x27;百度百科&#x27;, type: &#x27;人物词条&#x27;, badge: &#x27;外部辅助&#x27;, purpose: &#x27;仅用于交叉查看公开履历；身份、职称和研究信息以电子科大官方来源为准。&#x27;, priority: 80, external: true }
+        ];
+        const matched = descriptors.find(item =&gt; item.test);
+        if (matched) return { ...matched, domain: host };
+        const isUestc = host === &#x27;uestc.edu.cn&#x27; || host.endsWith(&#x27;.uestc.edu.cn&#x27;);
+        return { organization: isUestc ? &#x27;电子科技大学校内页面&#x27; : host, type: source.label, badge: isUestc ? &#x27;校内补充&#x27; : &#x27;外部辅助&#x27;, purpose: &#x27;用于补充页面公开信息，重要事实仍需与主要官方来源交叉核对。&#x27;, priority: isUestc ? 60 : 85, external: !isUestc, domain: host };
+      }
+
+      function teacherSourceSummary(teacher) {
+        const hasAdvisorProfile = teacher.source?.includes(&#x27;yjsjy.uestc.edu.cn&#x27;);
+        const hasBaike = (teacher.extraSources || []).some(source =&gt; source.url.includes(&#x27;baike.baidu.com&#x27;));
+        return `来源已按权威性和用途排序：身份、职称、研究方向与照片优先采用经济与管理学院教师档案；${hasAdvisorProfile ? &#x27;导师资格、招生方向与科研信息由研究生院导师档案补充；&#x27; : &#x27;其他校内个人主页、课程或学院报道作为补充；&#x27;}${hasBaike ? &#x27;已检索并核对到身份一致的百度百科人物词条，仅作外部履历参照，不覆盖学校官方信息。&#x27; : &#x27;已检索百度百科，但未找到能够可靠对应本人的人物词条；同名或身份不符的结果未加入。&#x27;}`;
+      }
+
+      function openTeacherDialog(teacherName) {
+        const teacher = teachers.find(item =&gt; item.name === teacherName);
+        if (!teacher) return;
+        const relatedCourses = teacher.courses.join(&#x27;、&#x27;);
+        teacherDialogName.textContent = teacher.name;
+        teacherDialogTitle.textContent = `${teacher.title} · ${teacher.email}`;
+        teacherDialogMeta.innerHTML = `&lt;span&gt;${teacher.status}&lt;/span&gt;${teacher.role ? `&lt;span&gt;职务 · ${teacher.role.text}&lt;/span&gt;` : &#x27;&#x27;}${teacher.courses.map(course =&gt; `&lt;span&gt;当前课程 · ${course}&lt;/span&gt;`).join(&#x27;&#x27;)}${teacher.areas.map(area =&gt; `&lt;span&gt;${teacherAreaLabels[area]}&lt;/span&gt;`).join(&#x27;&#x27;)}`;
+        teacherDialogRelation.textContent = teacher.relation || (relatedCourses ? `当前网页已将其与“${relatedCourses}”关联。教学班、学期和任课安排仍应以正式课表为准。` : &#x27;当前选课方案和已录入课表暂未直接关联这位教师的教学班；该信息页主要用于了解导师和研究方向。&#x27;);
+        teacherDialogSummary.textContent = teacher.summary || `现有公开资料将“${teacher.focus}”列为主要研究方向。网页只保留与选课和研究方向判断直接相关的信息，没有据此推断授课风格或课程评价。`;
+        teacherDialogDecision.textContent = teacher.decision || (teacher.status === &#x27;基础信息&#x27; ? &#x27;当前资料不足以形成具体课程建议。如果后续准备联系导师或选择相关课程，应先通过官方主页、学院介绍或邮件进一步确认研究方向和教学安排。&#x27; : `如果你正在比较与“${teacher.focus}”相关的课程或研究方向，这些关键词可以作为初步线索；正式决定仍应结合课程大纲、教学班安排和个人目标。`);
+        teacherDialogPhoto.innerHTML = teacherPhotoMarkup(teacher);
+        teacherDialogBoundary.textContent = `${teacherSourceSummary(teacher)} ${teacherBoundary(teacher)} ${teacher.role ? `职务来源：${teacher.role.source}。` : &#x27;暂未核验到需要单列的当前行政或项目职务。&#x27;} ${teacher.photo ? `照片来源：${teacher.photo.credit}。` : &#x27;暂未找到能够明确对应本人的官方照片，当前显示姓名占位。&#x27;}`;
+        teacherDialogEmail.href = `mailto:${teacher.email}`;
+        teacherDialogEmail.textContent = `邮件联系：${teacher.email}`;
+        const sources = [{ label: &#x27;经济与管理学院教师档案&#x27;, url: teacher.directory?.url }, { label: teacher.sourceLabel || &#x27;查看官方资料&#x27;, url: teacher.source }, ...(teacher.extraSources || [])].filter(source =&gt; source.url);
+        const uniqueSources = sources.filter((source, index) =&gt; sources.findIndex(item =&gt; item.url === source.url) === index);
+        const describedSources = uniqueSources.map(source =&gt; ({ ...source, descriptor: teacherSourceDescriptor(source) })).sort((a, b) =&gt; a.descriptor.priority - b.descriptor.priority);
+        teacherDialogSources.innerHTML = describedSources.map(source =&gt; `
+          &lt;a class=&quot;mf-teacher-source-card&quot; href=&quot;${source.url}&quot; data-mf-external-url=&quot;${source.url}&quot; aria-label=&quot;打开${source.descriptor.organization}${source.descriptor.type}&quot;&gt;
+            &lt;span class=&quot;mf-teacher-source-heading&quot;&gt;${source.descriptor.organization} · ${source.descriptor.type} ↗&lt;/span&gt;
+            &lt;span class=&quot;mf-teacher-source-badge ${source.descriptor.external ? &#x27;is-external&#x27; : &#x27;&#x27;}&quot;&gt;${source.descriptor.badge}&lt;/span&gt;
+            &lt;span class=&quot;mf-teacher-source-purpose&quot;&gt;${source.descriptor.purpose}&lt;/span&gt;
+            &lt;span class=&quot;mf-teacher-source-domain&quot;&gt;${source.descriptor.domain}&lt;/span&gt;
+          &lt;/a&gt;
+        `).join(&#x27;&#x27;);
+        teacherDialog.showModal();
+      }
+
+      function openExternalUrl(url) {
+        const popup = window.open(url, &#x27;_blank&#x27;);
+        if (popup) {
+          popup.opener = null;
+          return;
+        }
+        try {
+          window.top.location.assign(url);
+        } catch (_) {
+          window.location.assign(url);
+        }
+      }
+
+      function renderTeachers() {
+        const query = teacherSearch.value.trim().toLocaleLowerCase(&#x27;zh-CN&#x27;);
+        const scope = teacherFilter.value;
+        const area = teacherArea.value;
+        const sort = teacherSort.value;
+        const ranks = teacherRankInputs.filter(input =&gt; input.checked).map(input =&gt; input.value);
+        const visibleTeachers = teachers.filter(teacher =&gt; {
+          const searchable = [teacher.name, teacher.email, teacher.title, teacher.role?.text, teacher.focus, teacher.summary, teacher.decision, ...teacher.courses, ...teacher.areas.map(item =&gt; teacherAreaLabels[item])].filter(Boolean).join(&#x27; &#x27;).toLocaleLowerCase(&#x27;zh-CN&#x27;);
+          const matchesQuery = !query || searchable.includes(query);
+          const matchesScope = scope === &#x27;all&#x27; || (scope === &#x27;related&#x27; &amp;&amp; teacher.courses.length &gt; 0) || (scope === &#x27;verified&#x27; &amp;&amp; teacher.status !== &#x27;基础信息&#x27;) || (scope === &#x27;basic&#x27; &amp;&amp; teacher.status === &#x27;基础信息&#x27;);
+          const matchesArea = area === &#x27;all&#x27; || teacher.areas.includes(area);
+          const matchesRank = ranks.length === 0 || ranks.includes(teacherRank(teacher));
+          return matchesQuery &amp;&amp; matchesScope &amp;&amp; matchesArea &amp;&amp; matchesRank;
+        });
+        visibleTeachers.sort((a, b) =&gt; {
+          if (query) {
+            const relevanceDifference = teacherSearchScore(b, query) - teacherSearchScore(a, query);
+            if (relevanceDifference) return relevanceDifference;
+          }
+          return compareTeachers(a, b, sort);
+        });
+        teacherCount.textContent = `显示 ${visibleTeachers.length} 位，共 ${teachers.length} 位`;
+        teacherSortNote.textContent = query ? `已按“${teacherSearch.value.trim()}”的搜索匹配度排列；匹配度相同时，${teacherSortLabels[sort]}` : teacherSortLabels[sort];
+        teacherGrid.innerHTML = visibleTeachers.length ? visibleTeachers.map(teacher =&gt; `
+          &lt;article class=&quot;mf-teacher-card&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;mf-teacher-card-open&quot; data-mf-teacher-open=&quot;${teacher.name}&quot; aria-label=&quot;查看${teacher.name}的教师详情&quot;&gt;
+              &lt;span class=&quot;mf-teacher-identity&quot;&gt;
+                ${teacherPhotoMarkup(teacher)}
+                &lt;span class=&quot;mf-teacher-identity-copy&quot;&gt;
+                  &lt;span class=&quot;mf-teacher-card-head&quot;&gt;
+                    &lt;span class=&quot;mf-teacher-name-line&quot;&gt;
+                      &lt;span class=&quot;mf-teacher-name&quot;&gt;${teacher.name}&lt;/span&gt;
+                      ${teacherAge(teacher) !== null ? `&lt;span class=&quot;mf-teacher-age&quot;&gt;${teacherAge(teacher)}岁&lt;/span&gt;` : &#x27;&#x27;}
+                    &lt;/span&gt;
+                    &lt;span class=&quot;mf-teacher-status ${teacher.status === &#x27;基础信息&#x27; ? &#x27;is-basic&#x27; : &#x27;&#x27;}&quot;&gt;${teacher.status}&lt;/span&gt;
+                  &lt;/span&gt;
+                  &lt;span class=&quot;mf-teacher-title&quot;&gt;${teacher.title}&lt;/span&gt;
+                  ${teacher.role ? `&lt;span class=&quot;mf-teacher-role&quot;&gt;&lt;span&gt;${teacher.role.text}&lt;/span&gt;&lt;/span&gt;` : &#x27;&#x27;}
+                &lt;/span&gt;
+              &lt;/span&gt;
+              &lt;span class=&quot;mf-teacher-focus&quot;&gt;${teacher.focus}&lt;/span&gt;
+              &lt;span class=&quot;mf-teacher-courses&quot;&gt;${teacher.courses.map(course =&gt; `&lt;span class=&quot;mf-teacher-course&quot;&gt;当前课程 · ${course}&lt;/span&gt;`).join(&#x27;&#x27;) || &#x27;&lt;span class=&quot;text-small text-muted&quot;&gt;暂未关联当前课表课程&lt;/span&gt;&#x27;}&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;div class=&quot;mf-teacher-actions&quot;&gt;
+              &lt;a href=&quot;mailto:${teacher.email}&quot;&gt;${teacher.email}&lt;/a&gt;
+              &lt;button type=&quot;button&quot; data-mf-teacher-open=&quot;${teacher.name}&quot;&gt;查看总结 →&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/article&gt;
+        `).join(&#x27;&#x27;) : &#x27;&lt;div class=&quot;mf-teacher-empty&quot;&gt;没有找到符合当前条件的教师，请调整关键词或筛选范围。&lt;/div&gt;&#x27;;
+      }
+
+      teacherSearch.addEventListener(&#x27;input&#x27;, renderTeachers);
+      teacherFilter.addEventListener(&#x27;change&#x27;, renderTeachers);
+      teacherArea.addEventListener(&#x27;change&#x27;, renderTeachers);
+      teacherSort.addEventListener(&#x27;change&#x27;, renderTeachers);
+      teacherRankInputs.forEach(input =&gt; input.addEventListener(&#x27;change&#x27;, renderTeachers));
+      teacherGrid.addEventListener(&#x27;click&#x27;, event =&gt; {
+        const trigger = event.target.closest(&#x27;[data-mf-teacher-open]&#x27;);
+        if (trigger) openTeacherDialog(trigger.dataset.mfTeacherOpen);
+      });
+      teacherDialog.addEventListener(&#x27;click&#x27;, event =&gt; {
+        const externalLink = event.target.closest(&#x27;[data-mf-external-url]&#x27;);
+        if (externalLink) {
+          event.preventDefault();
+          openExternalUrl(externalLink.dataset.mfExternalUrl);
+          return;
+        }
+        if (event.target === teacherDialog || event.target.closest(&#x27;[data-mf-teacher-close]&#x27;)) teacherDialog.close();
+      });
+      renderTeachers();
       const plans = [
         {
           id: &#x27;balanced&#x27;, name: &#x27;均衡通用&#x27;, recommended: true,
@@ -1670,12 +2309,12 @@ html&gt;body{padding:0}&lt;/style&gt;
         },
         {
           id: &#x27;research&#x27;, name: &#x27;量化实证&#x27;,
-          fit: &#x27;实证论文、量化研究、读博&#x27;,
-          summary: &#x27;金融经济学＋法规伦理＋高级计量＋实证方法Ⅱ＋论文写作&#x27;,
-          desc: &#x27;保留高级计量与实证方法Ⅱ两门核心方法课，用秋季法规伦理替换春季专题课，进一步减轻春季负担；总学分为38.5。&#x27;,
-          autumnHours: 276, springHours: 234,
+          fit: &#x27;量化应用、固收投研、资管&#x27;,
+          summary: &#x27;金融经济学＋法规伦理＋债券市场＋实证方法Ⅱ＋论文写作&#x27;,
+          desc: &#x27;保留实证研究方法Ⅱ和量化投资，用债券市场替换高级计量，兼顾量化应用与固定收益；总学分为38。&#x27;,
+          autumnHours: 276, springHours: 226,
           autumn: [[&#x27;硕士研究生英语&#x27;,&#x27;公共基础&#x27;,2],[&#x27;中国式现代化的理论与实践&#x27;,&#x27;公共基础&#x27;,2],[&#x27;投资学&#x27;,&#x27;专业基础&#x27;,3],[&#x27;金融科技导论&#x27;,&#x27;专业基础&#x27;,2],[&#x27;高级公司金融&#x27;,&#x27;专业基础&#x27;,3],[&#x27;金融经济学&#x27;,&#x27;专业选修&#x27;,3],[&#x27;金融法规与伦理&#x27;,&#x27;专业选修&#x27;,2]],
-          spring: [[&#x27;衍生金融工具&#x27;,&#x27;专业基础&#x27;,3],[&#x27;财务报表分析&#x27;,&#x27;专业基础&#x27;,2],[&#x27;高级计量经济学&#x27;,&#x27;专业选修&#x27;,2.5],[&#x27;实证研究方法Ⅱ&#x27;,&#x27;专业选修&#x27;,2],[&#x27;金融硕士学位论文写作&#x27;,&#x27;专业选修·必选&#x27;,1],[&#x27;思政课程三选一&#x27;,&#x27;其他选修·必选&#x27;,1],[&#x27;量化投资&#x27;,&#x27;实践教学&#x27;,3]]
+          spring: [[&#x27;衍生金融工具&#x27;,&#x27;专业基础&#x27;,3],[&#x27;财务报表分析&#x27;,&#x27;专业基础&#x27;,2],[&#x27;债券市场分析与交易策略&#x27;,&#x27;专业选修&#x27;,2],[&#x27;实证研究方法Ⅱ&#x27;,&#x27;专业选修&#x27;,2],[&#x27;金融硕士学位论文写作&#x27;,&#x27;专业选修·必选&#x27;,1],[&#x27;思政课程三选一&#x27;,&#x27;其他选修·必选&#x27;,1],[&#x27;量化投资&#x27;,&#x27;实践教学&#x27;,3]]
         },
         {
           id: &#x27;digital&#x27;, name: &#x27;数字金融&#x27;,
