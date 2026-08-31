@@ -1098,10 +1098,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       --mf-practice: light-dark(#9b6b20, #e0b763);
       --mf-required: light-dark(#567345, #a6c98f);
       --mf-page-pad: clamp(24px, 3.2vw, 46px);
+      --mf-page-inline: clamp(24px, 3.2vw, 46px);
       --mf-card-pad: clamp(22px, 2.6vw, 30px);
-      width: min(100%, 1280px);
+      width: 100%;
       margin-inline: auto;
-      padding: var(--mf-page-pad);
+      padding: 0;
       font-family: &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, sans-serif;
       font-size: 15px;
       line-height: 1.72;
@@ -1308,7 +1309,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
     #mf-course-plans .mf-final-result .viz-stat { border-radius: 8px; }
     @media (max-width: 960px) {
-      #mf-course-plans { --mf-page-pad: 30px 24px 42px; }
+      #mf-course-plans { --mf-page-pad: 30px 24px 42px; --mf-page-inline: 24px; }
       #mf-course-plans .mf-section:nth-child(2) { grid-template-columns: 1fr; gap: 20px; }
       #mf-course-plans .mf-section:nth-child(2) .mf-note { padding-left: 22px; }
       #mf-course-plans .mf-credit-bar { grid-template-columns: repeat(6, minmax(0, 1fr)); }
@@ -1319,7 +1320,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       #mf-course-plans .mf-credit-segment:nth-child(5) { grid-column: span 3; }
     }
     @media (max-width: 760px) {
-      #mf-course-plans { --mf-page-pad: 22px 16px 40px; font-size: 15px; }
+      #mf-course-plans { --mf-page-pad: 22px 16px 40px; --mf-page-inline: 16px; font-size: 15px; }
       #mf-course-plans .mf-stack { gap: 38px; }
       #mf-course-plans .mf-section:first-child { padding: 28px 22px 30px; border-radius: 16px; }
       #mf-course-plans .mf-section:first-child .mf-title-row { gap: 18px; }
@@ -1346,37 +1347,58 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
     #mf-course-plans .mf-app-nav {
       position: sticky;
-      top: 10px;
+      top: 0;
       z-index: 30;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-      margin-bottom: 24px;
-      padding: 7px;
-      border: 1px solid color-mix(in srgb, var(--border) 86%, transparent);
-      border-radius: 12px;
-      background: color-mix(in srgb, var(--background) 90%, transparent);
-      box-shadow: 0 10px 30px light-dark(rgb(33 63 54 / 10%), rgb(0 0 0 / 18%));
-      backdrop-filter: blur(16px);
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-bottom: 1px solid var(--border);
+      border-radius: 0;
+      background: var(--background);
+      box-shadow: none;
+      transform: translateY(0);
+      transition: transform 180ms ease;
+    }
+    #mf-course-plans .mf-app-nav.is-scroll-hidden { transform: translateY(-100%); pointer-events: none; }
+    #mf-course-plans .mf-app-nav-inner {
+      display: flex;
+      gap: 32px;
+      box-sizing: border-box;
+      width: min(100%, 1280px);
+      margin-inline: auto;
+      padding-inline: var(--mf-page-inline);
     }
     #mf-course-plans .mf-app-tab {
-      min-height: 42px;
-      padding: 9px 18px;
-      border: 1px solid transparent;
-      border-radius: 7px;
+      position: relative;
+      min-height: 60px;
+      padding: 12px 0;
+      border: 0;
+      border-radius: 0;
       color: var(--muted-foreground);
       background: transparent;
       font: inherit;
       font-weight: 650;
       cursor: pointer;
-      transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+      transition: color 140ms ease;
     }
+    #mf-course-plans .mf-app-tab::after {
+      content: &quot;&quot;;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 32px;
+      height: 3px;
+      background: transparent;
+      transform: translateX(-50%);
+    }
+    #mf-course-plans .mf-app-tab:hover { color: var(--primary); }
     #mf-course-plans .mf-app-tab[aria-selected=&quot;true&quot;] {
-      border-color: color-mix(in srgb, var(--primary) 62%, var(--border));
-      color: light-dark(#f8f4e9, #10251f);
-      background: var(--primary);
+      color: var(--primary);
+      font-weight: 750;
     }
-    #mf-course-plans .mf-app-tab:focus-visible { outline: 2px solid light-dark(#9f7b3d, #d6b875); outline-offset: 2px; }
+    #mf-course-plans .mf-app-tab[aria-selected=&quot;true&quot;]::after { background: var(--primary); }
+    #mf-course-plans .mf-app-tab:focus-visible { outline: 2px solid light-dark(#9f7b3d, #d6b875); outline-offset: -4px; }
+    #mf-course-plans :is(#mf-course-view, #mf-teacher-view) { box-sizing: border-box; width: min(100%, 1280px); margin-inline: auto; padding: var(--mf-page-pad); }
     #mf-course-plans :is(#mf-course-view, #mf-teacher-view)[hidden] { display: none !important; }
     #mf-course-plans .mf-teacher-view { display: grid; gap: 22px; }
     #mf-course-plans .mf-teacher-hero {
@@ -1479,8 +1501,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       #mf-course-plans .mf-teacher-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 620px) {
-      #mf-course-plans .mf-app-nav { top: 6px; margin-bottom: 18px; padding: 5px; }
-      #mf-course-plans .mf-app-tab { min-height: 40px; padding-inline: 10px; }
+      #mf-course-plans .mf-app-nav-inner { gap: 0; }
+      #mf-course-plans .mf-app-tab { flex: 1; min-height: 54px; padding-inline: 10px; }
       #mf-course-plans .mf-teacher-hero { grid-template-columns: 1fr; align-items: start; padding: 24px 20px; border-radius: 14px; }
       #mf-course-plans .mf-teacher-total { font-size: 22px; }
       #mf-course-plans .mf-teacher-toolbar, #mf-course-plans .mf-teacher-grid { grid-template-columns: 1fr; }
@@ -1499,13 +1521,15 @@ html&gt;body{padding:0}&lt;/style&gt;
     @media (prefers-reduced-motion: reduce) {
       #mf-course-plans .btn, #mf-course-plans .table tbody tr { transition: none; }
       #mf-course-plans .btn:not(:disabled):hover { transform: none; }
-      #mf-course-plans .mf-app-tab, #mf-course-plans .mf-teacher-card { transition: none; }
+      #mf-course-plans .mf-app-nav, #mf-course-plans .mf-app-tab, #mf-course-plans .mf-teacher-card { transition: none; }
     }
   &lt;/style&gt;
 
   &lt;nav class=&quot;mf-app-nav&quot; role=&quot;tablist&quot; aria-label=&quot;金融硕士选课工具&quot;&gt;
+    &lt;div class=&quot;mf-app-nav-inner&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;mf-app-tab&quot; role=&quot;tab&quot; id=&quot;mf-view-tab-courses&quot; data-mf-view=&quot;courses&quot; aria-controls=&quot;mf-course-view&quot; aria-selected=&quot;true&quot; tabindex=&quot;0&quot;&gt;选课&lt;/button&gt;
     &lt;button type=&quot;button&quot; class=&quot;mf-app-tab&quot; role=&quot;tab&quot; id=&quot;mf-view-tab-teachers&quot; data-mf-view=&quot;teachers&quot; aria-controls=&quot;mf-teacher-view&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;教师信息&lt;/button&gt;
+    &lt;/div&gt;
   &lt;/nav&gt;
 
   &lt;div id=&quot;mf-course-view&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;mf-view-tab-courses&quot;&gt;
@@ -1883,6 +1907,55 @@ html&gt;body{padding:0}&lt;/style&gt;
       const tabButtons = [...root.querySelectorAll(&#x27;[data-mf-tab]&#x27;)];
       const tabPanels = [...root.querySelectorAll(&#x27;[data-mf-tab-panel]&#x27;)];
 
+      function setupAutoHideNavigation(nav) {
+        const scrollingElement = document.scrollingElement || document.documentElement;
+        const scrollPosition = () =&gt; Math.max(0, Math.min(window.scrollY, Math.max(0, scrollingElement.scrollHeight - window.innerHeight)));
+        let previousY = scrollPosition();
+        let direction = 0;
+        let distance = 0;
+        let framePending = false;
+
+        function reveal() {
+          nav.classList.remove(&#x27;is-scroll-hidden&#x27;);
+          previousY = scrollPosition();
+          direction = 0;
+          distance = 0;
+        }
+
+        function update() {
+          framePending = false;
+          const currentY = scrollPosition();
+          const delta = currentY - previousY;
+          previousY = currentY;
+          // Keep the top of the page and keyboard navigation accessible.
+          if (currentY &lt;= nav.offsetHeight || nav.querySelector(&#x27;:focus-visible&#x27;)) {
+            reveal();
+            return;
+          }
+          if (delta === 0) return;
+          const nextDirection = Math.sign(delta);
+          if (nextDirection !== direction) distance = 0;
+          direction = nextDirection;
+          distance += Math.abs(delta);
+          // Reading down hides after 24px; returning up reveals after 12px.
+          if (distance &gt;= (direction &gt; 0 ? 24 : 12)) {
+            nav.classList.toggle(&#x27;is-scroll-hidden&#x27;, direction &gt; 0);
+            distance = 0;
+          }
+        }
+
+        window.addEventListener(&#x27;scroll&#x27;, () =&gt; {
+          if (framePending) return;
+          framePending = true;
+          window.requestAnimationFrame(update);
+        }, { passive: true });
+        window.addEventListener(&#x27;resize&#x27;, reveal);
+        nav.addEventListener(&#x27;focusin&#x27;, reveal);
+        return reveal;
+      }
+
+      const revealAppNavigation = setupAutoHideNavigation(root.querySelector(&#x27;.mf-app-nav&#x27;));
+
       function activateAppView(viewId, moveToView = false) {
         appViewButtons.forEach(button =&gt; {
           const active = button.dataset.mfView === viewId;
@@ -1890,8 +1963,9 @@ html&gt;body{padding:0}&lt;/style&gt;
           button.tabIndex = active ? 0 : -1;
         });
         Object.entries(appViews).forEach(([id, view]) =&gt; { view.hidden = id !== viewId; });
+        revealAppNavigation();
         if (moveToView) {
-          root.querySelector(&#x27;.mf-app-nav&#x27;)?.scrollIntoView({ behavior: matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches ? &#x27;auto&#x27; : &#x27;smooth&#x27;, block: &#x27;start&#x27; });
+          window.scrollTo({ top: 0, behavior: matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches ? &#x27;auto&#x27; : &#x27;smooth&#x27; });
         }
       }
 
