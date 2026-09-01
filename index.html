@@ -911,7 +911,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 --&gt;
 &lt;div id=&quot;mf-course-plans&quot;&gt;
   &lt;style&gt;
-    #mf-course-plans { --mf-degree: var(--red); --mf-elective: color-mix(in srgb, var(--blue) 72%, var(--green)); --mf-other: var(--purple); --mf-practice: var(--yellow); --mf-required: var(--green); --mf-course-degree: light-dark(#58727b, #8fa9b2); --mf-course-elective: light-dark(#237d68, #55c6a9); --mf-course-other: light-dark(#7257a5, #b197e8); --mf-course-practice: light-dark(#9c6c19, #e2b85b); --mf-course-required: light-dark(#5e803c, #9bcb73); box-sizing: border-box; color: var(--foreground); }
+    #mf-course-plans { --mf-degree: var(--red); --mf-elective: color-mix(in srgb, var(--blue) 72%, var(--green)); --mf-other: var(--purple); --mf-practice: var(--yellow); --mf-required: var(--green); --mf-course-degree: light-dark(#58727b, #8fa9b2); --mf-course-public: light-dark(#496bb5, #7f9fe3); --mf-course-foundation: light-dark(#b65f2f, #eb9858); --mf-course-elective: light-dark(#177b5f, #4fd0a5); --mf-course-other: light-dark(#7253a1, #b197df); --mf-course-practice: light-dark(#946b0e, #e6c84f); --mf-course-required: light-dark(#527a31, #94c46b); box-sizing: border-box; color: var(--foreground); }
     #mf-course-plans h1, #mf-course-plans h2, #mf-course-plans h3, #mf-course-plans strong { font-weight: 500; }
     #mf-course-plans .mf-stack { display: grid; gap: 24px; }
     #mf-course-plans .mf-section { display: grid; gap: 12px; }
@@ -1065,7 +1065,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       #mf-course-plans .mf-class-room, #mf-course-plans .mf-class-schedule { display: -webkit-box; -webkit-box-orient: vertical; white-space: normal; overflow-wrap: anywhere; }
       #mf-course-plans .mf-class-room { -webkit-line-clamp: 2; }
       #mf-course-plans .mf-class-schedule span { display: inline; white-space: normal; }
-      #mf-course-plans .mf-class-schedule span + span::before { content: '；'; }
+      #mf-course-plans .mf-class-schedule span + span::before { content: &#x27;；&#x27;; }
     }
 
     /* Editorial handbook visual system: warm paper, ink green, restrained brass. */
@@ -1523,6 +1523,229 @@ html&gt;body{padding:0}&lt;/style&gt;
       #mf-course-plans .btn:not(:disabled):hover { transform: none; }
       #mf-course-plans .mf-app-nav, #mf-course-plans .mf-app-tab, #mf-course-plans .mf-teacher-card { transition: none; }
     }
+    #mf-course-view &gt; .mf-stack { display: none; }
+    #mf-planner-workspace { display: grid; gap: 20px; }
+    #mf-planner-workspace * { box-sizing: border-box; }
+    .planner-hero { padding: 24px; border: 1px solid var(--mf-border); border-radius: 18px; background: linear-gradient(135deg, rgba(129,214,190,.11), rgba(255,255,255,.02)); }
+    .planner-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; }
+    .planner-heading h1 { margin: 5px 0 8px; }
+    .planner-kicker { color: var(--mf-accent); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .planner-heading-actions { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .planner-reset, .planner-ghost-btn, .planner-add-btn, .planner-remove, .planner-filter { font: inherit; color: inherit; cursor:pointer; }
+    .planner-reset, .planner-ghost-btn { border:1px solid var(--mf-border); border-radius:10px; background:rgba(255,255,255,.035); padding:9px 12px; }
+    .planner-reset:hover, .planner-ghost-btn:hover { border-color:var(--mf-accent); }
+    .planner-metrics { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px; margin-top:20px; }
+    .planner-metric { min-width:0; padding:13px 14px; border:1px solid var(--mf-border); border-radius:12px; background:rgba(0,0,0,.12); }
+    .planner-metric span { display:block; color:var(--mf-muted); font-size:12px; }
+    .planner-metric strong { display:block; margin-top:5px; font-size:20px; }
+    .planner-metric[data-state=&quot;bad&quot;] strong { color:#f3a899; }
+    .planner-metric[data-state=&quot;ok&quot;] strong { color:var(--mf-accent); }
+    .planner-status { margin-top:12px; padding:10px 12px; border-radius:10px; background:rgba(129,214,190,.1); color:var(--mf-accent); font-size:13px; }
+    .planner-status[data-state=&quot;warning&quot;] { background:rgba(226,181,100,.12); color:#e9c787; }
+    .planner-editor { display:grid; grid-template-columns:minmax(255px,.78fr) minmax(0,1fr) minmax(0,1fr); gap:14px; align-items:start; }
+    .planner-panel { display:flex; flex-direction:column; min-width:0; border:1px solid color-mix(in srgb,var(--mf-border) 88%,#26352f); border-radius:16px; background:#14251f; overflow:hidden; }
+    .planner-panel-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:16px; border-bottom:1px solid var(--mf-border); }
+    .planner-panel-head h2 { margin:0; font-size:17px; }
+    .planner-term-total { padding:4px 8px; border-radius:999px; background:rgba(129,214,190,.12); color:var(--mf-accent); font-size:12px; font-weight:800; white-space:nowrap; }
+    .planner-pool-tools { padding:12px; border-bottom:1px solid var(--mf-border); }
+    .planner-pool { min-height:0; }
+    .planner-pool .planner-list { flex:1 1 auto; height:0; min-height:0; max-height:none; grid-template-columns:minmax(0,1fr); overflow-x:hidden; overflow-y:auto; scrollbar-gutter:stable; overscroll-behavior:contain; }
+    .planner-pool .planner-list::-webkit-scrollbar { width:10px; }
+    .planner-pool .planner-list::-webkit-scrollbar-track { background:rgb(0 0 0 / 8%); }
+    .planner-pool .planner-list::-webkit-scrollbar-thumb { border:2px solid #14251f; border-radius:999px; background:color-mix(in srgb,var(--mf-accent) 36%,#30443d); }
+    .planner-pool-scroll-hint { position:relative; flex:0 0 auto; padding:9px 14px 11px; border-top:1px solid var(--mf-border); background:linear-gradient(180deg,color-mix(in srgb,var(--mf-accent) 5%,#14251f),#14251f); color:var(--mf-muted); font-size:11px; line-height:1.35; text-align:center; }
+    .planner-pool-scroll-hint::before { content:&#x27;&#x27;; position:absolute; right:0; bottom:100%; left:0; height:18px; pointer-events:none; background:linear-gradient(180deg,transparent,#14251f); }
+    .planner-pool-scroll-hint strong { color:var(--mf-accent); font-weight:800; }
+    .planner-search { width:100%; border:1px solid var(--mf-border); border-radius:10px; background:rgba(0,0,0,.14); color:inherit; padding:10px 11px; outline:none; }
+    .planner-search:focus { border-color:var(--mf-accent); }
+    .planner-filters { display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; }
+    .planner-filter { border:1px solid var(--mf-border); border-radius:999px; background:transparent; padding:5px 9px; font-size:12px; }
+    .planner-filter[aria-pressed=&quot;true&quot;] { border-color:var(--mf-accent); background:rgba(129,214,190,.12); color:var(--mf-accent); }
+    .planner-list { display:grid; gap:9px; padding:12px; max-height:690px; overflow:auto; }
+    .planner-dropzone { flex:1 1 auto; align-content:start; min-height:620px; max-height:none; overflow:visible; transition:border-color .16s, background .16s; }
+    .planner-dropzone.is-over { background:rgba(129,214,190,.08); box-shadow:inset 0 0 0 1px var(--mf-accent); }
+    .planner-dropzone.is-denied { background:rgba(238,139,124,.07); box-shadow:inset 0 0 0 1px #d98a7d; }
+    .course-card { --course-color:var(--mf-course-elective); --course-surface-strength:18%; position:relative; border:1px solid color-mix(in oklab,var(--course-color) 46%,var(--mf-border)); border-left:4px solid var(--course-color); border-radius:10px; background:color-mix(in oklab,var(--course-color) var(--course-surface-strength),#10211c); box-shadow:inset 0 1px rgb(255 255 255 / 3%); padding:12px; transition:background .16s,border-color .16s,box-shadow .16s; }
+    .course-card:hover { background:color-mix(in oklab,var(--course-color) calc(var(--course-surface-strength) + 3%),#10211c); box-shadow:inset 0 1px rgb(255 255 255 / 5%),0 5px 16px rgb(0 0 0 / 13%); }
+    .course-card.type-public, .week-event.type-public, .planner-legend-item.type-public { --course-color:var(--mf-course-public); --course-surface-strength:14%; --week-surface-strength:35%; }
+    .course-card.type-foundation, .week-event.type-foundation, .planner-legend-item.type-foundation { --course-color:var(--mf-course-foundation); --course-surface-strength:18%; --week-surface-strength:48%; }
+    .course-card.type-elective, .week-event.type-elective, .planner-legend-item.type-elective { --course-color:var(--mf-course-elective); --course-surface-strength:17%; --week-surface-strength:42%; }
+    .course-card.type-other, .week-event.type-other, .planner-legend-item.type-other { --course-color:var(--mf-course-other); --course-surface-strength:14%; --week-surface-strength:30%; }
+    .course-card.type-practice, .week-event.type-practice, .planner-legend-item.type-practice { --course-color:var(--mf-course-practice); --course-surface-strength:18%; --week-surface-strength:46%; }
+    .course-card.type-required, .week-event.type-required, .planner-legend-item.type-required { --course-color:var(--mf-course-required); --course-surface-strength:13%; --week-surface-strength:30%; }
+    .selected-course-card.type-public { --course-surface-strength:17%; }
+    .selected-course-card.type-foundation { --course-surface-strength:21%; }
+    .selected-course-card.type-elective { --course-surface-strength:20%; }
+    .selected-course-card.type-other { --course-surface-strength:17%; }
+    .selected-course-card.type-practice { --course-surface-strength:21%; }
+    .selected-course-card.type-required { --course-surface-strength:16%; }
+    .course-card[draggable=&quot;true&quot;] { cursor:grab; }
+    .course-card[draggable=&quot;true&quot;]:active { cursor:grabbing; }
+    .course-card.is-dragging { opacity:.46; }
+    .course-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+    .candidate-card-top { align-items:center; min-width:0; }
+    .candidate-card-top .course-credit { flex:0 0 auto; }
+    .candidate-card-identity { display:flex; flex:1 1 auto; align-items:center; gap:7px; min-width:0; overflow:hidden; }
+    #mf-course-plans .candidate-card-identity h3 { flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; text-wrap:nowrap; white-space:nowrap; }
+    .course-card h3 { margin:0; color:rgb(250 252 251 / 96%); font-size:14px; line-height:1.45; }
+    .course-credit { color:rgb(250 252 251 / 94%); font-size:12px; font-weight:800; white-space:nowrap; }
+    .course-meta { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
+    .course-tag { flex:0 0 auto; padding:3px 6px; border:1px solid color-mix(in oklab,var(--course-color) 58%,transparent); border-radius:6px; background:color-mix(in oklab,var(--course-color) 22%,transparent); color:color-mix(in oklab,var(--course-color) 66%,white); font-size:11px; font-weight:650; white-space:nowrap; }
+    .course-tag.term-tag { flex:0 0 auto; border-color:color-mix(in srgb,var(--mf-muted) 34%,transparent); background:rgb(255 255 255 / 4%); color:rgb(240 245 242 / 72%); font-size:10px; }
+    .course-tag.required { color:#efb3a4; background:rgba(239,179,164,.09); }
+    .course-detail { margin-top:8px; color:rgb(247 249 248 / 80%); font-size:11px; line-height:1.55; }
+    .selected-course-card { display:grid; gap:9px; padding:11px 12px; }
+    .selected-card-row { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:10px; min-width:0; }
+    .selected-card-identity { display:flex; align-items:center; gap:7px; min-width:0; overflow:hidden; }
+    #mf-course-plans .selected-card-identity h3 { flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; text-wrap:nowrap; white-space:nowrap; }
+    .selected-card-detail { min-width:0; overflow:hidden; color:rgb(247 249 248 / 82%); font-size:11px; line-height:1.35; text-overflow:ellipsis; white-space:nowrap; }
+    .selected-card-controls { display:flex; align-items:center; justify-content:flex-end; gap:7px; min-width:0; }
+    .selected-card-controls .section-select { width:min(220px,19vw); min-width:150px; margin:0; }
+    .selected-card-controls .planner-remove { position:static !important; flex:0 0 auto; width:26px; height:26px; border:1px solid transparent; border-radius:7px; padding:0; }
+    .selected-card-controls .planner-remove:hover { border-color:color-mix(in srgb,#f0aa9e 45%,transparent); background:rgba(240,170,158,.08); }
+    .selected-section-row { grid-template-columns:minmax(0,1fr); }
+    .selected-section-row .selected-card-controls { width:100%; }
+    .selected-section-row .section-select { flex:1 1 auto; width:100%; min-width:0; max-width:none; }
+    .course-actions { display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; }
+    .planner-add-btn { flex:1; min-width:75px; border:1px solid var(--mf-border); border-radius:8px; background:rgba(129,214,190,.08); padding:7px 8px; font-size:12px; }
+    .planner-add-btn:hover:not(:disabled) { border-color:var(--mf-accent); color:var(--mf-accent); }
+    .planner-add-btn:disabled { opacity:.36; cursor:not-allowed; }
+    .planner-remove { border:0; background:transparent; color:var(--mf-muted); padding:0 2px; font-size:18px; line-height:1; }
+    .planner-remove:hover { color:#f0aa9e; }
+    .section-select { width:100%; margin-top:9px; border:1px solid color-mix(in oklab,var(--course-color) 32%,var(--mf-border)); border-radius:8px; background:rgb(10 29 23 / 58%); color:rgb(250 252 251 / 92%); padding:8px; font-size:12px; }
+    @media (prefers-color-scheme: light) {
+      .planner-panel { background:#f4f4ef; }
+      .planner-pool .planner-list::-webkit-scrollbar-track { background:rgb(20 47 39 / 5%); }
+      .planner-pool .planner-list::-webkit-scrollbar-thumb { border-color:#f4f4ef; background:color-mix(in srgb,var(--mf-accent) 42%,#bccbc4); }
+      .planner-pool-scroll-hint { background:linear-gradient(180deg,color-mix(in srgb,var(--mf-accent) 5%,#f4f4ef),#f4f4ef); }
+      .planner-pool-scroll-hint::before { background:linear-gradient(180deg,transparent,#f4f4ef); }
+      .course-card { background:color-mix(in oklab,var(--course-color) 8%,#fffdf8); }
+      .course-card:hover { background:color-mix(in oklab,var(--course-color) 11%,#fffdf8); }
+      .course-card h3, .course-credit { color:rgb(24 36 31 / 94%); }
+      .course-detail, .selected-card-detail { color:rgb(29 43 37 / 76%); }
+      .course-tag.term-tag { border-color:rgb(31 61 51 / 18%); background:rgb(31 61 51 / 5%); color:rgb(29 43 37 / 68%); }
+      .section-select { background:rgb(255 255 255 / 80%); color:rgb(24 36 31 / 94%); }
+    }
+    .course-lock { color:var(--mf-muted); font-size:12px; }
+    .planner-empty { border:1px dashed var(--mf-border); border-radius:11px; padding:20px 12px; text-align:center; color:var(--mf-muted); font-size:12px; }
+    .planner-timetable { border:1px solid var(--mf-border); border-radius:16px; background:rgba(255,255,255,.025); overflow:hidden; }
+    .planner-timetable-head { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:17px 18px; border-bottom:1px solid var(--mf-border); }
+    .planner-timetable-head h2 { margin:0 0 4px; font-size:18px; }
+    .planner-timetable-head p { margin:0; color:var(--mf-muted); font-size:12px; }
+    .planner-week-select { border:1px solid var(--mf-border); border-radius:9px; background:#13251f; color:inherit; padding:8px 10px; }
+    .week-grid-wrap { overflow:auto; padding:14px; }
+    .planner-legend { display:flex; flex-wrap:wrap; align-items:center; gap:8px 15px; padding:11px 18px; border-bottom:1px solid var(--mf-border); background:rgba(0,0,0,.08); }
+    .planner-legend-label { color:var(--mf-muted); font-size:12px; }
+    .planner-legend-item { --course-color:var(--mf-course-elective); display:inline-flex; align-items:center; gap:6px; font-size:12px; }
+    .planner-legend-swatch { width:12px; height:12px; border:1px solid color-mix(in srgb,var(--course-color) 80%,white); border-radius:3px; background:color-mix(in srgb,var(--course-color) 68%,transparent); box-shadow:0 0 0 2px color-mix(in srgb,var(--course-color) 12%,transparent); }
+    .week-grid { display:grid; grid-template-columns:64px repeat(5,minmax(150px,1fr)); grid-template-rows:40px repeat(11,54px); min-width:860px; position:relative; border-top:1px solid var(--mf-border); border-left:1px solid var(--mf-border); }
+    .week-cell { border-right:1px solid var(--mf-border); border-bottom:1px solid var(--mf-border); padding:6px; font-size:11px; color:var(--mf-muted); }
+    .week-head { display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--mf-text); background:color-mix(in srgb,var(--mf-accent) 14%,rgba(255,255,255,.02)); }
+    .week-period { text-align:center; font-size:10px; }
+    .week-event { --course-color:var(--mf-course-elective); --week-surface-strength:42%; z-index:2; display:grid; align-content:start; gap:3px; margin:3px; padding:6px 7px; overflow:hidden; border:1px solid color-mix(in srgb,var(--course-color) 68%,var(--mf-border)); border-left:5px solid var(--course-color); border-radius:6px; background:color-mix(in srgb,var(--course-color) var(--week-surface-strength),#10231e); color:#f7fbf9; box-shadow:0 4px 12px color-mix(in srgb,var(--course-color) 12%,transparent); font-size:9px; line-height:1.2; }
+    .week-event strong { display:block; min-width:0; overflow:hidden; font-size:11px; text-overflow:ellipsis; white-space:nowrap; }
+    .week-event small { display:block; min-width:0; overflow:hidden; opacity:.75; text-overflow:ellipsis; white-space:nowrap; }
+    .week-event-category { width:max-content; max-width:100%; padding:1px 4px; overflow:hidden; border:1px solid color-mix(in srgb,var(--course-color) 58%,transparent); border-radius:999px; background:color-mix(in srgb,var(--course-color) 18%,transparent); color:color-mix(in srgb,var(--course-color) 74%,white); font-size:8px; font-weight:750; text-overflow:ellipsis; white-space:nowrap; }
+    .week-event.is-conflict { outline:2px solid #e68c7c; outline-offset:1px; }
+    .planner-pending { padding:0 18px 16px; color:var(--mf-muted); font-size:12px; }
+    .planner-cultivation { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; }
+    .cultivation-card { border:1px solid var(--mf-border); border-radius:12px; background:rgba(255,255,255,.025); padding:13px; }
+    .cultivation-card strong { display:block; font-size:13px; }
+    .cultivation-card span { display:block; color:var(--mf-muted); font-size:11px; margin-top:5px; }
+    .credit-map-panel { overflow:hidden; border:1px solid var(--mf-border); border-radius:16px; background:#14251f; }
+    .credit-map-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding:18px 20px; border-bottom:1px solid var(--mf-border); }
+    .credit-map-head h2 { margin:0 0 5px; font-size:19px; }
+    .credit-map-head p { margin:0; color:var(--mf-muted); font-size:12px; }
+    .credit-map-canvas { padding:24px 20px 22px; }
+    .credit-map-root { width:max-content; max-width:100%; margin:0 auto 34px; padding:13px 22px; border:1px solid color-mix(in srgb,var(--mf-accent) 55%,var(--mf-border)); border-radius:10px; background:color-mix(in srgb,var(--mf-accent) 16%,#10211c); text-align:center; }
+    .credit-map-root strong { display:block; font-size:18px; }
+    .credit-map-root span { display:block; margin-top:3px; color:var(--mf-muted); font-size:11px; }
+    .credit-map-branches { position:relative; display:grid; grid-template-columns:1.5fr .72fr .9fr; gap:16px; }
+    .credit-map-branches::before { content:&#x27;&#x27;; position:absolute; top:-18px; left:16.5%; right:13.5%; border-top:1px solid color-mix(in srgb,var(--mf-accent) 40%,var(--mf-border)); }
+    .credit-map-branch { --branch-color:var(--mf-course-degree); position:relative; min-width:0; padding:15px; border:1px solid color-mix(in oklab,var(--branch-color) 38%,var(--mf-border)); border-top:4px solid var(--branch-color); border-radius:11px; background:color-mix(in oklab,var(--branch-color) 10%,#10211c); }
+    .credit-map-branch::before { content:&#x27;&#x27;; position:absolute; top:-22px; left:50%; height:18px; border-left:1px solid color-mix(in srgb,var(--mf-accent) 40%,var(--mf-border)); }
+    .credit-map-branch.is-practice { --branch-color:var(--mf-course-practice); }
+    .credit-map-branch.is-required { --branch-color:var(--mf-course-required); }
+    .credit-map-title { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:11px; }
+    .credit-map-title strong { font-size:14px; }
+    .credit-map-value { color:color-mix(in oklab,var(--branch-color) 72%,white); font-weight:800; white-space:nowrap; }
+    .credit-map-node.is-short { border-color:#dc8d80; box-shadow:inset 0 0 0 1px rgb(220 141 128 / 18%); }
+    .credit-map-node.is-short .credit-map-value { color:#f0a99d; }
+    .credit-map-subgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .credit-map-column { min-width:0; padding:10px; border:1px solid rgb(255 255 255 / 7%); border-radius:10px; background:rgb(0 0 0 / 9%); }
+    .credit-map-column-title { display:flex; justify-content:space-between; gap:8px; margin-bottom:9px; color:rgb(248 251 249 / 92%); font-size:12px; font-weight:750; }
+    .credit-map-column-title span:last-child { color:var(--mf-accent); white-space:nowrap; }
+    .credit-map-column .credit-map-group + .credit-map-group { margin-top:8px; }
+    .credit-map-group { --group-color:var(--mf-course-degree); min-width:0; padding:11px; border:1px solid color-mix(in oklab,var(--group-color) 30%,var(--mf-border)); border-radius:9px; background:rgb(7 23 18 / 32%); }
+    .credit-map-group.is-public { --group-color:var(--mf-course-public); }
+    .credit-map-group.is-foundation { --group-color:var(--mf-course-foundation); }
+    .credit-map-group.is-elective { --group-color:var(--mf-course-elective); }
+    .credit-map-group.is-other { --group-color:var(--mf-course-other); margin-top:10px; }
+    .credit-map-group-head { display:flex; justify-content:space-between; gap:8px; margin-bottom:8px; font-size:12px; }
+    .credit-map-group-head span:last-child { color:color-mix(in oklab,var(--group-color) 70%,white); font-weight:800; white-space:nowrap; }
+    .credit-map-leaves { display:flex; flex-wrap:wrap; gap:6px; }
+    .credit-map-leaf { padding:5px 7px; border:1px solid color-mix(in oklab,var(--group-color) 38%,transparent); border-radius:6px; background:color-mix(in oklab,var(--group-color) 13%,transparent); color:rgb(248 251 249 / 90%); font-size:10px; line-height:1.25; }
+    .credit-map-leaf small { color:color-mix(in oklab,var(--group-color) 66%,white); font-size:9px; }
+    .credit-map-stack { display:grid; gap:6px; }
+    .credit-map-stack .credit-map-leaf { display:flex; justify-content:space-between; gap:8px; }
+    .credit-map-note { margin-top:10px; color:var(--mf-muted); font-size:10px; line-height:1.45; }
+    .planner-toast { position:fixed; z-index:1000; left:50%; bottom:24px; transform:translate(-50%,12px); max-width:min(520px,calc(100vw - 32px)); padding:11px 15px; border:1px solid var(--mf-border); border-radius:10px; background:#162a24; color:#f5fbf8; box-shadow:0 12px 40px rgba(0,0,0,.32); opacity:0; pointer-events:none; transition:.18s ease; }
+    .planner-toast.show { opacity:1; transform:translate(-50%,0); }
+    .planner-toast.error { border-color:#c77c70; }
+    @media (max-width: 1050px) {
+      .planner-metrics { grid-template-columns:repeat(3,1fr); }
+      .planner-editor { grid-template-columns:1fr 1fr; }
+      .planner-pool { grid-column:1 / -1; }
+      .planner-panel { height:auto !important; }
+      .planner-pool .planner-list { flex:none; height:auto; grid-template-columns:repeat(2,minmax(0,1fr)); max-height:none; overflow:visible; }
+      .planner-pool-scroll-hint { display:none !important; }
+      .planner-cultivation { grid-template-columns:repeat(3,1fr); }
+      .credit-map-branches { grid-template-columns:1fr; }
+      .credit-map-branches::before, .credit-map-branch::before { display:none; }
+      .credit-map-root { margin-bottom:14px; }
+    }
+    @media (max-width: 700px) {
+      .planner-heading { display:block; }
+      .planner-heading-actions { justify-content:flex-start; margin-top:14px; }
+      .planner-metrics { grid-template-columns:repeat(2,1fr); }
+      .planner-editor { grid-template-columns:1fr; }
+      .planner-pool { grid-column:auto; }
+      .planner-pool .planner-list { grid-template-columns:minmax(0,1fr); }
+      .planner-dropzone { min-height:180px; }
+      .planner-cultivation { grid-template-columns:1fr 1fr; }
+      .planner-timetable-head { align-items:flex-start; flex-direction:column; }
+      .planner-search, .planner-filter, .planner-reset, .planner-ghost-btn, .planner-add-btn, .planner-week-select, .section-select { min-height:44px; }
+      .planner-filter { padding:9px 11px; }
+      .planner-add-btn { padding:10px 8px; }
+      .selected-card-row { gap:7px; }
+      .selected-card-identity { gap:5px; }
+      .selected-card-identity h3 { font-size:13px; }
+      .selected-card-controls .section-select { width:145px; min-width:120px; }
+      .selected-section-row .section-select { width:100%; min-width:0; }
+      .selected-card-controls .planner-remove { width:44px; height:44px; font-size:20px; }
+      .planner-legend { gap:7px 10px; padding:9px 12px; }
+      .planner-legend-label { flex-basis:100%; }
+      .week-grid-wrap { overflow-x:auto; overflow-y:hidden; padding:10px 8px 14px; overscroll-behavior-x:contain; scroll-behavior:smooth; scrollbar-width:thin; touch-action:pan-x; -webkit-overflow-scrolling:touch; }
+      .week-grid { width:760px; min-width:760px; grid-template-columns:48px repeat(5,minmax(140px,1fr)); grid-template-rows:36px repeat(11,54px); }
+      .week-cell { padding:5px 4px; font-size:10px; }
+      .week-grid &gt; .week-head:first-child, .week-period { position:sticky; left:0; z-index:4; background:#14251f; box-shadow:1px 0 0 var(--mf-border); }
+      .week-grid &gt; .week-head:first-child { z-index:5; background:color-mix(in srgb,var(--mf-accent) 14%,#14251f); }
+      .week-period { padding-inline:2px; font-size:9px; }
+      .week-event { gap:2px; margin:2px; padding:5px 6px; border-left-width:4px; border-radius:5px; box-shadow:none; font-size:9px; line-height:1.18; }
+      .week-event-category { max-width:100%; padding:1px 3px; font-size:8px; }
+      .week-event strong { display:block; overflow:hidden; font-size:11px; line-height:1.18; text-overflow:ellipsis; white-space:nowrap; }
+      .week-event small { display:block; overflow:hidden; font-size:8px; line-height:1.15; text-overflow:ellipsis; white-space:nowrap; }
+      .credit-map-head { display:block; padding:16px; }
+      .credit-map-canvas { padding:16px 12px; }
+      .credit-map-root { width:100%; }
+      .credit-map-branch { padding:12px; }
+      .credit-map-subgrid { grid-template-columns:1fr; }
+      .credit-map-group.is-other { margin-top:0; }
+    }
+    @media (max-width: 700px) and (prefers-color-scheme: light) {
+      .week-grid &gt; .week-head:first-child, .week-period { background:#f4f4ef; }
+      .week-grid &gt; .week-head:first-child { background:color-mix(in srgb,var(--mf-accent) 14%,#f4f4ef); }
+    }
   &lt;/style&gt;
 
   &lt;nav class=&quot;mf-app-nav&quot; role=&quot;tablist&quot; aria-label=&quot;金融硕士选课工具&quot;&gt;
@@ -1533,6 +1756,106 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;/nav&gt;
 
   &lt;div id=&quot;mf-course-view&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;mf-view-tab-courses&quot;&gt;
+  &lt;main id=&quot;mf-planner-workspace&quot; aria-labelledby=&quot;planner-main-title&quot;&gt;
+    &lt;section class=&quot;planner-hero&quot;&gt;
+      &lt;div class=&quot;planner-heading&quot;&gt;
+        &lt;div&gt;
+          &lt;div class=&quot;planner-kicker&quot;&gt;量化实证 · 当前预设&lt;/div&gt;
+          &lt;h1 id=&quot;planner-main-title&quot;&gt;从预设方案开始调整课程&lt;/h1&gt;
+          &lt;div class=&quot;text-muted&quot;&gt;先保留量化实证主线，再从候选课池增删课程；教学班和时间冲突会在这里直接校验。&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;planner-heading-actions&quot;&gt;
+          &lt;button type=&quot;button&quot; class=&quot;planner-ghost-btn&quot; id=&quot;planner-export&quot;&gt;复制课程清单&lt;/button&gt;
+          &lt;button type=&quot;button&quot; class=&quot;planner-reset&quot; id=&quot;planner-reset&quot;&gt;恢复量化预设&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;planner-metrics&quot; id=&quot;planner-metrics&quot; aria-label=&quot;培养要求完成情况&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;planner-status&quot; id=&quot;planner-status&quot; role=&quot;status&quot;&gt;&lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section class=&quot;planner-editor&quot; aria-label=&quot;课程调整工作区&quot;&gt;
+      &lt;aside class=&quot;planner-panel planner-pool&quot;&gt;
+        &lt;div class=&quot;planner-panel-head&quot;&gt;
+          &lt;h2&gt;候选课池&lt;/h2&gt;
+          &lt;span class=&quot;planner-term-total&quot; id=&quot;planner-pool-count&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;planner-pool-tools&quot;&gt;
+          &lt;input class=&quot;planner-search&quot; id=&quot;planner-search&quot; type=&quot;search&quot; placeholder=&quot;搜索课程名称&quot; aria-label=&quot;搜索候选课程&quot;&gt;
+          &lt;div class=&quot;planner-filters&quot; id=&quot;planner-filters&quot; aria-label=&quot;候选课程分类&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;planner-list&quot; id=&quot;planner-pool-list&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;planner-pool-scroll-hint&quot; id=&quot;planner-pool-scroll-hint&quot; aria-live=&quot;polite&quot; hidden&gt;&lt;/div&gt;
+      &lt;/aside&gt;
+
+      &lt;section class=&quot;planner-panel&quot;&gt;
+        &lt;div class=&quot;planner-panel-head&quot;&gt;
+          &lt;h2&gt;秋季&lt;/h2&gt;
+          &lt;span class=&quot;planner-term-total&quot; id=&quot;planner-autumn-total&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;planner-list planner-dropzone&quot; id=&quot;planner-autumn&quot; data-term=&quot;autumn&quot; aria-label=&quot;秋季课程，支持拖入&quot;&gt;&lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section class=&quot;planner-panel&quot;&gt;
+        &lt;div class=&quot;planner-panel-head&quot;&gt;
+          &lt;h2&gt;春季&lt;/h2&gt;
+          &lt;span class=&quot;planner-term-total&quot; id=&quot;planner-spring-total&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;planner-list planner-dropzone&quot; id=&quot;planner-spring&quot; data-term=&quot;spring&quot; aria-label=&quot;春季课程，支持拖入&quot;&gt;&lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/section&gt;
+
+    &lt;section class=&quot;planner-timetable&quot; aria-labelledby=&quot;planner-week-title&quot;&gt;
+      &lt;div class=&quot;planner-timetable-head&quot;&gt;
+        &lt;div&gt;
+          &lt;h2 id=&quot;planner-week-title&quot;&gt;周课表&lt;/h2&gt;
+          &lt;p&gt;随课程与教学班选择同步更新；春季正式教学班未发布前只显示待确认状态。&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;&gt;
+          &lt;select class=&quot;planner-week-select&quot; id=&quot;planner-term-view&quot; aria-label=&quot;选择课表学期&quot;&gt;&lt;option value=&quot;autumn&quot;&gt;秋季&lt;/option&gt;&lt;option value=&quot;spring&quot;&gt;春季&lt;/option&gt;&lt;/select&gt;
+          &lt;select class=&quot;planner-week-select&quot; id=&quot;planner-week&quot; aria-label=&quot;选择课表周次&quot;&gt;&lt;/select&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;planner-legend&quot; aria-label=&quot;课程类别颜色说明&quot;&gt;
+        &lt;span class=&quot;planner-legend-label&quot;&gt;颜色表示课程性质与重要层级&lt;/span&gt;
+        &lt;span class=&quot;planner-legend-item type-public&quot;&gt;&lt;i class=&quot;planner-legend-swatch&quot;&gt;&lt;/i&gt;公共基础&lt;/span&gt;
+        &lt;span class=&quot;planner-legend-item type-foundation&quot;&gt;&lt;i class=&quot;planner-legend-swatch&quot;&gt;&lt;/i&gt;专业基础&lt;/span&gt;
+        &lt;span class=&quot;planner-legend-item type-elective&quot;&gt;&lt;i class=&quot;planner-legend-swatch&quot;&gt;&lt;/i&gt;专业选修&lt;/span&gt;
+        &lt;span class=&quot;planner-legend-item type-other&quot;&gt;&lt;i class=&quot;planner-legend-swatch&quot;&gt;&lt;/i&gt;其他选修&lt;/span&gt;
+        &lt;span class=&quot;planner-legend-item type-practice&quot;&gt;&lt;i class=&quot;planner-legend-swatch&quot;&gt;&lt;/i&gt;实践教学&lt;/span&gt;
+        &lt;span class=&quot;planner-legend-item type-required&quot;&gt;&lt;i class=&quot;planner-legend-swatch&quot;&gt;&lt;/i&gt;素质教育&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;week-grid-wrap&quot;&gt;&lt;div class=&quot;week-grid&quot; id=&quot;planner-week-grid&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;div class=&quot;planner-pending&quot; id=&quot;planner-pending&quot;&gt;&lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section aria-labelledby=&quot;planner-cultivation-title&quot;&gt;
+      &lt;div class=&quot;planner-panel-head&quot; style=&quot;padding-inline:0;border:0&quot;&gt;
+        &lt;div&gt;
+          &lt;h2 id=&quot;planner-cultivation-title&quot;&gt;培养环节&lt;/h2&gt;
+          &lt;div class=&quot;text-small text-muted&quot;&gt;这些学分计入总数，但不进入周课表。&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;span class=&quot;planner-term-total&quot;&gt;固定 6 学分&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;planner-cultivation&quot;&gt;
+        &lt;div class=&quot;cultivation-card&quot;&gt;&lt;strong&gt;专业实践 · 2&lt;/strong&gt;&lt;span&gt;至少3个月，提交报告与单位证明&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;cultivation-card&quot;&gt;&lt;strong&gt;创新创业与社会实践 · 1&lt;/strong&gt;&lt;span&gt;与教学实践二选一&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;cultivation-card&quot;&gt;&lt;strong&gt;学术活动 · 1&lt;/strong&gt;&lt;span&gt;至少参加10次并保留依据&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;cultivation-card&quot;&gt;&lt;strong&gt;开题与文献综述 · 1&lt;/strong&gt;&lt;span&gt;按培养方案完成阅读与综述&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;cultivation-card&quot;&gt;&lt;strong&gt;学术交流月 · 1&lt;/strong&gt;&lt;span&gt;6月参加讲座并提交学习报告&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+    &lt;section class=&quot;credit-map-panel&quot; aria-labelledby=&quot;planner-credit-map-title&quot;&gt;
+      &lt;div class=&quot;credit-map-head&quot;&gt;
+        &lt;div&gt;
+          &lt;h2 id=&quot;planner-credit-map-title&quot;&gt;当前方案学分结构&lt;/h2&gt;
+          &lt;p&gt;按今年培养要求拆分；内容随候选课程增删实时更新。&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;span class=&quot;planner-term-total&quot;&gt;动态导图&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;credit-map-canvas&quot; id=&quot;planner-credit-map&quot;&gt;&lt;/div&gt;
+    &lt;/section&gt;
+    &lt;div class=&quot;planner-toast&quot; id=&quot;planner-toast&quot; role=&quot;alert&quot; aria-live=&quot;assertive&quot;&gt;&lt;/div&gt;
+  &lt;/main&gt;
   &lt;div class=&quot;mf-stack&quot;&gt;
     &lt;section class=&quot;mf-section&quot; aria-labelledby=&quot;mf-main-title&quot;&gt;
       &lt;div class=&quot;mf-title-row&quot;&gt;
@@ -3425,7 +3748,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
         const publishedCourses = [...new Set(scheduled.map(item =&gt; item.course))];
         const pendingCourses = [...autumnCourseNames].filter(name =&gt; !publishedCourses.includes(name));
-        scheduleStatus.innerHTML = `&lt;div class=&quot;mf-status-line&quot;&gt;&lt;span class=&quot;mf-status-mark&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;已纳入${publishedCourses.length}门：</strong&gt;${publishedCourses.length ? publishedCourses.join(&#x27;、&#x27;) : &#x27;尚未选择已发布教学班&#x27;}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;mf-status-line&quot;&gt;&lt;span class=&quot;mf-status-mark is-pending&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;待发布或待选班${pendingCourses.length}门：</strong&gt;${pendingCourses.length ? pendingCourses.join(&#x27;、&#x27;) : &#x27;无&#x27;}&lt;/span&gt;&lt;/div&gt;`;
+        scheduleStatus.innerHTML = `&lt;div class=&quot;mf-status-line&quot;&gt;&lt;span class=&quot;mf-status-mark&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;已纳入${publishedCourses.length}门：&lt;/strong&gt;${publishedCourses.length ? publishedCourses.join(&#x27;、&#x27;) : &#x27;尚未选择已发布教学班&#x27;}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;mf-status-line&quot;&gt;&lt;span class=&quot;mf-status-mark is-pending&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;待发布或待选班${pendingCourses.length}门：&lt;/strong&gt;${pendingCourses.length ? pendingCourses.join(&#x27;、&#x27;) : &#x27;无&#x27;}&lt;/span&gt;&lt;/div&gt;`;
         conflictBox.classList.toggle(&#x27;has-conflict&#x27;, conflictPairs.length &gt; 0);
         const scopeLabel = wholeSemester ? &#x27;整个学期&#x27; : `第${week}周`;
         conflictBox.innerHTML = conflictPairs.length ? `&lt;strong&gt;${scopeLabel}发现${conflictPairs.length}组冲突：&lt;/strong&gt;${conflictPairs.map(pair =&gt; { const [first, second] = pair.items; const weeksLabel = wholeSemester ? `，${rangesText(pair.overlappingWeeks)}` : &#x27;&#x27;; return `${first.course} 与 ${second.course}（星期${&#x27;一二三四五六日&#x27;[first.meeting.day - 1]}第${Math.max(first.meeting.start, second.meeting.start)}-${Math.min(first.meeting.end, second.meeting.end)}节${weeksLabel}）`; }).join(&#x27;；&#x27;)}` : `&lt;strong&gt;${scopeLabel}未发现已发布课程之间的时间冲突。&lt;/strong&gt; 待发布课程仍不计入此结论。`;
@@ -3793,6 +4116,329 @@ html&gt;body{padding:0}&lt;/style&gt;
   document.addEventListener(&quot;keydown&quot;, handleKeyDown);
   document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
   window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const root = document.getElementById(&#x27;mf-planner-workspace&#x27;);
+  if (!root) return;
+  const range = (start, end) =&gt; Array.from({ length: end - start + 1 }, (_, i) =&gt; start + i);
+  const weeks = (...parts) =&gt; [...new Set(parts.flat())].sort((a,b) =&gt; a-b);
+  const mtg = (day, start, end, activeWeeks, room=&#x27;待定&#x27;) =&gt; ({ day, start, end, weeks: activeWeeks, room });
+  const section = (id, label, teacher, meetings) =&gt; ({ id, label, teacher, meetings });
+  const autumnAll = range(1, 17);
+  const sections = {
+    english: [
+      section(&#x27;e17&#x27;,&#x27;17班 · 周三7–8节 · 1–7周&#x27;,&#x27;李末&#x27;,[mtg(3,7,8,range(1,7),&#x27;立人楼A209&#x27;)]),
+      section(&#x27;e18&#x27;,&#x27;18班 · 周二1–2节 · 1–7周&#x27;,&#x27;待发布&#x27;,[mtg(2,1,2,range(1,7))]),
+      section(&#x27;e21&#x27;,&#x27;21班 · 周二3–4节 · 1–7周&#x27;,&#x27;待发布&#x27;,[mtg(2,3,4,range(1,7))]),
+      section(&#x27;e26&#x27;,&#x27;26班 · 周三1–2节 · 1–7周&#x27;,&#x27;待发布&#x27;,[mtg(3,1,2,range(1,7))]),
+      section(&#x27;e44&#x27;,&#x27;44班 · 周二3–4节 · 9–15周&#x27;,&#x27;待发布&#x27;,[mtg(2,3,4,range(9,15))]),
+      section(&#x27;e46&#x27;,&#x27;46班 · 周三1–2节 · 9–15周&#x27;,&#x27;待发布&#x27;,[mtg(3,1,2,range(9,15))]),
+      section(&#x27;e15&#x27;,&#x27;15班 · 周二5–6节 · 1–7周&#x27;,&#x27;待发布&#x27;,[mtg(2,5,6,range(1,7))]),
+      section(&#x27;e22&#x27;,&#x27;22班 · 周二7–8节 · 1–7周&#x27;,&#x27;待发布&#x27;,[mtg(2,7,8,range(1,7))])
+    ],
+    modern: [
+      section(&#x27;m8&#x27;,&#x27;8班 · 周二3–4节＋周五3–4节&#x27;,&#x27;王瑞&#x27;,[mtg(2,3,4,range(1,10),&#x27;立人楼B417&#x27;),mtg(5,3,4,weeks(range(1,3),range(6,10)),&#x27;立人楼B417&#x27;)]),
+      section(&#x27;m1&#x27;,&#x27;1班 · 周一1–2节＋周四1–2节&#x27;,&#x27;待发布&#x27;,[mtg(1,1,2,range(1,10)),mtg(4,1,2,weeks(range(1,3),range(6,10)))]),
+      section(&#x27;m3&#x27;,&#x27;3班 · 周一5–6节＋周四5–6节&#x27;,&#x27;待发布&#x27;,[mtg(1,5,6,range(1,10)),mtg(4,5,6,weeks(range(1,3),range(6,10)))]),
+      section(&#x27;m10&#x27;,&#x27;10班 · 周三1–2节＋周五1–2节&#x27;,&#x27;待发布&#x27;,[mtg(3,1,2,range(1,10)),mtg(5,1,2,weeks(range(1,3),range(6,10)))])
+    ],
+    sports: [
+      section(&#x27;sp-swim-1&#x27;,&#x27;游泳1班 · 周一5–6节 · 3–17周&#x27;,&#x27;邓运来&#x27;,[mtg(1,5,6,range(3,17),&#x27;清水河游泳馆&#x27;)]),
+      section(&#x27;sp-badminton&#x27;,&#x27;羽毛球 · 周四3–4节 · 3–17周&#x27;,&#x27;待发布&#x27;,[mtg(4,3,4,range(3,17),&#x27;体育馆&#x27;)]),
+      section(&#x27;sp-fitness&#x27;,&#x27;体能训练 · 周五1–2节 · 3–17周&#x27;,&#x27;待发布&#x27;,[mtg(5,1,2,range(3,17),&#x27;体育馆&#x27;)])
+    ],
+    ai: [
+      section(&#x27;ai1&#x27;,&#x27;1班 · 周一7–8节 · 1–16周&#x27;,&#x27;待发布&#x27;,[mtg(1,7,8,range(1,16))]),
+      section(&#x27;ai2&#x27;,&#x27;2班 · 周一7–8节＋周四7–8节 · 1–8周&#x27;,&#x27;待发布&#x27;,[mtg(1,7,8,range(1,8)),mtg(4,7,8,range(1,8))])
+    ],
+    ip: [
+      section(&#x27;ip1&#x27;,&#x27;1班 · 周一9–11节&#x27;,&#x27;待发布&#x27;,[mtg(1,9,11,weeks(range(1,6),range(8,11))),mtg(1,9,10,[7])]),
+      section(&#x27;ip2&#x27;,&#x27;2班 · 周二5–6节&#x27;,&#x27;待发布&#x27;,[mtg(2,5,6,autumnAll)]),
+      section(&#x27;ip3&#x27;,&#x27;3班 · 周二7–8节&#x27;,&#x27;待发布&#x27;,[mtg(2,7,8,autumnAll)]),
+      section(&#x27;ip4&#x27;,&#x27;4班 · 周二9–11节&#x27;,&#x27;待发布&#x27;,[mtg(2,9,11,weeks(range(1,6),range(8,11))),mtg(2,9,10,[7])])
+    ]
+  };
+  const fixedSchedules = {
+    investment: [mtg(1,3,4,range(1,12),&#x27;立人楼A304&#x27;),mtg(3,3,4,range(1,12),&#x27;立人楼A101&#x27;)],
+    fintech: [mtg(2,9,11,weeks(range(1,4),range(7,10)),&#x27;立人楼A206&#x27;),mtg(2,9,10,weeks(range(5,6),range(11,12)),&#x27;立人楼A206&#x27;)],
+    corp: [mtg(2,7,8,weeks(range(1,6),range(10,15)),&#x27;立人楼A101&#x27;),mtg(5,7,8,weeks(range(1,6),range(10,15)),&#x27;立人楼A101&#x27;)],
+    econ: [mtg(3,5,6,range(1,12),&#x27;立人楼A202&#x27;),mtg(5,5,6,range(1,12),&#x27;立人楼A202&#x27;)],
+    law: [mtg(2,5,6,range(1,16),&#x27;立人楼A314&#x27;)]
+  };
+  const courses = [
+    {id:&#x27;english&#x27;,name:&#x27;硕士研究生英语&#x27;,credit:2,category:&#x27;公共基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],locked:true,sectionGroup:&#x27;english&#x27;},
+    {id:&#x27;modern&#x27;,name:&#x27;中国式现代化的理论与实践&#x27;,credit:2,category:&#x27;公共基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],locked:true,sectionGroup:&#x27;modern&#x27;},
+    {id:&#x27;investment&#x27;,name:&#x27;投资学&#x27;,credit:3,category:&#x27;专业基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;],locked:true,teacher:&#x27;赵洪江&#x27;,meetings:fixedSchedules.investment},
+    {id:&#x27;fintech&#x27;,name:&#x27;金融科技导论&#x27;,credit:2,category:&#x27;专业基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;],locked:true,teacher:&#x27;李平、李强&#x27;,meetings:fixedSchedules.fintech},
+    {id:&#x27;corp&#x27;,name:&#x27;高级公司金融&#x27;,credit:3,category:&#x27;专业基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;],locked:true,teacher:&#x27;郑舒心、张柘&#x27;,meetings:fixedSchedules.corp},
+    {id:&#x27;derivatives&#x27;,name:&#x27;衍生金融工具&#x27;,credit:3,category:&#x27;专业基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
+    {id:&#x27;statements&#x27;,name:&#x27;财务报表分析&#x27;,credit:2,category:&#x27;专业基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
+    {id:&#x27;econ&#x27;,name:&#x27;金融经济学&#x27;,credit:3,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;autumn&#x27;],teacher:&#x27;夏晖&#x27;,meetings:fixedSchedules.econ},
+    {id:&#x27;law&#x27;,name:&#x27;金融法规与伦理&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;autumn&#x27;],teacher:&#x27;肖延高、陈光宇&#x27;,meetings:fixedSchedules.law},
+    {id:&#x27;bond&#x27;,name:&#x27;债券市场分析与交易策略&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;empirical&#x27;,name:&#x27;实证研究方法II：模型设定与内生性处理&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;writing&#x27;,name:&#x27;金融硕士学位论文写作&#x27;,credit:1,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
+    {id:&#x27;politics&#x27;,name:&#x27;马克思主义与社会科学方法论&#x27;,credit:1,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
+    {id:&#x27;quant&#x27;,name:&#x27;量化投资&#x27;,credit:3,category:&#x27;实践教学&#x27;,bucket:&#x27;practice&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
+    {id:&#x27;sports&#x27;,name:&#x27;体育技能、欣赏与文化&#x27;,credit:1.5,category:&#x27;素质教育&#x27;,bucket:&#x27;required&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],sectionGroup:&#x27;sports&#x27;},
+    {id:&#x27;econometrics&#x27;,name:&#x27;高级计量经济学&#x27;,credit:2.5,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;digital-econ&#x27;,name:&#x27;数字经济学&#x27;,credit:2.5,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;autumn&#x27;],pending:true},
+    {id:&#x27;international&#x27;,name:&#x27;国际金融学&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;frontier&#x27;,name:&#x27;经济金融前沿研究专题&#x27;,credit:1.5,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;bank-risk&#x27;,name:&#x27;商业银行风险管理&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;bigdata-risk&#x27;,name:&#x27;大数据金融风险管理&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;venture&#x27;,name:&#x27;风险投资与私募股权&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;blockchain&#x27;,name:&#x27;区块链与数字货币&#x27;,credit:1,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;ip&#x27;,name:&#x27;知识产权与信息检索&#x27;,credit:2,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],sectionGroup:&#x27;ip&#x27;},
+    {id:&#x27;data-decision&#x27;,name:&#x27;数据分析与决策&#x27;,credit:2,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;ai&#x27;,name:&#x27;人工智能与机器学习&#x27;,credit:2,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;autumn&#x27;],sectionGroup:&#x27;ai&#x27;},
+    {id:&#x27;data-mining&#x27;,name:&#x27;数据挖掘与信息管理&#x27;,credit:3,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;autumn&#x27;],pending:true},
+    {id:&#x27;stress&#x27;,name:&#x27;压力管理的艺术&#x27;,credit:1,category:&#x27;素质教育&#x27;,bucket:&#x27;required&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],pending:true}
+  ];
+  const byId = new Map(courses.map(c =&gt; [c.id,c]));
+  const preset = {
+    autumn:[&#x27;english&#x27;,&#x27;modern&#x27;,&#x27;investment&#x27;,&#x27;fintech&#x27;,&#x27;corp&#x27;,&#x27;econ&#x27;,&#x27;law&#x27;,&#x27;sports&#x27;],
+    spring:[&#x27;derivatives&#x27;,&#x27;statements&#x27;,&#x27;bond&#x27;,&#x27;empirical&#x27;,&#x27;writing&#x27;,&#x27;politics&#x27;,&#x27;quant&#x27;],
+    sections:{english:&#x27;e17&#x27;,modern:&#x27;m8&#x27;,sports:&#x27;sp-swim-1&#x27;}
+  };
+  let state = JSON.parse(JSON.stringify(preset));
+  let filter = &#x27;all&#x27;;
+  let draggedId = null;
+  let toastTimer;
+  const el = id =&gt; document.getElementById(id);
+  const fmt = n =&gt; Number.isInteger(n) ? String(n) : n.toFixed(1);
+  const termName = term =&gt; term === &#x27;autumn&#x27; ? &#x27;秋季&#x27; : &#x27;春季&#x27;;
+  const selectedIds = () =&gt; [...state.autumn,...state.spring];
+  const getSection = id =&gt; {
+    const course = byId.get(id);
+    return sections[course?.sectionGroup]?.find(s =&gt; s.id === state.sections[id]);
+  };
+  const getMeetings = id =&gt; {
+    const course = byId.get(id);
+    if (!course) return [];
+    if (course.sectionGroup) return getSection(id)?.meetings || [];
+    return course.meetings || [];
+  };
+  const intersects = (a,b) =&gt; a.some(x =&gt; b.includes(x));
+  const conflictBetween = (a,b) =&gt; a.day === b.day &amp;&amp; a.start &lt;= b.end &amp;&amp; b.start &lt;= a.end &amp;&amp; intersects(a.weeks,b.weeks);
+  const findConflict = (courseId, candidateMeetings, term) =&gt; {
+    for (const otherId of state[term]) {
+      if (otherId === courseId) continue;
+      const conflict = candidateMeetings.some(a =&gt; getMeetings(otherId).some(b =&gt; conflictBetween(a,b)));
+      if (conflict) return byId.get(otherId);
+    }
+    return null;
+  };
+  const notify = (message, error=false) =&gt; {
+    const toast = el(&#x27;planner-toast&#x27;);
+    toast.textContent = message;
+    toast.className = `planner-toast show${error ? &#x27; error&#x27; : &#x27;&#x27;}`;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() =&gt; toast.className = &#x27;planner-toast&#x27;, 3200);
+  };
+  const termText = terms =&gt; terms.length === 2 ? &#x27;春 or 秋&#x27; : termName(terms[0]);
+  const categoryKey = c =&gt; c.category === &#x27;专业选修&#x27; ? &#x27;pro&#x27; : c.category === &#x27;其他选修&#x27; ? &#x27;other&#x27; : c.category === &#x27;素质教育&#x27; ? &#x27;quality&#x27; : &#x27;fixed&#x27;;
+  const courseColorKey = course =&gt; course.category === &#x27;公共基础&#x27; ? &#x27;public&#x27; : course.category === &#x27;专业基础&#x27; ? &#x27;foundation&#x27; : course.bucket === &#x27;pro&#x27; ? &#x27;elective&#x27; : course.bucket === &#x27;course&#x27; ? &#x27;other&#x27; : course.bucket === &#x27;practice&#x27; ? &#x27;practice&#x27; : &#x27;required&#x27;;
+  const courseCard = (course, selectedTerm=null) =&gt; {
+    const card = document.createElement(&#x27;article&#x27;);
+    card.className = `course-card type-${courseColorKey(course)}${selectedTerm ? &#x27; selected-course-card&#x27; : &#x27;&#x27;}`;
+    card.dataset.courseId = course.id;
+    if (!selectedTerm) card.draggable = true;
+    const schedule = selectedTerm ? getMeetings(course.id) : [];
+    const rooms = [...new Set(schedule.map(m =&gt; m.room).filter(room =&gt; room &amp;&amp; room !== &#x27;待定&#x27;))];
+    const detail = selectedTerm &amp;&amp; schedule.length
+      ? `${course.teacher || getSection(course.id)?.teacher || &#x27;教师待定&#x27;} · ${schedule.map(m =&gt; `周${&#x27;一二三四五&#x27;[m.day-1]}${m.start}–${m.end}节`).join(&#x27; / &#x27;)}${rooms.length ? ` · ${rooms.join(&#x27; / &#x27;)}` : &#x27;&#x27;}`
+      : (course.pending ? &#x27;正式教学班与时间待发布&#x27; : course.sectionGroup ? &#x27;请选择教学班&#x27; : &#x27;排课信息待确认&#x27;);
+    if (!selectedTerm) {
+      card.innerHTML = `&lt;div class=&quot;course-card-top candidate-card-top&quot;&gt;&lt;div class=&quot;candidate-card-identity&quot;&gt;&lt;h3 title=&quot;${course.name}&quot;&gt;${course.name}&lt;/h3&gt;&lt;span class=&quot;course-tag&quot;&gt;${course.category}&lt;/span&gt;&lt;span class=&quot;course-tag term-tag&quot;&gt;${termText(course.terms)}&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;course-credit&quot;&gt;${fmt(course.credit)} 学分&lt;/span&gt;&lt;/div&gt;
+        ${course.pending ? &#x27;&lt;div class=&quot;course-detail&quot;&gt;正式教学班与时间待发布&lt;/div&gt;&#x27; : &#x27;&#x27;}`;
+      const actions = document.createElement(&#x27;div&#x27;); actions.className = &#x27;course-actions&#x27;;
+      [&#x27;autumn&#x27;,&#x27;spring&#x27;].forEach(term =&gt; {
+        const btn = document.createElement(&#x27;button&#x27;); btn.className=&#x27;planner-add-btn&#x27;; btn.type=&#x27;button&#x27;; btn.textContent=`加入${termName(term)}`;
+        btn.disabled=!course.terms.includes(term); btn.addEventListener(&#x27;click&#x27;,()=&gt;addCourse(course.id,term)); actions.appendChild(btn);
+      });
+      card.appendChild(actions);
+      card.addEventListener(&#x27;dragstart&#x27;, e =&gt; { draggedId=course.id; card.classList.add(&#x27;is-dragging&#x27;); e.dataTransfer.effectAllowed=&#x27;copy&#x27;; e.dataTransfer.setData(&#x27;text/plain&#x27;,course.id); });
+      card.addEventListener(&#x27;dragend&#x27;,()=&gt;{ draggedId=null; card.classList.remove(&#x27;is-dragging&#x27;); document.querySelectorAll(&#x27;.planner-dropzone&#x27;).forEach(z=&gt;z.classList.remove(&#x27;is-over&#x27;,&#x27;is-denied&#x27;)); });
+    } else {
+      card.innerHTML = `&lt;div class=&quot;selected-card-row&quot;&gt;
+          &lt;div class=&quot;selected-card-identity&quot;&gt;&lt;h3 title=&quot;${course.name}&quot;&gt;${course.name}&lt;/h3&gt;&lt;span class=&quot;course-tag&quot;&gt;${course.category}&lt;/span&gt;&lt;span class=&quot;course-tag term-tag&quot;&gt;${termText(course.terms)}&lt;/span&gt;&lt;/div&gt;
+          &lt;span class=&quot;course-credit&quot;&gt;${fmt(course.credit)} 学分&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;selected-card-row${course.sectionGroup ? &#x27; selected-section-row&#x27; : &#x27;&#x27;}&quot;&gt;
+          ${course.sectionGroup ? &#x27;&#x27; : `&lt;div class=&quot;selected-card-detail&quot; title=&quot;${detail}&quot;&gt;${detail}&lt;/div&gt;`}
+          &lt;div class=&quot;selected-card-controls&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;`;
+      const controls = card.querySelector(&#x27;.selected-card-controls&#x27;);
+      if (course.locked) {
+        card.draggable = true;
+        card.addEventListener(&#x27;dragstart&#x27;, event =&gt; {
+          event.preventDefault();
+          notify(`「${course.name}」是培养方案必选课程，不能移出当前方案；教学班仍可调整。`, true);
+        });
+      }
+      if (course.sectionGroup) controls.appendChild(sectionSelect(course,selectedTerm));
+      if (!course.locked) {
+        const remove=document.createElement(&#x27;button&#x27;); remove.className=&#x27;planner-remove&#x27;; remove.type=&#x27;button&#x27;; remove.setAttribute(&#x27;aria-label&#x27;,`移除${course.name}`); remove.textContent=&#x27;×&#x27;;
+        remove.addEventListener(&#x27;click&#x27;,()=&gt;removeCourse(course.id,selectedTerm)); controls.appendChild(remove);
+      }
+    }
+    return card;
+  };
+  const sectionSelect = (course, term) =&gt; {
+    const select=document.createElement(&#x27;select&#x27;); select.className=&#x27;section-select&#x27;; select.setAttribute(&#x27;aria-label&#x27;,`${course.name}教学班`);
+    const placeholder=document.createElement(&#x27;option&#x27;); placeholder.value=&#x27;&#x27;; placeholder.textContent=&#x27;请选择教学班&#x27;; select.appendChild(placeholder);
+    const fullSectionLabel = s =&gt; { const parts=s.label.split(&#x27; · &#x27;); const className=parts.shift(); const rooms=[...new Set(s.meetings.map(m=&gt;m.room).filter(room=&gt;room&amp;&amp;room!==&#x27;待定&#x27;))]; return [className,s.teacher||&#x27;教师待定&#x27;,...parts,rooms.length?rooms.join(&#x27; / &#x27;):&#x27;教室待定&#x27;].join(&#x27;｜&#x27;); };
+    (sections[course.sectionGroup]||[]).forEach(s=&gt;{ const option=document.createElement(&#x27;option&#x27;); option.value=s.id; const conflict=findConflict(course.id,s.meetings,term); option.textContent=fullSectionLabel(s)+(conflict?`｜与${conflict.name}冲突`:&#x27;&#x27;); select.appendChild(option); });
+    select.value=state.sections[course.id]||&#x27;&#x27;;
+    const selectedSection=(sections[course.sectionGroup]||[]).find(s=&gt;s.id===select.value); select.title=selectedSection?fullSectionLabel(selectedSection):&#x27;请选择教学班&#x27;;
+    select.addEventListener(&#x27;change&#x27;,()=&gt;{
+      const previous=state.sections[course.id]||&#x27;&#x27;; const next=(sections[course.sectionGroup]||[]).find(s=&gt;s.id===select.value);
+      const conflict=next&amp;&amp;findConflict(course.id,next.meetings,term);
+      if(conflict){ select.value=previous; notify(`时间冲突：需先移除「${conflict.name}」或改选其他教学班。`,true); return; }
+      state.sections[course.id]=select.value; render(); notify(next?`已选择：${course.name} · ${fullSectionLabel(next)}`:`${course.name}尚未选择教学班`);
+    });
+    return select;
+  };
+  const addCourse = (id,term) =&gt; {
+    const course=byId.get(id); if(!course) return;
+    if(!course.terms.includes(term)){ notify(`「${course.name}」不在${termName(term)}开课，不能加入。`,true); return; }
+    if(selectedIds().includes(id)){ notify(`「${course.name}」已在方案中。`,true); return; }
+    state[term].push(id); if(course.sectionGroup) state.sections[id]=&#x27;&#x27;; render();
+    notify(`已加入${termName(term)}：${course.name}${course.sectionGroup?&#x27;，请继续选择教学班&#x27;:&#x27;&#x27;}`);
+  };
+  const removeCourse = (id,term) =&gt; { const course=byId.get(id); if(course?.locked) return; state[term]=state[term].filter(x=&gt;x!==id); delete state.sections[id]; render(); notify(`已移除：${course.name}`); };
+  const totals = () =&gt; {
+    const selected=selectedIds().map(id=&gt;byId.get(id));
+    const sum=bucket=&gt;selected.filter(c=&gt;bucket===&#x27;course&#x27;?[&#x27;degree&#x27;,&#x27;pro&#x27;,&#x27;course&#x27;].includes(c.bucket):c.bucket===bucket).reduce((s,c)=&gt;s+c.credit,0);
+    return {course:sum(&#x27;course&#x27;),degree:sum(&#x27;degree&#x27;),pro:sum(&#x27;pro&#x27;),practice:sum(&#x27;practice&#x27;)+2,required:sum(&#x27;required&#x27;)+4,total:selected.reduce((s,c)=&gt;s+c.credit,0)+6};
+  };
+  const courseTerm = id =&gt; state.autumn.includes(id) ? &#x27;秋&#x27; : state.spring.includes(id) ? &#x27;春&#x27; : &#x27;&#x27;;
+  const mapLeaves = (items, groupClass=&#x27;&#x27;) =&gt; items.map(item =&gt; `&lt;span class=&quot;credit-map-leaf ${groupClass}&quot;&gt;${item.name} &lt;small&gt;${courseTerm(item.id) ? `${courseTerm(item.id)} · ` : &#x27;&#x27;}${fmt(item.credit)}&lt;/small&gt;&lt;/span&gt;`).join(&#x27;&#x27;) || &#x27;&lt;span class=&quot;credit-map-note&quot;&gt;当前没有课程&lt;/span&gt;&#x27;;
+  const renderCreditMap = () =&gt; {
+    const selected = selectedIds().map(id =&gt; byId.get(id));
+    const t = totals();
+    const publicCourses = selected.filter(c =&gt; c.category === &#x27;公共基础&#x27;);
+    const foundationCourses = selected.filter(c =&gt; c.category === &#x27;专业基础&#x27;);
+    const proCourses = selected.filter(c =&gt; c.bucket === &#x27;pro&#x27;);
+    const otherCourses = selected.filter(c =&gt; c.bucket === &#x27;course&#x27;);
+    const practiceCourses = selected.filter(c =&gt; c.bucket === &#x27;practice&#x27;);
+    const requiredCourses = selected.filter(c =&gt; c.bucket === &#x27;required&#x27;);
+    const sum = list =&gt; list.reduce((value,course) =&gt; value + course.credit,0);
+    const nodeClass = (value,min) =&gt; value &lt; min ? &#x27; is-short&#x27; : &#x27;&#x27;;
+    const deficit = (value,min) =&gt; value &lt; min ? ` · 还差${fmt(min-value)}` : &#x27;&#x27;;
+    const nonDegree = sum(proCourses) + sum(otherCourses);
+    const practiceLeaves = [...practiceCourses.map(c =&gt; ({name:c.name,credit:c.credit,id:c.id})),{name:&#x27;专业实践&#x27;,credit:2,id:&#x27;&#x27;}];
+    const requiredLeaves = [...requiredCourses.map(c =&gt; ({name:c.name,credit:c.credit,id:c.id})),
+      {name:&#x27;创新创业与社会实践&#x27;,credit:1,id:&#x27;&#x27;},{name:&#x27;学术活动&#x27;,credit:1,id:&#x27;&#x27;},{name:&#x27;开题与文献综述&#x27;,credit:1,id:&#x27;&#x27;},{name:&#x27;研究生学术交流月&#x27;,credit:1,id:&#x27;&#x27;},{name:&#x27;新生入学教育&#x27;,credit:0,id:&#x27;&#x27;}];
+    el(&#x27;planner-credit-map&#x27;).innerHTML = `
+      &lt;div class=&quot;credit-map-root credit-map-node${nodeClass(t.total,38)}&quot;&gt;&lt;strong&gt;当前方案 ${fmt(t.total)} / ≥38&lt;/strong&gt;&lt;span&gt;${t.total&gt;=38?&#x27;满足总学分要求&#x27;:`还差 ${fmt(38-t.total)} 学分`}&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;credit-map-branches&quot;&gt;
+        &lt;section class=&quot;credit-map-branch credit-map-node${nodeClass(t.course,28)}&quot;&gt;
+          &lt;div class=&quot;credit-map-title&quot;&gt;&lt;strong&gt;课程学分&lt;/strong&gt;&lt;span class=&quot;credit-map-value&quot;&gt;${fmt(t.course)} / ≥28${deficit(t.course,28)}&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;credit-map-subgrid&quot;&gt;
+            &lt;div class=&quot;credit-map-column credit-map-node${nodeClass(t.degree,17)}&quot;&gt;
+              &lt;div class=&quot;credit-map-column-title&quot;&gt;&lt;span&gt;学位课&lt;/span&gt;&lt;span&gt;${fmt(t.degree)} / ≥17${deficit(t.degree,17)}&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;credit-map-group is-public&quot;&gt;
+                &lt;div class=&quot;credit-map-group-head&quot;&gt;&lt;span&gt;公共基础&lt;/span&gt;&lt;span&gt;${fmt(sum(publicCourses))}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;credit-map-leaves&quot;&gt;${mapLeaves(publicCourses)}&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;credit-map-group is-foundation credit-map-node${nodeClass(sum(foundationCourses),13)}&quot;&gt;
+                &lt;div class=&quot;credit-map-group-head&quot;&gt;&lt;span&gt;专业基础&lt;/span&gt;&lt;span&gt;${fmt(sum(foundationCourses))} / ≥13${deficit(sum(foundationCourses),13)}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;credit-map-leaves&quot;&gt;${mapLeaves(foundationCourses)}&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;credit-map-column credit-map-node${nodeClass(sum(proCourses),10)}&quot;&gt;
+              &lt;div class=&quot;credit-map-column-title&quot;&gt;&lt;span&gt;非学位课&lt;/span&gt;&lt;span&gt;${fmt(nonDegree)}&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;credit-map-group is-elective credit-map-node${nodeClass(sum(proCourses),10)}&quot;&gt;
+                &lt;div class=&quot;credit-map-group-head&quot;&gt;&lt;span&gt;专业选修&lt;/span&gt;&lt;span&gt;${fmt(sum(proCourses))} / ≥10${deficit(sum(proCourses),10)}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;credit-map-leaves&quot;&gt;${mapLeaves(proCourses)}&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;credit-map-group is-other&quot;&gt;
+                &lt;div class=&quot;credit-map-group-head&quot;&gt;&lt;span&gt;其他选修&lt;/span&gt;&lt;span&gt;${fmt(sum(otherCourses))}&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;credit-map-leaves&quot;&gt;${mapLeaves(otherCourses)}&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+        &lt;section class=&quot;credit-map-branch is-practice credit-map-node${nodeClass(t.practice,5)}&quot;&gt;
+          &lt;div class=&quot;credit-map-title&quot;&gt;&lt;strong&gt;实践教学&lt;/strong&gt;&lt;span class=&quot;credit-map-value&quot;&gt;${fmt(t.practice)} / ≥5${deficit(t.practice,5)}&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;credit-map-stack&quot;&gt;${mapLeaves(practiceLeaves)}&lt;/div&gt;
+        &lt;/section&gt;
+        &lt;section class=&quot;credit-map-branch is-required credit-map-node${nodeClass(t.required,5)}&quot;&gt;
+          &lt;div class=&quot;credit-map-title&quot;&gt;&lt;strong&gt;必修环节&lt;/strong&gt;&lt;span class=&quot;credit-map-value&quot;&gt;${fmt(t.required)} / ≥5${deficit(t.required,5)}&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;credit-map-stack&quot;&gt;${mapLeaves(requiredLeaves)}&lt;/div&gt;
+          &lt;div class=&quot;credit-map-note&quot;&gt;新生入学教育为0学分必做环节。&lt;/div&gt;
+        &lt;/section&gt;
+      &lt;/div&gt;`;
+  };
+  let heightSyncFrame;
+  const updatePoolScrollHint = () =&gt; {
+    const list=el(&#x27;planner-pool-list&#x27;); const hint=el(&#x27;planner-pool-scroll-hint&#x27;);
+    if(!list||!hint||!matchMedia(&#x27;(min-width:1051px)&#x27;).matches){ if(hint) hint.hidden=true; return; }
+    const listBottom=list.getBoundingClientRect().bottom-1;
+    const remaining=[...list.querySelectorAll(&#x27;.course-card&#x27;)].filter(card=&gt;card.getBoundingClientRect().bottom&gt;listBottom).length;
+    hint.hidden=remaining===0||list.scrollHeight&lt;=list.clientHeight+1;
+    if(!hint.hidden) hint.innerHTML=`还有 &lt;strong&gt;${remaining}&lt;/strong&gt; 门候选课，向下滚动查看`;
+  };
+  const syncEditorHeights = () =&gt; {
+    const poolPanel=document.querySelector(&#x27;.planner-pool&#x27;);
+    const termPanels=[el(&#x27;planner-autumn&#x27;)?.closest(&#x27;.planner-panel&#x27;),el(&#x27;planner-spring&#x27;)?.closest(&#x27;.planner-panel&#x27;)].filter(Boolean);
+    const panels=[poolPanel,...termPanels].filter(Boolean);
+    cancelAnimationFrame(heightSyncFrame);
+    panels.forEach(panel=&gt;panel.style.height=&#x27;&#x27;);
+    if (!matchMedia(&#x27;(min-width:1051px)&#x27;).matches || panels.length!==3){ updatePoolScrollHint(); return; }
+    heightSyncFrame=requestAnimationFrame(()=&gt;{
+      panels.forEach(panel=&gt;panel.style.height=&#x27;&#x27;);
+      const maxHeight=Math.ceil(Math.max(...termPanels.map(panel=&gt;panel.scrollHeight)));
+      panels.forEach(panel=&gt;panel.style.height=`${maxHeight}px`);
+      updatePoolScrollHint();
+    });
+  };
+  const renderMetrics = () =&gt; {
+    const t=totals(); const values=[[&#x27;总学分&#x27;,t.total,38],[&#x27;课程学分&#x27;,t.course,28],[&#x27;学位课&#x27;,t.degree,17],[&#x27;专业选修&#x27;,t.pro,10],[&#x27;实践教学&#x27;,t.practice,5],[&#x27;必修环节&#x27;,t.required,5]];
+    el(&#x27;planner-metrics&#x27;).innerHTML=values.map(([label,value,min])=&gt;`&lt;div class=&quot;planner-metric&quot; data-state=&quot;${value&gt;=min?&#x27;ok&#x27;:&#x27;bad&#x27;}&quot;&gt;&lt;span&gt;${label}&lt;/span&gt;&lt;strong&gt;${fmt(value)} / ${min}&lt;/strong&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+    const deficits=values.filter(([,v,m])=&gt;v&lt;m).map(([l,v,m])=&gt;`${l}还差${fmt(m-v)}`);
+    const noSections=selectedIds().filter(id=&gt;byId.get(id).sectionGroup&amp;&amp;!state.sections[id]);
+    const status=el(&#x27;planner-status&#x27;);
+    if(deficits.length){ status.dataset.state=&#x27;warning&#x27;; status.textContent=`当前是未完成草稿：${deficits.join(&#x27;；&#x27;)}。`; }
+    else if(noSections.length){ status.dataset.state=&#x27;warning&#x27;; status.textContent=`学分要求已满足，但还有 ${noSections.length} 门课程未选教学班。`; }
+    else { status.dataset.state=&#x27;ok&#x27;; status.textContent=&#x27;当前草稿满足培养方案的各项最低学分要求；仍需以正式课表、容量及学院审核为准。&#x27;; }
+  };
+  const renderPool = (resetScroll=false) =&gt; {
+    const query=el(&#x27;planner-search&#x27;).value.trim().toLowerCase(); const selected=new Set(selectedIds());
+    const pool=courses.filter(c=&gt;!selected.has(c.id)&amp;&amp;!c.locked&amp;&amp;(filter===&#x27;all&#x27;||categoryKey(c)===filter)&amp;&amp;c.name.toLowerCase().includes(query));
+    el(&#x27;planner-pool-count&#x27;).textContent=`${pool.length} 门可选`; const list=el(&#x27;planner-pool-list&#x27;); const priorScroll=resetScroll?0:list.scrollTop; list.innerHTML=&#x27;&#x27;;
+    if(!pool.length) list.innerHTML=&#x27;&lt;div class=&quot;planner-empty&quot;&gt;没有符合条件的候选课&lt;/div&gt;&#x27;; else pool.forEach(c=&gt;list.appendChild(courseCard(c)));
+    list.scrollTop=priorScroll;
+    syncEditorHeights();
+  };
+  const renderTerms = () =&gt; [&#x27;autumn&#x27;,&#x27;spring&#x27;].forEach(term=&gt;{ const list=el(`planner-${term}`); list.innerHTML=&#x27;&#x27;; state[term].forEach(id=&gt;list.appendChild(courseCard(byId.get(id),term))); el(`planner-${term}-total`).textContent=`${fmt(state[term].reduce((s,id)=&gt;s+byId.get(id).credit,0))} 学分`; });
+  const renderWeek = () =&gt; {
+    const term=el(&#x27;planner-term-view&#x27;).value; const chosen=el(&#x27;planner-week&#x27;).value; const week=chosen===&#x27;all&#x27;?null:Number(chosen); const grid=el(&#x27;planner-week-grid&#x27;); grid.innerHTML=&#x27;&#x27;;
+    const heads=[&#x27;节次&#x27;,&#x27;周一&#x27;,&#x27;周二&#x27;,&#x27;周三&#x27;,&#x27;周四&#x27;,&#x27;周五&#x27;]; heads.forEach((h,i)=&gt;{const d=document.createElement(&#x27;div&#x27;);d.className=&#x27;week-cell week-head&#x27;;d.style.gridColumn=i+1;d.style.gridRow=1;d.textContent=h;grid.appendChild(d);});
+    for(let p=1;p&lt;=11;p++){const label=document.createElement(&#x27;div&#x27;);label.className=&#x27;week-cell week-period&#x27;;label.style.gridColumn=1;label.style.gridRow=p+1;label.textContent=`第${p}节`;grid.appendChild(label);for(let day=1;day&lt;=5;day++){const cell=document.createElement(&#x27;div&#x27;);cell.className=&#x27;week-cell&#x27;;cell.style.gridColumn=day+1;cell.style.gridRow=p+1;grid.appendChild(cell);}}
+    const pending=[];
+    state[term].forEach(id=&gt;{ const course=byId.get(id); const meetings=getMeetings(id); if(!meetings.length){pending.push(course.name);return;} meetings.filter(m=&gt;week===null||m.weeks.includes(week)).forEach(m=&gt;{ const item=document.createElement(&#x27;div&#x27;);item.className=`week-event type-${courseColorKey(course)}`;item.style.gridColumn=m.day+1;item.style.gridRow=`${m.start+1} / ${m.end+2}`; const w=week===null?`${Math.min(...m.weeks)}–${Math.max(...m.weeks)}周`:`第${week}周`; const teacher=course.teacher||getSection(id)?.teacher||&#x27;教师待定&#x27;; item.title=`${course.name} · ${course.category} · ${teacher} · ${m.room} · ${w}`; item.innerHTML=`&lt;span class=&quot;week-event-category&quot;&gt;${course.category}&lt;/span&gt;&lt;strong&gt;${course.name}&lt;/strong&gt;&lt;small&gt;${teacher} · ${m.room}&lt;/small&gt;&lt;small&gt;${w}&lt;/small&gt;`;grid.appendChild(item); }); });
+    el(&#x27;planner-pending&#x27;).textContent=pending.length?`${termName(term)}待发布/待选教学班：${pending.join(&#x27;、&#x27;)}`:`${termName(term)}当前课程均已有可显示的教学时间。`;
+  };
+  const render = () =&gt; { renderMetrics(); renderPool(); renderTerms(); renderWeek(); renderCreditMap(); syncEditorHeights(); };
+  const setup = () =&gt; {
+    const filterDefs=[[&#x27;all&#x27;,&#x27;全部&#x27;],[&#x27;pro&#x27;,&#x27;专业选修&#x27;],[&#x27;other&#x27;,&#x27;其他选修&#x27;],[&#x27;quality&#x27;,&#x27;素质教育&#x27;]];
+    filterDefs.forEach(([key,label])=&gt;{const btn=document.createElement(&#x27;button&#x27;);btn.type=&#x27;button&#x27;;btn.className=&#x27;planner-filter&#x27;;btn.textContent=label;btn.setAttribute(&#x27;aria-pressed&#x27;,key===filter?&#x27;true&#x27;:&#x27;false&#x27;);btn.addEventListener(&#x27;click&#x27;,()=&gt;{filter=key;document.querySelectorAll(&#x27;.planner-filter&#x27;).forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;,b===btn?&#x27;true&#x27;:&#x27;false&#x27;));renderPool(true);});el(&#x27;planner-filters&#x27;).appendChild(btn);});
+    el(&#x27;planner-search&#x27;).addEventListener(&#x27;input&#x27;,()=&gt;renderPool(true));
+    el(&#x27;planner-pool-list&#x27;).addEventListener(&#x27;scroll&#x27;,updatePoolScrollHint,{passive:true});
+    el(&#x27;planner-week&#x27;).innerHTML=&#x27;&lt;option value=&quot;all&quot;&gt;全部周次&lt;/option&gt;&#x27;+range(1,17).map(w=&gt;`&lt;option value=&quot;${w}&quot;&gt;第 ${w} 周&lt;/option&gt;`).join(&#x27;&#x27;);
+    el(&#x27;planner-week&#x27;).addEventListener(&#x27;change&#x27;,renderWeek); el(&#x27;planner-term-view&#x27;).addEventListener(&#x27;change&#x27;,renderWeek);
+    document.querySelectorAll(&#x27;.planner-dropzone&#x27;).forEach(zone=&gt;{
+      zone.addEventListener(&#x27;dragover&#x27;,e=&gt;{e.preventDefault();const course=byId.get(draggedId||e.dataTransfer.getData(&#x27;text/plain&#x27;));const allowed=course?.terms.includes(zone.dataset.term);zone.classList.toggle(&#x27;is-over&#x27;,allowed);zone.classList.toggle(&#x27;is-denied&#x27;,!allowed);e.dataTransfer.dropEffect=allowed?&#x27;copy&#x27;:&#x27;none&#x27;;});
+      zone.addEventListener(&#x27;dragleave&#x27;,()=&gt;zone.classList.remove(&#x27;is-over&#x27;,&#x27;is-denied&#x27;));
+      zone.addEventListener(&#x27;drop&#x27;,e=&gt;{e.preventDefault();zone.classList.remove(&#x27;is-over&#x27;,&#x27;is-denied&#x27;);addCourse(e.dataTransfer.getData(&#x27;text/plain&#x27;)||draggedId,zone.dataset.term);});
+    });
+    el(&#x27;planner-reset&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{state=JSON.parse(JSON.stringify(preset));el(&#x27;planner-term-view&#x27;).value=&#x27;autumn&#x27;;el(&#x27;planner-week&#x27;).value=&#x27;all&#x27;;render();notify(&#x27;已恢复量化实证预设。&#x27;);});
+    el(&#x27;planner-export&#x27;).addEventListener(&#x27;click&#x27;,async()=&gt;{const text=[&#x27;量化实证选课草稿&#x27;,...[&#x27;autumn&#x27;,&#x27;spring&#x27;].flatMap(term=&gt;[`${termName(term)}：`,...state[term].map(id=&gt;`- ${byId.get(id).name}（${fmt(byId.get(id).credit)}学分）`)])].join(&#x27;\n&#x27;);try{await navigator.clipboard.writeText(text);notify(&#x27;课程清单已复制。&#x27;);}catch{notify(&#x27;当前浏览器未允许剪贴板访问，请手动记录课程清单。&#x27;,true);}});
+    window.addEventListener(&#x27;resize&#x27;,syncEditorHeights,{passive:true});
+    render();
+  };
+  setup();
 })();
 &lt;/script&gt;
 &lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
