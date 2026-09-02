@@ -1632,7 +1632,11 @@ html&gt;body{padding:0}&lt;/style&gt;
     .planner-timetable-head { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:17px 18px; border-bottom:1px solid var(--mf-border); }
     .planner-timetable-head h2 { margin:0 0 4px; font-size:18px; }
     .planner-timetable-head p { margin:0; color:var(--mf-muted); font-size:12px; }
+    .planner-timetable-controls, .planner-week-navigation { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
     .planner-week-select { border:1px solid var(--mf-border); border-radius:9px; background:#13251f; color:inherit; padding:8px 10px; }
+    .planner-week-step { display:inline-flex; width:36px; height:36px; align-items:center; justify-content:center; border:1px solid var(--mf-border); border-radius:9px; background:#13251f; color:inherit; padding:0; font:inherit; font-size:20px; line-height:1; cursor:pointer; }
+    .planner-week-step:hover:not(:disabled) { border-color:var(--mf-accent); color:var(--mf-accent); }
+    .planner-week-step:disabled { opacity:.36; cursor:not-allowed; }
     .week-grid-wrap { overflow:auto; padding:14px; }
     .planner-legend { display:flex; flex-wrap:wrap; align-items:center; gap:8px 15px; padding:11px 18px; border-bottom:1px solid var(--mf-border); background:rgba(0,0,0,.08); }
     .planner-legend-label { color:var(--mf-muted); font-size:12px; }
@@ -1652,6 +1656,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     @media (prefers-color-scheme: light) {
       .planner-timetable { background:#fffdf8; }
       .planner-week-select { background:#fffdf8; color:#18332c; }
+      .planner-week-step { background:#fffdf8; color:#18332c; }
       .planner-legend { background:#eeece5; }
       .week-event { background:color-mix(in oklab,var(--course-color) var(--week-light-strength),#fffdf8); color:#18332c; border-color:color-mix(in srgb,var(--course-color) 30%,var(--mf-border)); border-left-width:4px; border-left-color:var(--course-color); box-shadow:0 4px 12px color-mix(in srgb,var(--course-color) 9%,transparent); }
       .week-event small { opacity:.78; }
@@ -1736,7 +1741,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       .planner-dropzone { min-height:180px; }
       .planner-cultivation { grid-template-columns:1fr 1fr; }
       .planner-timetable-head { align-items:flex-start; flex-direction:column; }
-      .planner-search, .planner-filter, .planner-reset, .planner-ghost-btn, .planner-add-btn, .planner-week-select, .section-select { min-height:44px; }
+      .planner-search, .planner-filter, .planner-reset, .planner-ghost-btn, .planner-add-btn, .planner-week-select, .planner-week-step, .section-select { min-height:44px; }
+      .planner-week-step { width:44px; height:44px; }
       .planner-filter { padding:9px 11px; }
       .planner-add-btn { padding:10px 8px; }
       .selected-card-row { gap:7px; }
@@ -1834,9 +1840,13 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;h2 id=&quot;planner-week-title&quot;&gt;周课表&lt;/h2&gt;
           &lt;p&gt;随课程与教学班选择同步更新；春季正式教学班未发布前只显示待确认状态。&lt;/p&gt;
         &lt;/div&gt;
-        &lt;div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;&gt;
+        &lt;div class=&quot;planner-timetable-controls&quot;&gt;
           &lt;select class=&quot;planner-week-select&quot; id=&quot;planner-term-view&quot; aria-label=&quot;选择课表学期&quot;&gt;&lt;option value=&quot;autumn&quot;&gt;秋季&lt;/option&gt;&lt;option value=&quot;spring&quot;&gt;春季&lt;/option&gt;&lt;/select&gt;
-          &lt;select class=&quot;planner-week-select&quot; id=&quot;planner-week&quot; aria-label=&quot;选择课表周次&quot;&gt;&lt;/select&gt;
+          &lt;div class=&quot;planner-week-navigation&quot;&gt;
+            &lt;select class=&quot;planner-week-select&quot; id=&quot;planner-week&quot; aria-label=&quot;选择课表周次&quot;&gt;&lt;/select&gt;
+            &lt;button class=&quot;planner-week-step&quot; id=&quot;planner-week-prev&quot; type=&quot;button&quot; aria-label=&quot;上一周&quot; title=&quot;上一周&quot; aria-controls=&quot;planner-week-grid&quot;&gt;‹&lt;/button&gt;
+            &lt;button class=&quot;planner-week-step&quot; id=&quot;planner-week-next&quot; type=&quot;button&quot; aria-label=&quot;下一周&quot; title=&quot;下一周&quot; aria-controls=&quot;planner-week-grid&quot;&gt;›&lt;/button&gt;
+          &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class=&quot;planner-legend&quot; aria-label=&quot;课程类别颜色说明&quot;&gt;
@@ -4460,8 +4470,20 @@ html&gt;body{padding:0}&lt;/style&gt;
     syncEditorHeights();
   };
   const renderTerms = () =&gt; [&#x27;autumn&#x27;,&#x27;spring&#x27;].forEach(term=&gt;{ const list=el(`planner-${term}`); list.innerHTML=&#x27;&#x27;; state[term].forEach(id=&gt;list.appendChild(courseCard(byId.get(id),term))); el(`planner-${term}-total`).textContent=`${fmt(state[term].reduce((s,id)=&gt;s+byId.get(id).credit,0))} 学分`; });
+  const updateWeekStepButtons = () =&gt; {
+    const chosen=el(&#x27;planner-week&#x27;).value;const week=chosen===&#x27;all&#x27;?null:Number(chosen);
+    el(&#x27;planner-week-prev&#x27;).disabled=week===null||week&lt;=1;
+    el(&#x27;planner-week-next&#x27;).disabled=week!==null&amp;&amp;week&gt;=17;
+  };
+  const stepWeek = direction =&gt; {
+    const select=el(&#x27;planner-week&#x27;);const current=select.value===&#x27;all&#x27;?null:Number(select.value);
+    if(current===null){if(direction&lt;0)return;select.value=&#x27;1&#x27;;}
+    else {const next=current+direction;if(next&lt;1||next&gt;17)return;select.value=String(next);}
+    renderWeek();select.focus();
+  };
   const renderWeek = () =&gt; {
     const term=el(&#x27;planner-term-view&#x27;).value; const chosen=el(&#x27;planner-week&#x27;).value; const week=chosen===&#x27;all&#x27;?null:Number(chosen); const grid=el(&#x27;planner-week-grid&#x27;); grid.innerHTML=&#x27;&#x27;;
+    updateWeekStepButtons();
     const mobile=plannerMobileMedia.matches;
     const heads=mobile?[&#x27;节&#x27;,&#x27;一&#x27;,&#x27;二&#x27;,&#x27;三&#x27;,&#x27;四&#x27;,&#x27;五&#x27;]:[&#x27;节次&#x27;,&#x27;周一&#x27;,&#x27;周二&#x27;,&#x27;周三&#x27;,&#x27;周四&#x27;,&#x27;周五&#x27;]; heads.forEach((h,i)=&gt;{const d=document.createElement(&#x27;div&#x27;);d.className=&#x27;week-cell week-head&#x27;;d.style.gridColumn=i+1;d.style.gridRow=1;d.textContent=h;grid.appendChild(d);});
     for(let p=1;p&lt;=11;p++){const label=document.createElement(&#x27;div&#x27;);label.className=&#x27;week-cell week-period&#x27;;label.style.gridColumn=1;label.style.gridRow=p+1;label.textContent=mobile?String(p):`第${p}节`;grid.appendChild(label);for(let day=1;day&lt;=5;day++){const cell=document.createElement(&#x27;div&#x27;);cell.className=&#x27;week-cell&#x27;;cell.style.gridColumn=day+1;cell.style.gridRow=p+1;grid.appendChild(cell);}}
@@ -4477,6 +4499,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     el(&#x27;planner-pool-list&#x27;).addEventListener(&#x27;scroll&#x27;,updatePoolScrollHint,{passive:true});
     el(&#x27;planner-week&#x27;).innerHTML=&#x27;&lt;option value=&quot;all&quot;&gt;全部周次&lt;/option&gt;&#x27;+range(1,17).map(w=&gt;`&lt;option value=&quot;${w}&quot;&gt;第 ${w} 周&lt;/option&gt;`).join(&#x27;&#x27;);
     el(&#x27;planner-week&#x27;).addEventListener(&#x27;change&#x27;,renderWeek); el(&#x27;planner-term-view&#x27;).addEventListener(&#x27;change&#x27;,renderWeek);
+    el(&#x27;planner-week-prev&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;stepWeek(-1));el(&#x27;planner-week-next&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;stepWeek(1));
     if(plannerMobileMedia.addEventListener) plannerMobileMedia.addEventListener(&#x27;change&#x27;,renderWeek); else plannerMobileMedia.addListener(renderWeek);
     document.querySelectorAll(&#x27;.planner-dropzone&#x27;).forEach(zone=&gt;{
       zone.addEventListener(&#x27;dragover&#x27;,e=&gt;{e.preventDefault();const course=byId.get(draggedId||e.dataTransfer.getData(&#x27;text/plain&#x27;));const allowed=course?.terms.includes(zone.dataset.term);zone.classList.toggle(&#x27;is-over&#x27;,allowed);zone.classList.toggle(&#x27;is-denied&#x27;,!allowed);e.dataTransfer.dropEffect=allowed?&#x27;copy&#x27;:&#x27;none&#x27;;});
