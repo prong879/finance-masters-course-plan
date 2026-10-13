@@ -1583,21 +1583,23 @@ html&gt;body{padding:0}&lt;/style&gt;
     .course-card[draggable=&quot;true&quot;]:active { cursor:grabbing; }
     .course-card.is-dragging { opacity:.46; }
     .course-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
-    .candidate-card-top { align-items:center; min-width:0; }
+    .candidate-card-top { align-items:flex-start; min-width:0; }
     .candidate-card-top .course-credit { flex:0 0 auto; }
-    .candidate-card-identity { display:flex; flex:1 1 auto; align-items:center; gap:7px; min-width:0; overflow:hidden; }
-    #mf-course-plans .candidate-card-identity h3 { flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; text-wrap:nowrap; white-space:nowrap; }
+    .candidate-card-identity { display:flex; flex:1 1 auto; flex-wrap:wrap; align-items:center; gap:4px 7px; min-width:0; }
+    #mf-course-plans .candidate-card-identity h3 { flex:1 0 100%; min-width:0; overflow:hidden; text-overflow:ellipsis; text-wrap:nowrap; white-space:nowrap; }
     .course-card h3 { margin:0; color:rgb(250 252 251 / 96%); font-size:14px; line-height:1.45; }
     .course-credit { color:rgb(250 252 251 / 94%); font-size:12px; font-weight:800; white-space:nowrap; }
     .course-meta { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
     .course-tag { flex:0 0 auto; padding:3px 6px; border:1px solid color-mix(in oklab,var(--course-color) 58%,transparent); border-radius:6px; background:color-mix(in oklab,var(--course-color) 22%,transparent); color:color-mix(in oklab,var(--course-color) 66%,white); font-size:11px; font-weight:650; white-space:nowrap; }
     .course-tag.term-tag { flex:0 0 auto; border-color:color-mix(in srgb,var(--mf-muted) 34%,transparent); background:rgb(255 255 255 / 4%); color:rgb(240 245 242 / 72%); font-size:10px; }
+    .course-tag.assessment-exam { border-color:color-mix(in srgb,#e8a090 62%,transparent); background:rgba(232,160,144,.14); color:#f6cfc6; }
+    .course-tag.assessment-check { border-color:color-mix(in srgb,var(--mf-accent) 46%,transparent); background:color-mix(in srgb,var(--mf-accent) 14%,transparent); color:color-mix(in srgb,var(--mf-accent) 62%,white); }
     .course-tag.required { color:#efb3a4; background:rgba(239,179,164,.09); }
     .course-detail { margin-top:8px; color:rgb(247 249 248 / 80%); font-size:11px; line-height:1.55; }
     .selected-course-card { display:grid; gap:9px; padding:11px 12px; }
     .selected-card-row { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:10px; min-width:0; }
-    .selected-card-identity { display:flex; align-items:center; gap:7px; min-width:0; overflow:hidden; }
-    #mf-course-plans .selected-card-identity h3 { flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; text-wrap:nowrap; white-space:nowrap; }
+    .selected-card-identity { display:flex; flex-wrap:wrap; align-items:center; gap:4px 7px; min-width:0; }
+    #mf-course-plans .selected-card-identity h3 { flex:1 1 8em; min-width:8em; overflow:hidden; text-overflow:ellipsis; text-wrap:nowrap; white-space:nowrap; }
     .selected-card-detail { min-width:0; overflow:hidden; color:rgb(247 249 248 / 82%); font-size:11px; line-height:1.35; text-overflow:ellipsis; white-space:nowrap; }
     .selected-card-controls { display:flex; align-items:center; justify-content:flex-end; gap:7px; min-width:0; }
     .selected-card-controls .section-select { width:min(220px,19vw); min-width:150px; margin:0; }
@@ -1624,6 +1626,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       .course-card h3, .course-credit { color:rgb(24 36 31 / 94%); }
       .course-detail, .selected-card-detail { color:rgb(29 43 37 / 76%); }
       .course-tag.term-tag { border-color:rgb(31 61 51 / 18%); background:rgb(31 61 51 / 5%); color:rgb(29 43 37 / 68%); }
+      .course-tag.assessment-exam { border-color:rgb(176 92 74 / 28%); background:rgb(176 92 74 / 10%); color:#8d4334; }
+      .course-tag.assessment-check { border-color:color-mix(in srgb,var(--mf-accent) 36%,transparent); background:color-mix(in srgb,var(--mf-accent) 10%,white); color:#1d5c4a; }
       .section-select { background:rgb(255 255 255 / 80%); color:rgb(24 36 31 / 94%); }
     }
     .course-lock { color:var(--mf-muted); font-size:12px; }
@@ -4203,34 +4207,34 @@ html&gt;body{padding:0}&lt;/style&gt;
     law: [mtg(2,5,6,range(1,16),&#x27;立人楼A314&#x27;)]
   };
   const courses = [
-    {id:&#x27;english&#x27;,name:&#x27;硕士研究生英语&#x27;,credit:2,category:&#x27;公共基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],locked:true,sectionGroup:&#x27;english&#x27;},
-    {id:&#x27;modern&#x27;,name:&#x27;中国式现代化的理论与实践&#x27;,credit:2,category:&#x27;公共基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],locked:true,sectionGroup:&#x27;modern&#x27;},
-    {id:&#x27;investment&#x27;,name:&#x27;投资学&#x27;,credit:3,category:&#x27;专业基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;],locked:true,teacher:&#x27;赵洪江&#x27;,meetings:fixedSchedules.investment},
-    {id:&#x27;fintech&#x27;,name:&#x27;金融科技导论&#x27;,credit:2,category:&#x27;专业基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;],locked:true,teacher:&#x27;李平、李强&#x27;,meetings:fixedSchedules.fintech},
-    {id:&#x27;corp&#x27;,name:&#x27;高级公司金融&#x27;,credit:3,category:&#x27;专业基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;],locked:true,teacher:&#x27;郑舒心、张柘&#x27;,meetings:fixedSchedules.corp},
-    {id:&#x27;derivatives&#x27;,name:&#x27;衍生金融工具&#x27;,credit:3,category:&#x27;专业基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
-    {id:&#x27;statements&#x27;,name:&#x27;财务报表分析&#x27;,credit:2,category:&#x27;专业基础&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
-    {id:&#x27;econ&#x27;,name:&#x27;金融经济学&#x27;,credit:3,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;autumn&#x27;],teacher:&#x27;夏晖&#x27;,meetings:fixedSchedules.econ},
-    {id:&#x27;law&#x27;,name:&#x27;金融法规与伦理&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;autumn&#x27;],teacher:&#x27;肖延高、陈光宇&#x27;,meetings:fixedSchedules.law},
-    {id:&#x27;bond&#x27;,name:&#x27;债券市场分析与交易策略&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
-    {id:&#x27;empirical&#x27;,name:&#x27;实证研究方法II：模型设定与内生性处理&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
-    {id:&#x27;writing&#x27;,name:&#x27;金融硕士学位论文写作&#x27;,credit:1,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
-    {id:&#x27;politics&#x27;,name:&#x27;马克思主义与社会科学方法论&#x27;,credit:1,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
-    {id:&#x27;quant&#x27;,name:&#x27;量化投资&#x27;,credit:3,category:&#x27;实践教学&#x27;,bucket:&#x27;practice&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
-    {id:&#x27;sports&#x27;,name:&#x27;体育技能、欣赏与文化&#x27;,credit:1.5,category:&#x27;素质教育&#x27;,bucket:&#x27;required&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],sectionGroup:&#x27;sports&#x27;},
-    {id:&#x27;econometrics&#x27;,name:&#x27;高级计量经济学&#x27;,credit:2.5,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
-    {id:&#x27;digital-econ&#x27;,name:&#x27;数字经济学&#x27;,credit:2.5,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;autumn&#x27;],pending:true},
-    {id:&#x27;international&#x27;,name:&#x27;国际金融学&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
-    {id:&#x27;frontier&#x27;,name:&#x27;经济金融前沿研究专题&#x27;,credit:1.5,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
-    {id:&#x27;bank-risk&#x27;,name:&#x27;商业银行风险管理&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
-    {id:&#x27;bigdata-risk&#x27;,name:&#x27;大数据金融风险管理&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
-    {id:&#x27;venture&#x27;,name:&#x27;风险投资与私募股权&#x27;,credit:2,category:&#x27;专业选修&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
-    {id:&#x27;blockchain&#x27;,name:&#x27;区块链与数字货币&#x27;,credit:1,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;spring&#x27;],pending:true},
-    {id:&#x27;ip&#x27;,name:&#x27;知识产权与信息检索&#x27;,credit:2,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],sectionGroup:&#x27;ip&#x27;},
-    {id:&#x27;data-decision&#x27;,name:&#x27;数据分析与决策&#x27;,credit:2,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;spring&#x27;],pending:true},
-    {id:&#x27;ai&#x27;,name:&#x27;人工智能与机器学习&#x27;,credit:2,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;autumn&#x27;],sectionGroup:&#x27;ai&#x27;},
-    {id:&#x27;data-mining&#x27;,name:&#x27;数据挖掘与信息管理&#x27;,credit:3,category:&#x27;其他选修&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;autumn&#x27;],pending:true},
-    {id:&#x27;stress&#x27;,name:&#x27;压力管理的艺术&#x27;,credit:1,category:&#x27;素质教育&#x27;,bucket:&#x27;required&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],pending:true}
+    {id:&#x27;english&#x27;,name:&#x27;硕士研究生英语&#x27;,credit:2,category:&#x27;公共基础&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],locked:true,sectionGroup:&#x27;english&#x27;},
+    {id:&#x27;modern&#x27;,name:&#x27;中国式现代化的理论与实践&#x27;,credit:2,category:&#x27;公共基础&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],locked:true,sectionGroup:&#x27;modern&#x27;},
+    {id:&#x27;investment&#x27;,name:&#x27;投资学&#x27;,credit:3,category:&#x27;专业基础&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;],locked:true,teacher:&#x27;赵洪江&#x27;,meetings:fixedSchedules.investment},
+    {id:&#x27;fintech&#x27;,name:&#x27;金融科技导论&#x27;,credit:2,category:&#x27;专业基础&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;],locked:true,teacher:&#x27;李平、李强&#x27;,meetings:fixedSchedules.fintech},
+    {id:&#x27;corp&#x27;,name:&#x27;高级公司金融&#x27;,credit:3,category:&#x27;专业基础&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;autumn&#x27;],locked:true,teacher:&#x27;郑舒心、张柘&#x27;,meetings:fixedSchedules.corp},
+    {id:&#x27;derivatives&#x27;,name:&#x27;衍生金融工具&#x27;,credit:3,category:&#x27;专业基础&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
+    {id:&#x27;statements&#x27;,name:&#x27;财务报表分析&#x27;,credit:2,category:&#x27;专业基础&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;degree&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
+    {id:&#x27;econ&#x27;,name:&#x27;金融经济学&#x27;,credit:3,category:&#x27;专业选修&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;autumn&#x27;],teacher:&#x27;夏晖&#x27;,meetings:fixedSchedules.econ},
+    {id:&#x27;law&#x27;,name:&#x27;金融法规与伦理&#x27;,credit:2,category:&#x27;专业选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;autumn&#x27;],teacher:&#x27;肖延高、陈光宇&#x27;,meetings:fixedSchedules.law},
+    {id:&#x27;bond&#x27;,name:&#x27;债券市场分析与交易策略&#x27;,credit:2,category:&#x27;专业选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;empirical&#x27;,name:&#x27;实证研究方法II：模型设定与内生性处理&#x27;,credit:2,category:&#x27;专业选修&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;writing&#x27;,name:&#x27;金融硕士学位论文写作&#x27;,credit:1,category:&#x27;专业选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
+    {id:&#x27;politics&#x27;,name:&#x27;马克思主义与社会科学方法论&#x27;,credit:1,category:&#x27;其他选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
+    {id:&#x27;quant&#x27;,name:&#x27;量化投资&#x27;,credit:3,category:&#x27;实践教学&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;practice&#x27;,terms:[&#x27;spring&#x27;],locked:true,pending:true},
+    {id:&#x27;sports&#x27;,name:&#x27;体育技能、欣赏与文化&#x27;,credit:1.5,category:&#x27;素质教育&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;required&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],sectionGroup:&#x27;sports&#x27;},
+    {id:&#x27;econometrics&#x27;,name:&#x27;高级计量经济学&#x27;,credit:2.5,category:&#x27;专业选修&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;digital-econ&#x27;,name:&#x27;数字经济学&#x27;,credit:2.5,category:&#x27;专业选修&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;autumn&#x27;],pending:true},
+    {id:&#x27;international&#x27;,name:&#x27;国际金融学&#x27;,credit:2,category:&#x27;专业选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;frontier&#x27;,name:&#x27;经济金融前沿研究专题&#x27;,credit:1.5,category:&#x27;专业选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;bank-risk&#x27;,name:&#x27;商业银行风险管理&#x27;,credit:2,category:&#x27;专业选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;bigdata-risk&#x27;,name:&#x27;大数据金融风险管理&#x27;,credit:2,category:&#x27;专业选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;venture&#x27;,name:&#x27;风险投资与私募股权&#x27;,credit:2,category:&#x27;专业选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;pro&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;blockchain&#x27;,name:&#x27;区块链与数字货币&#x27;,credit:1,category:&#x27;其他选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;ip&#x27;,name:&#x27;知识产权与信息检索&#x27;,credit:2,category:&#x27;其他选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],sectionGroup:&#x27;ip&#x27;},
+    {id:&#x27;data-decision&#x27;,name:&#x27;数据分析与决策&#x27;,credit:2,category:&#x27;其他选修&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;spring&#x27;],pending:true},
+    {id:&#x27;ai&#x27;,name:&#x27;人工智能与机器学习&#x27;,credit:2,category:&#x27;其他选修&#x27;,assessment:&#x27;考试&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;autumn&#x27;],sectionGroup:&#x27;ai&#x27;},
+    {id:&#x27;data-mining&#x27;,name:&#x27;数据挖掘与信息管理&#x27;,credit:3,category:&#x27;其他选修&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;course&#x27;,terms:[&#x27;autumn&#x27;],pending:true},
+    {id:&#x27;stress&#x27;,name:&#x27;压力管理的艺术&#x27;,credit:1,category:&#x27;素质教育&#x27;,assessment:&#x27;考查&#x27;,bucket:&#x27;required&#x27;,terms:[&#x27;autumn&#x27;,&#x27;spring&#x27;],pending:true}
   ];
   const byId = new Map(courses.map(c =&gt; [c.id,c]));
   const preset = {
@@ -4297,6 +4301,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     toastTimer = setTimeout(() =&gt; toast.className = &#x27;planner-toast&#x27;, 3200);
   };
   const termText = terms =&gt; terms.length === 2 ? &#x27;春 or 秋&#x27; : termName(terms[0]);
+  const assessmentTag = course =&gt; {
+    const label = course.assessment === &#x27;考试&#x27; ? &#x27;考试&#x27; : &#x27;考查&#x27;;
+    return `&lt;span class=&quot;course-tag assessment-tag assessment-${label === &#x27;考试&#x27; ? &#x27;exam&#x27; : &#x27;check&#x27;}&quot;&gt;${label}&lt;/span&gt;`;
+  };
   const categoryKey = c =&gt; c.category === &#x27;专业选修&#x27; ? &#x27;pro&#x27; : c.category === &#x27;其他选修&#x27; ? &#x27;other&#x27; : c.category === &#x27;素质教育&#x27; ? &#x27;quality&#x27; : &#x27;fixed&#x27;;
   const courseColorKey = course =&gt; course.category === &#x27;公共基础&#x27; ? &#x27;public&#x27; : course.category === &#x27;专业基础&#x27; ? &#x27;foundation&#x27; : course.bucket === &#x27;pro&#x27; ? &#x27;elective&#x27; : course.bucket === &#x27;course&#x27; ? &#x27;other&#x27; : course.bucket === &#x27;practice&#x27; ? &#x27;practice&#x27; : &#x27;required&#x27;;
   const courseCard = (course, selectedTerm=null) =&gt; {
@@ -4310,7 +4318,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       ? `${course.teacher || getSection(course.id)?.teacher || &#x27;教师待定&#x27;} · ${schedule.map(m =&gt; `周${&#x27;一二三四五&#x27;[m.day-1]}${m.start}–${m.end}节`).join(&#x27; / &#x27;)}${rooms.length ? ` · ${rooms.join(&#x27; / &#x27;)}` : &#x27;&#x27;}`
       : (course.pending ? &#x27;正式教学班与时间待发布&#x27; : course.sectionGroup ? &#x27;请选择教学班&#x27; : &#x27;排课信息待确认&#x27;);
     if (!selectedTerm) {
-      card.innerHTML = `&lt;div class=&quot;course-card-top candidate-card-top&quot;&gt;&lt;div class=&quot;candidate-card-identity&quot;&gt;&lt;h3 title=&quot;${course.name}&quot;&gt;${course.name}&lt;/h3&gt;&lt;span class=&quot;course-tag&quot;&gt;${course.category}&lt;/span&gt;&lt;span class=&quot;course-tag term-tag&quot;&gt;${termText(course.terms)}&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;course-credit&quot;&gt;${fmt(course.credit)} 学分&lt;/span&gt;&lt;/div&gt;
+      card.innerHTML = `&lt;div class=&quot;course-card-top candidate-card-top&quot;&gt;&lt;div class=&quot;candidate-card-identity&quot;&gt;&lt;h3 title=&quot;${course.name}&quot;&gt;${course.name}&lt;/h3&gt;&lt;span class=&quot;course-tag&quot;&gt;${course.category}&lt;/span&gt;${assessmentTag(course)}&lt;span class=&quot;course-tag term-tag&quot;&gt;${termText(course.terms)}&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;course-credit&quot;&gt;${fmt(course.credit)} 学分&lt;/span&gt;&lt;/div&gt;
         ${course.pending ? &#x27;&lt;div class=&quot;course-detail&quot;&gt;正式教学班与时间待发布&lt;/div&gt;&#x27; : &#x27;&#x27;}`;
       const actions = document.createElement(&#x27;div&#x27;); actions.className = &#x27;course-actions&#x27;;
       [&#x27;autumn&#x27;,&#x27;spring&#x27;].forEach(term =&gt; {
@@ -4322,7 +4330,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       card.addEventListener(&#x27;dragend&#x27;,()=&gt;{ draggedId=null; card.classList.remove(&#x27;is-dragging&#x27;); document.querySelectorAll(&#x27;.planner-dropzone&#x27;).forEach(z=&gt;z.classList.remove(&#x27;is-over&#x27;,&#x27;is-denied&#x27;)); });
     } else {
       card.innerHTML = `&lt;div class=&quot;selected-card-row&quot;&gt;
-          &lt;div class=&quot;selected-card-identity&quot;&gt;&lt;h3 title=&quot;${course.name}&quot;&gt;${course.name}&lt;/h3&gt;&lt;span class=&quot;course-tag&quot;&gt;${course.category}&lt;/span&gt;&lt;span class=&quot;course-tag term-tag&quot;&gt;${termText(course.terms)}&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;selected-card-identity&quot;&gt;&lt;h3 title=&quot;${course.name}&quot;&gt;${course.name}&lt;/h3&gt;&lt;span class=&quot;course-tag&quot;&gt;${course.category}&lt;/span&gt;${assessmentTag(course)}&lt;span class=&quot;course-tag term-tag&quot;&gt;${termText(course.terms)}&lt;/span&gt;&lt;/div&gt;
           &lt;span class=&quot;course-credit&quot;&gt;${fmt(course.credit)} 学分&lt;/span&gt;
         &lt;/div&gt;
         &lt;div class=&quot;selected-card-row${course.sectionGroup ? &#x27; selected-section-row&#x27; : &#x27;&#x27;}&quot;&gt;
